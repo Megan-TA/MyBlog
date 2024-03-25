@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="huangchen的个人博客">
+<meta property="og:url" content="https://megan-ta.github.io/page/4/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="huangchen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-git-submodule" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/07/10/git-submodule/" class="article-date">
+  <time class="dt-published" datetime="2019-07-10T08:31:04.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/07/10/git-submodule/">git submodule</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>子模块一些操作方法：</p>
+<ul>
+<li>克隆带有子模块的项目</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --recursive 远程地址</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>拉取子模块更新</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --remote</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提交子模块修改（需要切换到<code>master</code>分支）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;xxxx&#x27;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除子模块</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git submodule deinit themes/hugo-nuo</span><br><span class="line">vim .gitmodules # 移除要删除的子模块</span><br><span class="line">git add .gitmodules</span><br><span class="line">git rm --cached themes/hugo-nuo</span><br><span class="line">rm -rf .git/modules/themes/hugo-nuo</span><br><span class="line">rm -rf themes/hugo-nuo</span><br><span class="line">git commit -m &quot;Remove submodule themes/hugo-nuo&quot;</span><br></pre></td></tr></table></figure>
+
+<p>参考链接： 1. <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0107698498af">Git Submodule 的使用</a> 2. <a target="_blank" rel="noopener" href="https://laozhu.me/post/git-submodule-tutorial/">Git Submodule</a></p>
+<p>使用过程中遇到的问题：</p>
+<ol>
+<li><code>jenkins</code>构建过程中，使用 http 方式拉取子模块一直提示需要输入账号密码，将账号密码放在 url 前面</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git config submodule.H5-Base.url http://账号:密码@远程地址/app/H5-Base.git</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git submodule init</span><br><span class="line">git submodule update --remote</span><br><span class="line"></span><br><span class="line">yarn install</span><br><span class="line">git submodule foreach &#x27;yarn install&#x27;</span><br><span class="line">yarn build</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/07/10/git-submodule/" data-id="clu6rtt8m000sa8xac5fyd5ae" data-title="git submodule" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-centos下开机自动重启服务和脚本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/07/08/centos%E4%B8%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1%E5%92%8C%E8%84%9A%E6%9C%AC/" class="article-date">
+  <time class="dt-published" datetime="2019-07-08T02:45:59.000Z" itemprop="datePublished">2019-07-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/07/08/centos%E4%B8%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1%E5%92%8C%E8%84%9A%E6%9C%AC/">centos下开机自动重启服务和脚本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><h3 id="利用chkconfig添加开机自启服务"><a href="#利用chkconfig添加开机自启服务" class="headerlink" title="利用chkconfig添加开机自启服务"></a>利用<code>chkconfig</code>添加开机自启服务</h3></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">chkconfig</span><br><span class="line"></span><br><span class="line">--list 各项服务状态栏显示出来</span><br><span class="line">--level 设置某个服务在该状态栏显示出来</span><br><span class="line"></span><br><span class="line">单独开启某一服务的命令：chkconfig 服务名 on</span><br><span class="line"></span><br><span class="line">单独关闭某一服务的命令：chkconfig 服务名 off</span><br><span class="line"></span><br><span class="line">查看某一服务的状态：/etc/intd.d/服务名 status</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我这里以docker 服务为例，设置如下两条命令即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1  # systemctl enable docker.service #设置docker服务为自启动服务 相当于我们的 chkconfig docker on</span><br><span class="line">2 # systemctl start docker.service #启动docker服务</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><h3 id="添加开机自启脚本"><a href="#添加开机自启脚本" class="headerlink" title="添加开机自启脚本"></a>添加开机自启脚本</h3></li>
+</ol>
+<ul>
+<li><p>方法一</p>
+<ol>
+<li><p>赋予脚本可执行权限（&#x2F;opt&#x2F;script&#x2F;duDefaultService.sh是你的脚本路径）</p>
+</li>
+<li><p>打开&#x2F;etc&#x2F;rc.d&#x2F;rc.local文件，在末尾增加如下内容</p>
+</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;/opt/script/duDefaultService.sh&quot; &gt;&gt; /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在centos7中，&#x2F;etc&#x2F;rc.d&#x2F;rc.local的权限被降低了，所以需要执行如下命令赋予其可执行权限</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二</p>
+<ol start="0">
+<li>设置sh启动脚本必要参数</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">chkconfig: 2345 80 80</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">description: auto start web server</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>  第一句：必须的<br>  声明sh<br>  第二句：必须的<br>  2345 表示linux 有 0-6种状态 在2345下启动<br>  80：表示启动顺序<br>  80：表示关闭顺序<br>  后面两个参数小于 100<br>  第三句：必须的<br>  描述</p>
+<p>  结果截图如下：<br>  </p>
+<ol>
+<li>将脚本移动到&#x2F;etc&#x2F;rc.d&#x2F;init.d目录下</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  /opt/script/duDefaultService.sh /etc/rc.d/init.d</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>增加脚本的可执行权限</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x  /etc/rc.d/init.d/duDefaultService.sh</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加脚本到开机自动启动项目中</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/rc.d/init.d</span><br><span class="line">chkconfig --add duDefaultService.sh</span><br><span class="line">chkconfig duDefaultService.sh on</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三</p>
+<p>  1.建立服务文件</p>
+<p>  vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;nginx.service</p>
+<p>  <a href="%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AF%B4%E6%98%8E">Unit</a></p>
+<p>  Description&#x3D;nginx</p>
+<p>  After&#x3D;network.target</p>
+<p>  [Service]</p>
+<p>  Type&#x3D;forking</p>
+<p>  ExecStart&#x3D;&#x2F;www&#x2F;lanmps&#x2F;init.d&#x2F;nginx start</p>
+<p>  ExecReload&#x3D;&#x2F;www&#x2F;lanmps&#x2F;init.d&#x2F;nginx restart</p>
+<p>  ExecStop&#x3D;&#x2F;www&#x2F;lanmps&#x2F;init.d&#x2F;nginx  stop</p>
+<p>  PrivateTmp&#x3D;true</p>
+<p>  [Install]</p>
+<p>  WantedBy&#x3D;multi-user.target</p>
+<p>  Description:描述服务</p>
+<p>  After:描述服务类别</p>
+<p>  [Service]服务运行参数的设置</p>
+<p>  Type&#x3D;forking是后台运行的形式</p>
+<p>  ExecStart为服务的具体运行命令</p>
+<p>  ExecReload为重启命令</p>
+<p>  ExecStop为停止命令</p>
+<p>  PrivateTmp&#x3D;True表示给服务分配独立的临时空间</p>
+<p>  注意：[Service]的启动、重启、停止命令全部要求使用绝对路径</p>
+<p>  [Install]服务安装的相关设置，可设置为多用户</p>
+<p>  2.保存目录</p>
+<p>  以754的权限保存在目录：</p>
+<p>  &#x2F;lib&#x2F;systemd&#x2F;system  </p>
+<p>  3.设置开机自启动</p>
+<p>  systemctl enable nginx.service  </p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable XXXX.service</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/07/08/centos%E4%B8%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1%E5%92%8C%E8%84%9A%E6%9C%AC/" data-id="clu6rtt8i000ma8xa2vsofofu" data-title="centos下开机自动重启服务和脚本" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-常用npm包整理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/07/03/%E5%B8%B8%E7%94%A8npm%E5%8C%85%E6%95%B4%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-07-03T01:56:32.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/07/03/%E5%B8%B8%E7%94%A8npm%E5%8C%85%E6%95%B4%E7%90%86/">常用npm包整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="git-钩子"><a href="#git-钩子" class="headerlink" title="git 钩子"></a>git 钩子</h2><ul>
+<li>husky</li>
+<li>lint-staged</li>
+</ul>
+<h2 id="代码风格相关"><a href="#代码风格相关" class="headerlink" title="代码风格相关"></a>代码风格相关</h2><ul>
+<li>commitizen</li>
+<li>eslint</li>
+<li>standard-version</li>
+<li>stylelint</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install commitizen -g</span><br><span class="line"></span><br><span class="line">commitizen init cz-conventional-changelog --yarn --dev --exact</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yarn add standard-version -D</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>配置<code>package.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;release&quot;</span><span class="punctuation">:</span> <span class="string">&quot;standard-version&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;pre-commit&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lint-staged&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;lint-staged&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;src/**/*.&#123;js&#125;&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;eslint --fix&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;git add&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>参考链接：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/commitizen/cz-cli">commitizen</a></li>
+</ol>
+<h2 id="工具命令"><a href="#工具命令" class="headerlink" title="工具命令"></a>工具命令</h2><ul>
+<li>tildify</li>
+</ul>
+<p>将绝对路径转换为波形路径 比如&#x2F;Users&#x2F;sindresorhus&#x2F;dev → ~&#x2F;dev</p>
+<ul>
+<li>ora</li>
+</ul>
+<p>这个模块用于在终端里有显示载入动画</p>
+<ul>
+<li>download-git-repo</li>
+</ul>
+<p>一个用于下载 git 仓库的项目的模块</p>
+<ul>
+<li>inquirer</li>
+</ul>
+<p>是一个命令行的回答的模块，你可以自己设定终端的问题，然后对这些回答给出相应的处理</p>
+<ul>
+<li>commander</li>
+</ul>
+<p>可以将文字输出到终端当中 多用于提示 根据定义的 bin 的 name 触发对应脚本</p>
+<h2 id="Node-服务"><a href="#Node-服务" class="headerlink" title="Node 服务"></a>Node 服务</h2><ul>
+<li>protocol-buffers</li>
+</ul>
+<p>nodejs 处理 rpc 通信的一种数据序列化格式模块 类似 JSON</p>
+<ul>
+<li>dotenv</li>
+</ul>
+<p>nodejs 从文件(.env)中加载环境变量</p>
+<ul>
+<li>pino&#x2F;koa-pino-logger</li>
+</ul>
+<p>nodejs 日志库</p>
+<ul>
+<li>pm2</li>
+<li>pm2-web</li>
+<li>pm2-logrotate&#x2F;pm2-logrotate-ext 日志按天分隔</li>
+</ul>
+<p>pm2 可视化管理开启</p>
+<p>pm2 monitor ${id}</p>
+<p>参考资料：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5be406705188256dbb5176f9#heading-10">PM2 简易使用手册</a></li>
+</ol>
+<h2 id="Typescript"><a href="#Typescript" class="headerlink" title="Typescript"></a>Typescript</h2><ul>
+<li>ts-node</li>
+<li>ts-node-dev</li>
+</ul>
+<p>开发模式实时编译文件并输出到指定目录下</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><ul>
+<li>supertest</li>
+</ul>
+<p>http 断言库</p>
+<ul>
+<li><p>jest</p>
+</li>
+<li><p>mock-fs</p>
+</li>
+</ul>
+<p>在内存里模拟 fs 文件，进行 mock 文件测试</p>
+<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><ul>
+<li>node-cron 定时脚本&#x2F;任务</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>verdaccio</li>
+</ul>
+<p>搭建私有 npm 库</p>
+<ul>
+<li>安装本地包</li>
+</ul>
+<p>npm install file:完整的相对路径 如 file:&#x2F;User&#x2F;Desktop&#x2F;XXX</p>
+<ul>
+<li>vue-awesome-swiper</li>
+</ul>
+<p>swiper vue 版本组件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/07/03/%E5%B8%B8%E7%94%A8npm%E5%8C%85%E6%95%B4%E7%90%86/" data-id="clu6rtt9d003ea8xaalelb3np" data-title="常用npm包整理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-react-vue中dom-diff简易版实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/20/react-vue%E4%B8%ADdom-diff%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-20T03:33:40.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/06/20/react-vue%E4%B8%ADdom-diff%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0/">react/vue中dom-diff简易版实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、创建虚拟dom"><a href="#一、创建虚拟dom" class="headerlink" title="一、创建虚拟dom"></a>一、创建虚拟dom</h2><p>利用 <code>create-react-app</code>快速创建一个项目模板；</p>
+<p>删掉src下的源文件，替换成 index.js</p>
+<p>首先我们先要用一个对象定义一个虚拟DOM的数据结构：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Element &#123;</span><br><span class="line">    type: &#x27;ul&#x27;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        class: &#x27;list&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">        Element&#123;</span><br><span class="line">            type: &#x27;li&#x27;,</span><br><span class="line">            props: &#123;</span><br><span class="line">                class: &#x27;item&#x27;</span><br><span class="line">            &#125;,</span><br><span class="line">            children: [&#x27;a&#x27;]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开始码代码实现虚拟dom的方法实现。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7c8c5aa6083b?w=2956&h=992&f=png&s=271739" alt="&#39;虚拟DOM结构&#39;"><br>浏览器上查看打印的日志信息，如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7ca53ba8fef7?w=1210&h=410&f=png&s=97781" alt="控制台日志"></p>
+<p>既然虚拟DOM方法已经写好，下一步就要将这个虚拟dom插入到页面中，那我们可以专门写一个渲染真实节点的方法<code>render</code></p>
+<p>先遍历最外层<code>ul</code>的<code>type</code>和<code>props</code>两个属性</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7e8001b419a3?w=2568&h=1244&f=png&s=359336" alt="render"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7e9fddde1a34?w=1078&h=128&f=png&s=25171" alt="控制台日志"></p>
+<p>注意：<code>input</code>标签的<code>value</code>属性 还有所有标签的<code>style</code>属性</p>
+<p>好了，接下来就是继续遍历<code>children</code>属性，此时<code>children</code>会有两种情况</p>
+<ol>
+<li>如果是文本 直接插入；</li>
+<li>如果是子元素，递归遍历直到最终的结果是文本；</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0b58ed9735?w=1036&h=484&f=png&s=95541" alt="遍历虚拟don元素转换为真实dom结构"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0d50748a42?w=676&h=198&f=png&s=31439" alt="控制台日志"></p>
+<p>下一步我们将这个实际的DOM元素结构插入到页面中</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d8078bce16225?w=2988&h=774&f=png&s=270016" alt="append"><br><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d805dec820f97?w=1120&h=862&f=png&s=112852" alt="控制台日志"></p>
+<p>完成第一部分。</p>
+<hr>
+<h2 id="二、实现dom-diff算法"><a href="#二、实现dom-diff算法" class="headerlink" title="二、实现dom-diff算法"></a>二、实现dom-diff算法</h2><p><code>dom-diff</code>算法就是在两棵抽象语法树的同一位置采用先序的深度遍历算法做比较，同时用补丁的形式记录需要更新的节点位置。</p>
+<p>若<code>type</code>不一致直接替换当前节点以及当前节点下的子节点；<br>如果两个父节点一致，则从左往后遍历子节点，若子节点一致，遍历子节点下的子节点，依次递归。</p>
+<p>补丁包的定义规则如下：</p>
+<ol>
+<li>属性不同（type: ‘ATTRS’, attrs）</li>
+<li>新的节点被删除了 （type: ‘REMOVE’, index: xxxx）</li>
+<li>节点类型不同&#x2F;新增 （type: ‘REPLACE’, newNode）</li>
+<li>仅仅是文本变化（type: ‘TEXT’, text）</li>
+</ol>
+<p>新建一个<code>dom-diff.js</code>，专门处理<code>diff</code>算法</p>
+<p>手动调用<code>diff</code>方法（react中调用<code>diff</code>算法是在触发<code>setState</code>之后）</p>
+<p>两个虚拟dom结构如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf9046719203?w=1272&h=896&f=png&s=189549" alt="虚拟dom结构"></p>
+<p>先处理<code>type</code>相同，属性不同的情况。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dca2da79ddd4a?w=1240&h=1688&f=png&s=288100" alt="属性不同"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dca49d1e2ece5?w=1158&h=420&f=png&s=70893" alt="控制台日志"></p>
+<p>发现控制台已经打印到属性变化的补丁包，最后我们把属性的小补丁包存放到最外层的大补丁包中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 补丁包 存放两个虚拟dom的差异部分</span><br><span class="line">let patchs = &#123;&#125;</span><br><span class="line">// 放到最外层的大补丁包中</span><br><span class="line">if (currentPatchs.length &gt; 0) &#123;</span><br><span class="line">  patchs[index] = currentPatchs</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好了 相同类型的父节点一样，在属性比较完成之后，就需要比较<code>children</code>的属性是否有变化<br>比较<code>children</code>属性内部元素是否变化，利用递归去遍历</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let globalIndex = 0</span><br><span class="line"></span><br><span class="line">function diffChildren (oldChildrens, newChildrens) &#123;</span><br><span class="line">  oldChildrens.forEach((child, idx) =&gt; &#123;</span><br><span class="line">    walk(child, newChildrens[idx], ++globalIndex)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果一开始<code>type</code>类型不相同不需要再去比较，直接用新节点替换老节点即可；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// type不一致</span><br><span class="line">currentPatchs.push(&#123;</span><br><span class="line">  type: TYPES.REPLACE,</span><br><span class="line">  newNode: newTree</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>兼容并处理好各种情况，比如：新节点不存在的情况，新节点增加，新节点类型改变，新节点文本改变以及新节点的属性变化等情况；</p>
+<p>最终拿到所有与旧节点有差异的对象放入patchs这样的一个补丁对象中。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dde85f556609a?w=1432&h=1092&f=png&s=211043" alt="控制台日志"></p>
+<p>补丁包的<code>key</code>就是对应新节点有变化的数据位置。</p>
+<hr>
+<h2 id="三、-打补丁更新视图"><a href="#三、-打补丁更新视图" class="headerlink" title="三、 打补丁更新视图"></a>三、 打补丁更新视图</h2><p>最后一步将补丁的差异对象与现有虚拟DOM节点遍历进行一一比较与替换。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddee92a1a76de?w=1098&h=426&f=png&s=61221" alt="开始打补丁"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddeed8a40ba8c?w=1096&h=1094&f=png&s=175704" alt="补丁步骤"></p>
+<p>根据之前定义的不同补丁对象结构依次处理</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf0cc87aaa5d?w=1248&h=1138&f=png&s=192351" alt="补丁步骤"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf097e341aaf?w=1006&h=1032&f=png&s=120960" alt="控制台日志"></p>
+<p>大功告成！</p>
+<hr>
+<p>这只是diff算法的一个简易实现，还存在一些复杂情况处理的情况以及还有很多算法上面优化的方案，不过已经让我们大概了解了<code>diff</code>算法的原理。</p>
+<p>如有笔误或者其他实现不对的地方，还望大家指出，谢谢！</p>
+<p>具体代码可以参考github链接查看：<a target="_blank" rel="noopener" href="https://github.com/Megan-TA/dom-diff-demo">dom-diff-demo</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/20/react-vue%E4%B8%ADdom-diff%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0/" data-id="clu6rtt8x001za8xa7tig4ira" data-title="react/vue中dom-diff简易版实现" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-docker基本使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/19/docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-06-19T06:15:03.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/06/19/docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">docker基本使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文都是基于<code>centos7</code>环境使用</p>
+<ol>
+<li>启动 docker</li>
+</ol>
+<p>docker linux启动配置文件默认<code>/etc/docker/daemon.json</code></p>
+<p>mac 启动配置文件默认 &#x2F;Users&#x2F;用户&#x2F;.docker&#x2F;daemon.json<br>可以修改配置文件指定 docker 服务启动的一些默认参数</p>
+<p>若报<code>doing migrations: migrating daemon.json: invalid character</code>错误，一般是在docker启动的时候报错。是daemon.json配置文件语法不对导致的报错。</p>
+<p>镜像加速</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;http://hub-mirror.c.163.com&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>–regisrty-mirror&#x3D;PROXY_URL 指定拉取镜像的地址加速 Docker 镜像拉取</p>
+<p>2.docker pull NAME[:TAG]<br>默认都是从 <code>docker</code>官方仓库去拉取镜像（registry.hub.docker.com）<br>一般直接 pull<br>比如：<br><code>docker</code>下载<code>node</code>的<code>alpine</code>版本</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull node:10.15-alpine</span><br></pre></td></tr></table></figure>
+
+<p>相当于</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.hub.docker.com/ubuntu:node:10.15-alpine</span><br></pre></td></tr></table></figure>
+
+<p><code>alpine</code>是<code>node</code>在<code>docker</code>运行的最小环境的版本，相比于完整的<code>node</code>包体积更小</p>
+<p>如果不指定版本默认拉取 <code>latest</code>版本，生产环境的时候最好指定版本号，因为<code>lastest</code>版本会跟踪最新版本的变更而变化</p>
+<p>3.如何进入<code>未启动</code>的<code>node</code>镜像内部去修改默认一些配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it node:10.15-alpine sh</span><br></pre></td></tr></table></figure>
+
+<p>以<code>shell</code>脚本的方式去执行<code>node</code>命令</p>
+<p>4.docker exec ／ docker attach</p>
+<p>两者都是进入容器内部</p>
+<p><code>attach</code>的不足：</p>
+<ul>
+<li>多个窗口同时 <code>attach</code>同一个容器时候，所有窗口会同步显示；</li>
+<li>当某个窗口因命令阻塞，所有窗口都无法执行操作；</li>
+</ul>
+<p>进入<code>已成功运行</code>的容器内部</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器名称/容器ID /bin/sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>-i 支持标准输入</p>
+</li>
+<li><p>-t 开启一个伪终端</p>
+<p>5.docker ps</p>
+</li>
+<li><p>docker ps<br>查看已经成功运行的容器（如果运行容器之后 ps 未看到说明容器启动失败）</p>
+</li>
+<li><p>docker ps -a<br>查看所有容器（包含未成功运行的容器）</p>
+</li>
+<li><p>docker ps -f 容器 id<br> 根据容器 id 筛选指定容器</p>
+<p>6.docker run</p>
+</li>
+</ul>
+<p>参数部分</p>
+<ul>
+<li>-d 守护进程方式运行</li>
+<li>-p 端口映射 （外部访问的端口：docker 内部端口）</li>
+<li>-u 指定容器的用户</li>
+<li>-v 挂载存储卷映射 （外部存储卷位置：docker 内部存储卷位置）</li>
+<li>-h 指定容器的主机名</li>
+<li>-root</li>
+<li>–name 容器重命名</li>
+<li>–rm 容器停止后自动删除</li>
+<li>–link 关联其它容器</li>
+</ul>
+<ol start="7">
+<li>删除</li>
+</ol>
+<p>docker rmi XXX</p>
+<p>批量删除失效的容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm `docker ps -a -q`</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="docker安装redis"><a href="#docker安装redis" class="headerlink" title="docker安装redis"></a>docker安装redis</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动redis</span></span><br><span class="line">docker run -itd --name redis -p 6379:6379 redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改redis默认配置文件（docker方法安装的redis没有配置文件，需要到官网去下载对应配置文件）</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 外部shell运行docker内部容器命令 查看对应redis版本</span></span><br><span class="line">docker exec redis redis-server -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 到官网去下载对应redis版本，拷贝配置文件redis.conf到本地桌面/docker/data/redis</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">中文版官网地址： http://www.redis.cn/download.html</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. -v</span> </span><br><span class="line"></span><br><span class="line">sudo docker run -p 6379:6379 --name redis -v /Users/knight/Desktop/docker/data/redis/redis.conf:/etc/redis/redis.conf  -v /Users/knight/Desktop/docker/data/redis:/data -d redis:5.0 redis-server /etc/redis/redis.conf --appendonly yes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run -d --name redis -p 6379:6379 redis:5.0 --requirepass &quot;LgvTc9BF2nusES5w&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker-compose down</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/19/docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" data-id="clu6rtt8k000oa8xafct2dvcz" data-title="docker基本使用" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python爬虫框架scrapy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/19/python%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6scrapy/" class="article-date">
+  <time class="dt-published" datetime="2019-06-19T06:07:34.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/06/19/python%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6scrapy/">python爬虫框架scrapy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>1.创建项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject 项目名称</span><br></pre></td></tr></table></figure>
+
+<p>2.创建一个爬虫</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider XX XX.com</span><br></pre></td></tr></table></figure>
+
+<p>3.启动脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl XX</span><br></pre></td></tr></table></figure>
+
+<p>也可以新建一个启动文件，比如<code>start.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.cmdline <span class="keyword">import</span> execute</span><br><span class="line"></span><br><span class="line">execute(<span class="string">&#x27;scrapy crawl stockX&#x27;</span>.split())</span><br></pre></td></tr></table></figure>
+
+<p>4.爬虫脚本</p>
+<p>必须要有<code>name</code>，这个是和启动对应命令对应的的名称</p>
+<p><code>parse</code>以及<code>start_urls</code>和<code>allowed_domains</code>可选</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BaiduSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;baidu&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;baidu.com&#x27;</span>]</span><br><span class="line">    start_urls = [<span class="string">&#x27;https://www.baidu.com/&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="built_in">print</span>(response.text)</span><br></pre></td></tr></table></figure>
+
+<p>其中 start_urls 可以接受多个 url 参数，也可以拆分成多个步骤</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BaiduSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;baidu&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;baidu.com&#x27;</span>]</span><br><span class="line">    <span class="comment"># start_urls = [&#x27;https://www.baidu.com/&#x27;]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start_requests</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">yield</span> scrapy.Request(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="built_in">print</span>(response.text)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ol>
+<li><p><code>Items</code>相当于定义的需要输出的数据模型，用来存储数据，推送给<code>pipline</code>解析处理；</p>
+</li>
+<li><p>如果要爬取多组数据，最好是建立多个模型，即<code>Item</code>；</p>
+</li>
+</ol>
+<hr>
+<h2 id="Pipline"><a href="#Pipline" class="headerlink" title="Pipline"></a>Pipline</h2><h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h3><p>当 item 在 Spider 中被收集之后，会传递到 item pipline 中处理；</p>
+<p>作用：</p>
+<ul>
+<li>清理 html 数据</li>
+<li>验证爬取数据</li>
+<li>去重并丢弃</li>
+<li>数据持久化</li>
+</ul>
+<h3 id="2-编写-item-pipline"><a href="#2-编写-item-pipline" class="headerlink" title="2. 编写 item pipline"></a>2. 编写 item pipline</h3><p>2.1 必须实现的函数</p>
+<ul>
+<li><p>process_item</p>
+<p>每个<code>pipline</code>都是一个 python 类，负责接收到<code>item</code>并执行一些行为，内部必须实现<code>process_item(self, item, spider)</code>方法，必须返回一个<code>dict</code>或者<code>item</code>对象。</p>
+<p><code>piplines</code>只能接受字典和<code>items</code>，在主程序通过<code>yield</code>推送到<code>piplines</code></p>
+<p>2.2 可以选择实现</p>
+</li>
+<li><p><code>open_spider(self, spider)</code>表示当 spider 开启的时候调用的方法；</p>
+</li>
+<li><p><code>close_spider(self, spider)</code>标识当 spider 关闭的时候调用的方法；</p>
+</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li><code>pipline</code>写完需要在配置项<code>settings</code>的<code>ITEM_PIPELINES</code>里写入来启动</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINE &#123;</span><br><span class="line">  demo.pipelines.testDemoPipeline : <span class="number">300</span>    // <span class="number">300</span>是优先级 越大优先级越高</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>文件流写入是缓冲一定字节的数据再一次性写入</p>
+<p>强制立刻写入</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.file.flush()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>2.3 如果编写多个<code>pipeline</code>，则会改成指定大小去依次执行每次推过来的<code>item</code>，如果需要丢弃<code>item</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.exceptions <span class="keyword">import</span> DropItem</span><br><span class="line"></span><br><span class="line"><span class="keyword">raise</span> DropItem()</span><br></pre></td></tr></table></figure>
+
+<p>2.4 推送过来的<code>item</code>并不是一个 list，如果需要存储数据，则需要转成字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.json_file.writelines(json.dumps(<span class="built_in">dict</span>(item), ensure_ascii=<span class="literal">False</span>) + <span class="string">&#x27;\r&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/19/python%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6scrapy/" data-id="clu6rtt8w001sa8xagurf48az" data-title="python爬虫框架scrapy" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nginx入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/19/nginx%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-06-19T05:34:23.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/06/19/nginx%E5%85%A5%E9%97%A8/">nginx入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>环境</p>
+<p>CENTOS&gt;&#x3D;7.0,位数 X64 CENTOS 7.2</p>
+</li>
+<li><p>关闭 iptables</p>
+<p>iptables 命令是 Linux 上常用的防火墙软件</p>
+<table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">停止防火墙</td>
+<td align="left">systemctl stop firewalld.service</td>
+</tr>
+<tr>
+<td align="left">永久关闭防火墙</td>
+<td align="left">systemctl disable firewalld.service</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>安装依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum  -y install gcc gcc-c++ autoconf pcre pcre-devel make automake</span><br><span class="line">yum  -y install wget httpd-tools vim</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始安装 nginx</p>
+<p>新建一个文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/yum.repos.d/nginx.repo</span><br></pre></td></tr></table></figure>
+
+<p>内容输入如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/7/$basearch/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+
+<p>其中 centos&#x2F;7 根据自己运行环境配置 系统名&#x2F;版本号</p>
+<p>下载 nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br><span class="line">nginx -v</span><br><span class="line">nginx -V</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="nginx-常用操作"><a href="#nginx-常用操作" class="headerlink" title="nginx 常用操作"></a>nginx 常用操作</h2><ol>
+<li><p>查看配置文件和目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ql nginx</span><br></pre></td></tr></table></figure>
+
+<p>相关文件说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">路径</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;etc&#x2F;logrotate.d&#x2F;nginx</td>
+<td align="left">用于 logrotate 服务的日志切割</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;etc&#x2F;nginx &#x2F;etc&#x2F;nginx&#x2F;nginx.conf &#x2F;etc&#x2F;nginx&#x2F;conf.d &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf</td>
+<td align="left">主配置文件</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;etc&#x2F;nginx&#x2F;fastcgi_params &#x2F;etc&#x2F;nginx&#x2F;scgi_params &#x2F;etc&#x2F;nginx&#x2F;uwsgi_params</td>
+<td align="left">cgi 配置,fastcgi 配置</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;etc&#x2F;nginx&#x2F;koi-utf &#x2F;etc&#x2F;nginx&#x2F;koi-win &#x2F;etc&#x2F;nginx&#x2F;win-utf</td>
+<td align="left">编码转换映射转化文件</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;etc&#x2F;nginx&#x2F;mime.types</td>
+<td align="left">设置 http 协议的 Content-Type 与扩展名对应关系</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;nginx-debug.service &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;nginx.service &#x2F;etc&#x2F;sysconfig&#x2F;nginx &#x2F;etc&#x2F;sysconfig&#x2F;nginx-debug</td>
+<td align="left">用于配置系统守护进程管理器管理方式</td>
+</tr>
+<tr>
+<td align="left">配置文件</td>
+<td align="left">&#x2F;etc&#x2F;nginx&#x2F;modules &#x2F;usr&#x2F;lib64&#x2F;nginx&#x2F;modules</td>
+<td align="left">nginx 模块目录</td>
+</tr>
+<tr>
+<td align="left">命令</td>
+<td align="left">&#x2F;usr&#x2F;share&#x2F;doc&#x2F;nginx-1.14.0 &#x2F;usr&#x2F;share&#x2F;doc&#x2F;nginx-1.14.0&#x2F;COPYRIGHT</td>
+<td align="left">nginx 的手册和帮助文件</td>
+</tr>
+<tr>
+<td align="left">目录</td>
+<td align="left">&#x2F;var&#x2F;cache&#x2F;nginx</td>
+<td align="left">nginx 的缓存目录</td>
+</tr>
+<tr>
+<td align="left">目录</td>
+<td align="left">&#x2F;var&#x2F;log&#x2F;nginx</td>
+<td align="left">nginx 的日志目录</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>启动和重新加载以及关闭</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx.service</span><br><span class="line">systemctl reload nginx.service</span><br><span class="line">systemctl stop nginx.service</span><br><span class="line"></span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>如果在启动的时候可能会遇到下列问题：</p>
+<ol>
+<li>端口被占用；</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Starting nginx: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line"></span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] still could not bind</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以先查看进程，再杀死对应进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -ntpl</span><br><span class="line"></span><br><span class="line">kill 进程号</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 nginx</p>
+</li>
+</ol>
+<blockquote>
+<p>&#x2F;etc&#x2F;nginx&#x2F;nginx.conf</p>
+</blockquote>
+<p>查看日志命令 tailf -f log 目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">user  nginx;   设置nginx服务的系统使用用户</span><br><span class="line">worker_processes  1;  工作进程数,一般和CPU数量相同</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log warn;   nginx的错误日志</span><br><span class="line">pid        /var/run/nginx.pid;   nginx服务启动时的pid</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;每个进程允许的最大连接数 10000</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;//文件后缀和类型类型的对应关系</span><br><span class="line">    default_type  application/octet-stream;//默认content-type</span><br><span class="line"></span><br><span class="line">    log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">                    &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">                    &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;  //日志记录格式</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;//默认访问日志 日志格式与log_format main 对应</span><br><span class="line"></span><br><span class="line">    sendfile        on;//启用sendfile</span><br><span class="line">    #tcp_nopush     on;//懒发送 客户端请求数据不会每次都时时相应 让数据塞满一次性发送给客户端（多用于下载、断点 续传）</span><br><span class="line">    #tcp_nodelay on; // 默认开启 与nopush互斥 提高实时请求响应效率</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;//超时时间是65秒</span><br><span class="line"></span><br><span class="line">    #gzip  on;gzip压缩</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;//包含的子配置文件</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&#x2F;etc&#x2F;default.conf</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    # 用域名方式访问的地址</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r; //编码</span><br><span class="line">    #access_log  /var/log/nginx/host.access.log  main;  //访问日志文件和名称</span><br><span class="line"></span><br><span class="line">    # 代理http协议请求</span><br><span class="line">    location /api &#123;</span><br><span class="line">        proxy_pass http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 代理ws协议请求</span><br><span class="line">    location /ws &#123;</span><br><span class="line">      proxy_pass http://localhost:3000;</span><br><span class="line">      proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">      proxy_set_header Connection ‘Upgrade‘;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      # 代理/api/路径的请求 并去掉/api/路径进行转发</span><br><span class="line">      location ~ /api/ &#123;</span><br><span class="line">          rewrite /api/(.*)$ /$1 break;</span><br><span class="line">          proxy_pass  http://www.baidu.com;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      location ~ / &#123;</span><br><span class="line">          root /data/www-data/bolton/;</span><br><span class="line">          try_files $uri $uri/ /index.html;</span><br><span class="line">          index index.html;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # 转发请求静态资源（js、css）规则</span><br><span class="line">    location ~ .*\.(html|js|css)$ &#123;</span><br><span class="line">        # CORS</span><br><span class="line">        add_header Access-Control-Allow-Origin *;</span><br><span class="line">        add_header Access-Control-Allow-Methods GET,POST,DELETE;</span><br><span class="line">        add_header Access-Control-Allow-Headers Content-Type;</span><br><span class="line">        # 默认带上客户端cookie</span><br><span class="line">        add_header Access-Control-Allow-Credentials true;</span><br><span class="line">        # 缓存1h</span><br><span class="line">        expires 1h;</span><br><span class="line">        # 开启gzip</span><br><span class="line">        gzip on;</span><br><span class="line">        # gzip压缩HTTP版本号 一般是1.1</span><br><span class="line">        gzip_http_version 1.1;</span><br><span class="line">        # gzip压缩等级 越大压缩率越高 1-9</span><br><span class="line">        gzip_comp_level 2;</span><br><span class="line">        # 默认不指定不会缓存css资源 需要指定text/css类型</span><br><span class="line">        gzip_types application/javascript text/css;</span><br><span class="line">        # 资源目录</span><br><span class="line">        root /data/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 设置图片请求规则</span><br><span class="line">    location ~ .*\.(gif|png|jpg|webp)$ &#123;</span><br><span class="line">        expires 1h;</span><br><span class="line">        gzip on;</span><br><span class="line">        gzip_http_version 1.1;</span><br><span class="line">        gzip_comp_level 3;</span><br><span class="line">        gzip_types image/jpeg image/png image/gif image/webp;</span><br><span class="line">        ## 防盗链</span><br><span class="line">        ## valid_referers 合法的域名 *.baidu.com</span><br><span class="line">        ## &lt;meta name=&quot;referrer&quot; content=&quot;never&quot;&gt;</span><br><span class="line">        valid_referers none blocked xx.xxx.xxx.xx;</span><br><span class="line">        if ($invalid_referer) &#123;</span><br><span class="line">            return 403;</span><br><span class="line">        &#125;</span><br><span class="line">        # 资源目录</span><br><span class="line">        root /data/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ ^/download &#123;</span><br><span class="line">        # 默认先查找当前目录下的后缀为.gz文件 有直接返回给客户端 不需要再压缩</span><br><span class="line">        # linux下运行gzip 文件名会生成压缩gz文件</span><br><span class="line">        # url最直接访问该文件路径就会自动启动下载该资源</span><br><span class="line">        gzip_static on;</span><br><span class="line">        tcp_nopush on;</span><br><span class="line">        root /data/download;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;  //静态文件根目录</span><br><span class="line">        index  index.html index.htm;  //首页的索引文件</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;  //指定错误页面</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    # 把后台错误重定向到静态的50x.html页面</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    # 把PHP脚本9000端口上监听的FastCGI服务</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # 不允许访问.htaccess文件 只允许指定的ip访问</span><br><span class="line">    location ~ /\.ht &#123;</span><br><span class="line">        allow 127.0.0.1</span><br><span class="line">        deny  all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实现负载均衡</p>
+</blockquote>
+<ol>
+<li><p>解决高并发、海量数据问题</p>
+</li>
+<li><p>配置类型</p>
+<ol>
+<li>轮询（默认） 每个请求按照时间顺序逐一分配不同的后端服务器；</li>
+<li>ip_hash 每个请求按访问 ip 的 hash 结果分配，这样每个访客固定放一个后端服务器，可以解决 session 的问题；</li>
+<li>weight（加权轮询）指定轮询策略，weight 和访问比率成正比，用于后端服务器性能不均的情况；</li>
+<li>least_conn 最小连接数，哪个连接少就分给谁。</li>
+</ol>
+<p>集群状态：</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">状态</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">down</td>
+<td align="left">不参与负载均衡</td>
+</tr>
+<tr>
+<td align="left">backup</td>
+<td align="left">备份的服务器</td>
+</tr>
+<tr>
+<td align="left">max_fails</td>
+<td align="left">允许请求失败的次数</td>
+</tr>
+<tr>
+<td align="left">fail_timeout</td>
+<td align="left">经过 max_fails 失败后，服务暂停的时间</td>
+</tr>
+<tr>
+<td align="left">max_conts</td>
+<td align="left">限制最大的接收的连接数</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">upstream test1 &#123;</span><br><span class="line">    ip_hsah;</span><br><span class="line">    server http://localhost:3000 weight=2;</span><br><span class="line">    server http://localhost:4000 weight=1;</span><br><span class="line">    server http://localhost:5000 down;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    # 访问负载均衡构造的集群</span><br><span class="line">    location / &#123;</span><br><span class="line">        # 和upstrem的name对应</span><br><span class="line">        proxy_pass http://test1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.test1.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.test2.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:4000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.test3.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:5000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>此时访问<code>www.test.com</code>通过代理到访问<code>www.test1.com</code>，而访问 test1 的请求被负载均衡按照策略访问 test1 或者 test2</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/19/nginx%E5%85%A5%E9%97%A8/" data-id="clu6rtt8s001ba8xad7wwgff1" data-title="nginx入门" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-利用verdaccio搭建私有npm仓库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/16/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2019-06-16T00:25:18.000Z" itemprop="datePublished">2019-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/06/16/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/">利用verdaccio搭建私有npm仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>随着时间的推移，前端的工程日益庞大，越来越复杂的依赖包需要包管理器来维护。相比搭建没有优势bower仓储，更好的方式是在局域网搭建NPM仓储，维护项目中package.json中的各个插件的版本即可维护项目依赖。</p>
+<p><a href="%5Bhttps://github.com/verdaccio/verdaccio%5D(https://github.com/verdaccio/verdaccio)">verdaccio</a>是一个部署简易的可以实现github仓储私有化的npm组件，fork于<code>sinopia</code>项目，由于<code>sinopia</code>项目现在不太维护，存在一些bug，不建议使用。</p>
+<p>使用verdaccio的优势</p>
+<ul>
+<li>配置简单，开箱即用；</li>
+<li>不需要数据库,verdaccio内置一个数据库了；</li>
+<li>当源为verdaccio时, verdaccio不存在要安装的包时,会自动去设置的远程npm把包缓存到本地；</li>
+</ul>
+<h2 id="1-安装verdaccio"><a href="#1-安装verdaccio" class="headerlink" title="1. 安装verdaccio"></a>1. 安装verdaccio</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i verdaccio -g</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-启动verdaccio"><a href="#2-启动verdaccio" class="headerlink" title="2. 启动verdaccio"></a>2. 启动verdaccio</h2><ul>
+<li>默认开启方式</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+
+<p>启动成功截图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6655013-ec7bd2397fb9d6bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>其中<code>config.yaml</code>是配置文件，相关配置文件说明如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">storage: ./storage  //npm包存放的路径</span><br><span class="line"></span><br><span class="line">auth:</span><br><span class="line">  htpasswd:</span><br><span class="line">    file: ./htpasswd   //保存用户的账号密码等信息</span><br><span class="line">    # Maximum amount of users allowed to register, defaults to &quot;+inf&quot;.</span><br><span class="line">    # You can set this to -1 to disable registration.</span><br><span class="line">    max_users: -1  //默认为1000，改为-1，禁止注册</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">a list of other known repositories we can talk to</span></span><br><span class="line">uplinks:</span><br><span class="line">  npmjs:</span><br><span class="line">    url: http://registry.npm.taobao.org/  //默认为npm的官网，由于国情，改为淘宝源</span><br><span class="line"></span><br><span class="line">packages:  //配置权限管理</span><br><span class="line">  &#x27;@*/*&#x27;:</span><br><span class="line">    # scoped packages</span><br><span class="line">    access: $all</span><br><span class="line">    publish: $authenticated</span><br><span class="line"></span><br><span class="line">  &#x27;*&#x27;:</span><br><span class="line">    # allow all users (including non-authenticated users) to read and</span><br><span class="line">    # publish all packages</span><br><span class="line">    #</span><br><span class="line">    # you can specify usernames/groupnames (depending on your auth plugin)</span><br><span class="line">    # and three keywords: &quot;$all&quot;, &quot;$anonymous&quot;, &quot;$authenticated&quot;</span><br><span class="line">    access: $all  // 所有人都能下载</span><br><span class="line"></span><br><span class="line">    # allow all known users to publish packages</span><br><span class="line">    # (anyone can register by default, remember?)</span><br><span class="line">    publish: $authenticated // 所有人都有发布包的权限，若想指定默认发布改成对应人的名字</span><br><span class="line"></span><br><span class="line">    # if package is not available locally, proxy requests to &#x27;npmjs&#x27; registry</span><br><span class="line">    proxy: npmjs  // 若安装的报在simopia没有，会去配置的npmjs地址去下载</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">log</span> settings</span></span><br><span class="line">logs:</span><br><span class="line">  - &#123;type: stdout, format: pretty, level: http&#125;</span><br><span class="line"><span class="meta prompt_">  #</span><span class="language-bash">- &#123;<span class="built_in">type</span>: file, path: verdaccio.log, level: info&#125;</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">you can specify listen address (or simply a port)</span></span><br><span class="line">listen: 0.0.0.0:4873  // 默认没有，只能在本机访问，添加后可以通过外网访问。</span><br></pre></td></tr></table></figure>
+
+<p>若在服务端部署，需要以守护进程的方式，推荐使用<code>pm2</code>去开启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start `which verdaccio`</span><br></pre></td></tr></table></figure>
+
+<p>pm2启动成功截图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6655013-dcf94831d7b96096.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<hr>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p> 打开浏览器输入对应的暴露的地址，比如<code>192.168.0.1:4873</code>，</p>
+<p>截图如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6655013-d6ae317646b0afc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>按照截图提示，注册一个用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser --registry http://192.168.0.1:4873</span><br></pre></td></tr></table></figure>
+
+<p>安装提示输入账号，密码</p>
+<h2 id="更改下载源"><a href="#更改下载源" class="headerlink" title="更改下载源"></a>更改下载源</h2><p>在每一个客户端中需要更改下载源为verdaccio，这里推荐使用<code>nrm</code>，这是一个包下载源管理器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"></span><br><span class="line">nrm add verdaccio http://x.x.x.x:4873/</span><br><span class="line"></span><br><span class="line">nrm use verdaccio</span><br></pre></td></tr></table></figure>
+
+<h2 id="维护"><a href="#维护" class="headerlink" title="维护"></a>维护</h2><p>如果需要发布一个包，需要先进行登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
+
+<p>登录成功之后，在对应的包文件夹下，改好<code>package.json</code>版本号，再执行创建发布命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/16/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" data-id="clu6rtt94002ha8xa17z0aad7" data-title="利用verdaccio搭建私有npm仓库" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/15/%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2019-06-15T06:00:06.000Z" itemprop="datePublished">2019-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/06/15/%E5%BA%8F/">序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>hello，大家好，我是黄晨，来自江苏泰州，前端开发一枚。</p>
+<p>搭建这个博客的原因，主要受限于以下几点：</p>
+<ol>
+<li>平时学习、积累的知识需要有一个平台去记录，之前也使用了比如掘金、简书、博客园、github这些网站去在线记录，一开始还能满足自己的需求，后来慢慢觉得还是需要有一个自己的博客，提供一种更自由、个性化的编写体验以及阅读体验；</li>
+<li>知识点需要查阅，温故知新，查漏补缺；</li>
+<li>分享自己遇到的一些知识和经验给其他人去参考和借鉴；</li>
+<li>锻炼书写表达能力；</li>
+<li>希望五年、十年以后回头再查阅自己博客的时候会有另一番风味体验；</li>
+</ol>
+<p>如果有任何疑问或者问题咨询，欢迎留言向我咨询；</p>
+<p>谢谢。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/15/%E5%BA%8F/" data-id="clu6rtt9e003ka8xa16abdyxe" data-title="序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-记录平时jenkins使用遇到的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/05/21/%E8%AE%B0%E5%BD%95%E5%B9%B3%E6%97%B6jenkins%E4%BD%BF%E7%94%A8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2019-05-21T05:51:07.000Z" itemprop="datePublished">2019-05-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/05/21/%E8%AE%B0%E5%BD%95%E5%B9%B3%E6%97%B6jenkins%E4%BD%BF%E7%94%A8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">记录平时jenkins使用遇到的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p><code>gitlab</code>通过<code>webhooks</code>在项目指定的分支 push 之后触发 jekins 自动打包</p>
+<ul>
+<li>在 jekins 安装 <code>gitlab-hook-plugin</code>和 <code>gitlab-plugin</code>插件，安装成功的话会在创建项目的<code>Build Triggers</code>构建地方看到一个选项 <code>Build when a change is pushed to GitLab. GitLab webhook URL</code></li>
+</ul>
+</li>
+</ol>
+<p>  <a target="_blank" rel="noopener" href="https://imgchr.com/i/G1dcqg"><img src="https://s1.ax1x.com/2020/04/01/G1dcqg.png" alt="G1dcqg.png"></a></p>
+<p>按照如下配置方式在<code>jekins</code>里指定<code>dev-hc</code>分支触发打包</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/G1d2ZQ"><img src="https://s1.ax1x.com/2020/04/01/G1d2ZQ.md.jpg" alt="G1d2ZQ.md.jpg"></a></p>
+<p>在<code>gitlab</code>指定的项目设置<code>webhooks</code>，在项目的 url 写上<code>jekins</code>的项目 url 以及对应的<code>token</code>,完成之后保存下，按下对应的 Test 按钮可以测试下是否返回 200 状态码</p>
+<p><img src="https://s1.ax1x.com/2020/04/01/G1d6sS.png" alt="G1d6sS.png"></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/G1dRaj"><img src="https://s1.ax1x.com/2020/04/01/G1dRaj.md.png" alt="G1dRaj.md.png"></a></p>
+<p>2.jekins 的时间不正确</p>
+<p>打开 【系统管理】-&gt;【脚本命令行】运行下面的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.setProperty(&#x27;org.apache.commons.jelly.tags.fmt.timeZone&#x27;, &#x27;Asia/Shanghai&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>如果是在 docker 下运行的 jenkins 的话，可能上述还不生效，需要切换到<code>/etc</code>目录下<br>如果<code>timezone</code></p>
+<p>3.jenkins 配置执行的 shell 对接构建参数</p>
+<p>比如构建参数有<code>job</code>，在 shell 里面对应的参数就为<code>$job</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/05/21/%E8%AE%B0%E5%BD%95%E5%B9%B3%E6%97%B6jenkins%E4%BD%BF%E7%94%A8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="clu6rtt9h003ya8xafj2287t1" data-title="记录平时jenkins使用遇到的问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/MyBlog/page/3/">&laquo; Prev</a><a class="page-number" href="/MyBlog/">1</a><a class="page-number" href="/MyBlog/page/2/">2</a><a class="page-number" href="/MyBlog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/MyBlog/page/5/">5</a><a class="extend next" rel="next" href="/MyBlog/page/5/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

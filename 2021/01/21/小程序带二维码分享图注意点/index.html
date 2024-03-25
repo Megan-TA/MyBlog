@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>小程序带二维码分享图注意点 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前提目前小程序都是在Taro基础上开发 注意点获取节点目前taro上获取canvas节点，有两种方法  type + id； canvas-id；  两者不能共存 当使用type时，可以通过createSelectorQuery方法获取canvas节点获取支持 2D 和 WebGL 绘图上下文的RenderingContext 12345678Taro.nextTick(() &#x3D;&gt; &amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序带二维码分享图注意点">
+<meta property="og:url" content="https://megan-ta.github.io/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="前提目前小程序都是在Taro基础上开发 注意点获取节点目前taro上获取canvas节点，有两种方法  type + id； canvas-id；  两者不能共存 当使用type时，可以通过createSelectorQuery方法获取canvas节点获取支持 2D 和 WebGL 绘图上下文的RenderingContext 12345678Taro.nextTick(() &#x3D;&gt; &amp;#12">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3.ax1x.com/2021/02/03/yMg1gJ.md.png">
+<meta property="og:image" content="https://s3.ax1x.com/2021/02/03/yMgnEV.png">
+<meta property="og:image" content="https://s3.ax1x.com/2021/02/03/yMguNT.png">
+<meta property="og:image" content="https://s3.ax1x.com/2021/02/03/yMgK4U.md.png">
+<meta property="og:image" content="https://s3.ax1x.com/2021/02/03/yMgl34.md.png">
+<meta property="article:published_time" content="2021-01-21T09:00:40.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.714Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="小程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2021/02/03/yMg1gJ.md.png">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-小程序带二维码分享图注意点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2021-01-21T09:00:40.000Z" itemprop="datePublished">2021-01-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      小程序带二维码分享图注意点
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>目前小程序都是在<code>Taro</code>基础上开发</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><h3 id="获取节点"><a href="#获取节点" class="headerlink" title="获取节点"></a>获取节点</h3><p>目前taro上获取canvas节点，有两种方法</p>
+<ol>
+<li>type + id；</li>
+<li>canvas-id；</li>
+</ol>
+<p>两者不能共存</p>
+<p>当使用type时，可以通过<code>createSelectorQuery</code>方法获取canvas节点获取支持 2D 和 WebGL 绘图上下文的RenderingContext</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Taro</span>.<span class="title function_">nextTick</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> query = <span class="title class_">Taro</span>.<span class="title function_">createSelectorQuery</span>()</span><br><span class="line">  query.<span class="title function_">select</span>(<span class="string">&#x27;#aniLoading&#x27;</span>).<span class="title function_">fields</span>(&#123; <span class="attr">node</span>: <span class="literal">true</span>, <span class="attr">size</span>: <span class="literal">true</span>, <span class="attr">context</span>: <span class="literal">true</span> &#125;).<span class="title function_">exec</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!res || !res[<span class="number">0</span>]) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">const</span> canvas = res[<span class="number">0</span>].<span class="property">node</span>;</span><br><span class="line">    <span class="keyword">const</span> context = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>);  </span><br><span class="line">  &#125;) </span><br><span class="line">&#125;)    </span><br></pre></td></tr></table></figure>
+<p>canvas-id方式可通过Taro.createCanvasContext(canvasId)获取canvas上下文的CanvasContext</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ctx = <span class="title class_">Taro</span>.<span class="title function_">createCanvasContext</span>(canvasId)</span><br></pre></td></tr></table></figure>
+
+<p>由于小程序本身的特性，无法动态创建canvas节点，必须在节点结构提前创建canvas节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Canvas</span></span><br><span class="line">   canvasId=<span class="string">&#x27;canvas&#x27;</span></span><br><span class="line">   style=<span class="string">&#x27;width:750px;height:1448px;&#x27;</span></span><br><span class="line">   className=<span class="string">&#x27;fortune_canvas&#x27;</span></span><br><span class="line">/&gt; </span><br></pre></td></tr></table></figure>
+
+<h2 id="踩坑点"><a href="#踩坑点" class="headerlink" title="踩坑点"></a>踩坑点</h2><ol>
+<li>同一页面不能存在相同的canvas-id；</li>
+<li><span style="color: red;">canvas元素在Ios真机设备滚动页面下无法上滑；</span></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yMg1gJ"><img src="https://s3.ax1x.com/2021/02/03/yMg1gJ.md.png" alt="yMg1gJ.md.png"></a></p>
+<h4 id="drawImage和base64"><a href="#drawImage和base64" class="headerlink" title="drawImage和base64"></a>drawImage和base64</h4><p>canvas内drawImage绘制图片，需要先通过<code>getImageInfo</code>或<code>downloadFile</code>，将网络图片存到本地之后拿到图片path、宽高等信息来进行绘制</p>
+<p>无法直接绘制base64的图，因为base64不是网络地址，就无法通过getImageInfo和downloadFile获取图片信息，可参考官方issue提出的相关问题和解决方案尝试</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/article/doc/00008c13228078898f2b0bcf751413">小程序生产海报的两种常见方式链接</a></p>
+<h3 id="层级"><a href="#层级" class="headerlink" title="层级"></a>层级</h3><p>canvas组件层级默认会比普通的view层级高，所以一般无法在canvas组件上再放置其他元素，但如果使用cover-view组件包裹canvas组件，是可以设置层级。</p>
+<h3 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h3><p>目前采用的是<a target="_blank" rel="noopener" href="https://github.com/dillonlfy/weapp-qrcod">weapp-qrcode</a>来绘制小程序上的二维码，本身也是基于qrcodejs（目前大多数H5上二维码绘制的基础库），测试下来在小程序还是会有一些问题</p>
+<p>保存canvas绘制图片时，安卓机器上二维码会比较糊，ios正常，导致wx没法识别，但是在页面绘制的二维码没有此问题</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yMgnEV"><img src="https://s3.ax1x.com/2021/02/03/yMgnEV.png" alt="yMgnEV.png"></a></p>
+<p>目前调试下来，只有在需要绘制保存的图片的二维码时，加上<code>typeNumber</code>来进行调节二维码绘制路径的细粒度<span style="color: red;">（正常页面展示时不需要加此参数）</span></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yMguNT"><img src="https://s3.ax1x.com/2021/02/03/yMguNT.png" alt="yMguNT.png"></a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">QRCode</span>(canvasId, &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="attr">correctLevel</span>: <span class="title class_">QRCode</span>.<span class="property">CorrectLevel</span>.<span class="property">M</span>,</span><br><span class="line">  <span class="attr">typeNumber</span>: <span class="number">8</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="普通二维码跳转小程序"><a href="#普通二维码跳转小程序" class="headerlink" title="普通二维码跳转小程序"></a>普通二维码跳转小程序</h4><p>如果绘制的是普通二维码，需要通过映射二维码地址跳转小程序指定页面   </p>
+<p>小程序后台-开发管理-开发设置-扫普通链接二维码打开小程序</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yMgK4U"><img src="https://s3.ax1x.com/2021/02/03/yMgK4U.md.png" alt="yMgK4U.md.png"></a></p>
+<p>需要注意的是二维码映射关系跳转跳转对应的小程序版本（开发、体验、线上版本），测试的地址如果携带参数则必须严格匹配</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yMgl34"><img src="https://s3.ax1x.com/2021/02/03/yMgl34.md.png" alt="yMgl34.md.png"></a></p>
+<p>此方案更多是为了解决线下二维码已经铺设二维码，兼容原先的二维码跳转小程序场景，并不是一个常用的二维码跳转方案。</p>
+<p>官方有提供获取小程序码，常规的api每天有数量限制，可以使用如下api，若采用官方生成小程序码的方案，完全可以弃用普通二维码绘制、映射跳转一系列繁琐步骤，但此方案需要依赖后端帮助获取。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html">官方不限制获取小程序码</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="clu6rtt9d003ba8xa088hbdi2" data-title="小程序带二维码分享图注意点" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          gitlab-runner搭建CI/CD平台
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">堆排序入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

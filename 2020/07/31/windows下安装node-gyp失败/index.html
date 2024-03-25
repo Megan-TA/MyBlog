@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>windows下安装node-gyp失败 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="用作为当前目录的以上路径启动了 CMD.EXE。UNC 路径不受支持。默认值设为 Windows 目录。  处理： cmd下运行如下命令 1reg add &quot;HKEY_CURRENT_USER\Software\Microsoft\Command Processor&quot; &#x2F;v &quot;DisableUNCCheck&quot; &#x2F;t &quot;REG_DWORD&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows下安装node-gyp失败">
+<meta property="og:url" content="https://megan-ta.github.io/2020/07/31/windows%E4%B8%8B%E5%AE%89%E8%A3%85node-gyp%E5%A4%B1%E8%B4%A5/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="用作为当前目录的以上路径启动了 CMD.EXE。UNC 路径不受支持。默认值设为 Windows 目录。  处理： cmd下运行如下命令 1reg add &quot;HKEY_CURRENT_USER\Software\Microsoft\Command Processor&quot; &#x2F;v &quot;DisableUNCCheck&quot; &#x2F;t &quot;REG_DWORD&amp;quot">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-31T07:40:58.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.677Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-windows下安装node-gyp失败" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/07/31/windows%E4%B8%8B%E5%AE%89%E8%A3%85node-gyp%E5%A4%B1%E8%B4%A5/" class="article-date">
+  <time class="dt-published" datetime="2020-07-31T07:40:58.000Z" itemprop="datePublished">2020-07-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      windows下安装node-gyp失败
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>用作为当前目录的以上路径启动了 CMD.EXE。UNC 路径不受支持。默认值设为 Windows 目录。</li>
+</ul>
+<p>处理：</p>
+<p>cmd下运行如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKEY_CURRENT_USER\Software\Microsoft\Command Processor&quot; /v &quot;DisableUNCCheck&quot; /t &quot;REG_DWORD&quot; /d &quot;1&quot; /f</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Could not find any Visual Studio installation to use</li>
+</ul>
+<p>处理：</p>
+<p>下载<code>windows-build-tools</code></p>
+<p>管理员权限打开<code>powershell</code>，输入如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global --production windows-build-tools</span><br></pre></td></tr></table></figure>
+
+<p>安装完毕，使用如下方式安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --msvs_version=2013</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>若报错，检查报错提示，一般表示vscode版本不对</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gyp ERR! find VS msvs_version was set from command line or npm config</span><br><span class="line">gyp ERR! find VS - looking for Visual Studio version 2013</span><br><span class="line">gyp ERR! find VS VCINSTALLDIR not set, not running in VS Command Prompt</span><br><span class="line">gyp ERR! find VS checking VS2017 (15.9.28307.1216) found at:</span><br><span class="line">gyp ERR! find VS &quot;C:\Program Files\Microsoft Visual Studio\2017\BuildTools&quot;</span><br><span class="line">gyp ERR! find VS - found &quot;Visual Studio C++ core features&quot;</span><br><span class="line">gyp ERR! find VS - found VC++ toolset: v141</span><br><span class="line">gyp ERR! find VS - found Windows SDK: 10.0.17763.0</span><br><span class="line">gyp ERR! find VS - msvs_version does not match this version</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>提示<code>VS2017</code>版本存在，换用2017</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --msvs_version=2017</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下载成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/07/31/windows%E4%B8%8B%E5%AE%89%E8%A3%85node-gyp%E5%A4%B1%E8%B4%A5/" data-id="clu6rtt8z0025a8xa5jlt8gty" data-title="windows下安装node-gyp失败" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2020/08/27/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          动态规划入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2020/06/15/%E6%80%A7%E8%83%BD%E4%B8%8A%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">性能上报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

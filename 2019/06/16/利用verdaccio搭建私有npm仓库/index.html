@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>利用verdaccio搭建私有npm仓库 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="随着时间的推移，前端的工程日益庞大，越来越复杂的依赖包需要包管理器来维护。相比搭建没有优势bower仓储，更好的方式是在局域网搭建NPM仓储，维护项目中package.json中的各个插件的版本即可维护项目依赖。 verdaccio是一个部署简易的可以实现github仓储私有化的npm组件，fork于sinopia项目，由于sinopia项目现在不太维护，存在一些bug，不建议使用。 使用verd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用verdaccio搭建私有npm仓库">
+<meta property="og:url" content="https://megan-ta.github.io/2019/06/16/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="随着时间的推移，前端的工程日益庞大，越来越复杂的依赖包需要包管理器来维护。相比搭建没有优势bower仓储，更好的方式是在局域网搭建NPM仓储，维护项目中package.json中的各个插件的版本即可维护项目依赖。 verdaccio是一个部署简易的可以实现github仓储私有化的npm组件，fork于sinopia项目，由于sinopia项目现在不太维护，存在一些bug，不建议使用。 使用verd">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6655013-ec7bd2397fb9d6bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6655013-dcf94831d7b96096.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6655013-d6ae317646b0afc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2019-06-16T00:25:18.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.681Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6655013-ec7bd2397fb9d6bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-利用verdaccio搭建私有npm仓库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/16/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2019-06-16T00:25:18.000Z" itemprop="datePublished">2019-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      利用verdaccio搭建私有npm仓库
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>随着时间的推移，前端的工程日益庞大，越来越复杂的依赖包需要包管理器来维护。相比搭建没有优势bower仓储，更好的方式是在局域网搭建NPM仓储，维护项目中package.json中的各个插件的版本即可维护项目依赖。</p>
+<p><a href="%5Bhttps://github.com/verdaccio/verdaccio%5D(https://github.com/verdaccio/verdaccio)">verdaccio</a>是一个部署简易的可以实现github仓储私有化的npm组件，fork于<code>sinopia</code>项目，由于<code>sinopia</code>项目现在不太维护，存在一些bug，不建议使用。</p>
+<p>使用verdaccio的优势</p>
+<ul>
+<li>配置简单，开箱即用；</li>
+<li>不需要数据库,verdaccio内置一个数据库了；</li>
+<li>当源为verdaccio时, verdaccio不存在要安装的包时,会自动去设置的远程npm把包缓存到本地；</li>
+</ul>
+<h2 id="1-安装verdaccio"><a href="#1-安装verdaccio" class="headerlink" title="1. 安装verdaccio"></a>1. 安装verdaccio</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i verdaccio -g</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-启动verdaccio"><a href="#2-启动verdaccio" class="headerlink" title="2. 启动verdaccio"></a>2. 启动verdaccio</h2><ul>
+<li>默认开启方式</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+
+<p>启动成功截图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6655013-ec7bd2397fb9d6bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>其中<code>config.yaml</code>是配置文件，相关配置文件说明如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">storage: ./storage  //npm包存放的路径</span><br><span class="line"></span><br><span class="line">auth:</span><br><span class="line">  htpasswd:</span><br><span class="line">    file: ./htpasswd   //保存用户的账号密码等信息</span><br><span class="line">    # Maximum amount of users allowed to register, defaults to &quot;+inf&quot;.</span><br><span class="line">    # You can set this to -1 to disable registration.</span><br><span class="line">    max_users: -1  //默认为1000，改为-1，禁止注册</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">a list of other known repositories we can talk to</span></span><br><span class="line">uplinks:</span><br><span class="line">  npmjs:</span><br><span class="line">    url: http://registry.npm.taobao.org/  //默认为npm的官网，由于国情，改为淘宝源</span><br><span class="line"></span><br><span class="line">packages:  //配置权限管理</span><br><span class="line">  &#x27;@*/*&#x27;:</span><br><span class="line">    # scoped packages</span><br><span class="line">    access: $all</span><br><span class="line">    publish: $authenticated</span><br><span class="line"></span><br><span class="line">  &#x27;*&#x27;:</span><br><span class="line">    # allow all users (including non-authenticated users) to read and</span><br><span class="line">    # publish all packages</span><br><span class="line">    #</span><br><span class="line">    # you can specify usernames/groupnames (depending on your auth plugin)</span><br><span class="line">    # and three keywords: &quot;$all&quot;, &quot;$anonymous&quot;, &quot;$authenticated&quot;</span><br><span class="line">    access: $all  // 所有人都能下载</span><br><span class="line"></span><br><span class="line">    # allow all known users to publish packages</span><br><span class="line">    # (anyone can register by default, remember?)</span><br><span class="line">    publish: $authenticated // 所有人都有发布包的权限，若想指定默认发布改成对应人的名字</span><br><span class="line"></span><br><span class="line">    # if package is not available locally, proxy requests to &#x27;npmjs&#x27; registry</span><br><span class="line">    proxy: npmjs  // 若安装的报在simopia没有，会去配置的npmjs地址去下载</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">log</span> settings</span></span><br><span class="line">logs:</span><br><span class="line">  - &#123;type: stdout, format: pretty, level: http&#125;</span><br><span class="line"><span class="meta prompt_">  #</span><span class="language-bash">- &#123;<span class="built_in">type</span>: file, path: verdaccio.log, level: info&#125;</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">you can specify listen address (or simply a port)</span></span><br><span class="line">listen: 0.0.0.0:4873  // 默认没有，只能在本机访问，添加后可以通过外网访问。</span><br></pre></td></tr></table></figure>
+
+<p>若在服务端部署，需要以守护进程的方式，推荐使用<code>pm2</code>去开启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start `which verdaccio`</span><br></pre></td></tr></table></figure>
+
+<p>pm2启动成功截图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6655013-dcf94831d7b96096.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<hr>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p> 打开浏览器输入对应的暴露的地址，比如<code>192.168.0.1:4873</code>，</p>
+<p>截图如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6655013-d6ae317646b0afc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>按照截图提示，注册一个用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser --registry http://192.168.0.1:4873</span><br></pre></td></tr></table></figure>
+
+<p>安装提示输入账号，密码</p>
+<h2 id="更改下载源"><a href="#更改下载源" class="headerlink" title="更改下载源"></a>更改下载源</h2><p>在每一个客户端中需要更改下载源为verdaccio，这里推荐使用<code>nrm</code>，这是一个包下载源管理器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"></span><br><span class="line">nrm add verdaccio http://x.x.x.x:4873/</span><br><span class="line"></span><br><span class="line">nrm use verdaccio</span><br></pre></td></tr></table></figure>
+
+<h2 id="维护"><a href="#维护" class="headerlink" title="维护"></a>维护</h2><p>如果需要发布一个包，需要先进行登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
+
+<p>登录成功之后，在对应的包文件夹下，改好<code>package.json</code>版本号，再执行创建发布命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/16/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" data-id="clu6rtt94002ha8xa17z0aad7" data-title="利用verdaccio搭建私有npm仓库" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2019/06/19/nginx%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nginx入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2019/06/15/%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>性能上报 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="性能计算逻辑，全部取自window.performance.timing  关键指标1234567891011121314151617181920212223242526272829&#x2F;&#x2F; 上一个页面卸载unloadEventEnd - unloadEventStart as prevUnload,&#x2F;&#x2F; 重定向redirectEnd - redirectStart as redirect,&#x2F;&#x2F; DN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能上报">
+<meta property="og:url" content="https://megan-ta.github.io/2020/06/15/%E6%80%A7%E8%83%BD%E4%B8%8A%E6%8A%A5/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="性能计算逻辑，全部取自window.performance.timing  关键指标1234567891011121314151617181920212223242526272829&#x2F;&#x2F; 上一个页面卸载unloadEventEnd - unloadEventStart as prevUnload,&#x2F;&#x2F; 重定向redirectEnd - redirectStart as redirect,&#x2F;&#x2F; DN">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picb.zhimg.com/80/v2-e4e26420d6b681b2b15b9edf9db9d4d0_720w.jpg">
+<meta property="article:published_time" content="2020-06-15T09:35:41.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.719Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picb.zhimg.com/80/v2-e4e26420d6b681b2b15b9edf9db9d4d0_720w.jpg">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-性能上报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/06/15/%E6%80%A7%E8%83%BD%E4%B8%8A%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2020-06-15T09:35:41.000Z" itemprop="datePublished">2020-06-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      性能上报
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>性能计算逻辑，全部取自<code>window.performance.timing</code></p>
+<p><img src="https://picb.zhimg.com/80/v2-e4e26420d6b681b2b15b9edf9db9d4d0_720w.jpg" alt="指标解读"></p>
+<h2 id="关键指标"><a href="#关键指标" class="headerlink" title="关键指标"></a>关键指标</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上一个页面卸载</span></span><br><span class="line">unloadEventEnd - unloadEventStart <span class="keyword">as</span> prevUnload,</span><br><span class="line"><span class="comment">// 重定向</span></span><br><span class="line">redirectEnd - redirectStart <span class="keyword">as</span> redirect,</span><br><span class="line"><span class="comment">// DNS缓存时间</span></span><br><span class="line">domainLookupStart - fetchStart <span class="keyword">as</span> appCache,</span><br><span class="line"><span class="comment">// DNS解析耗时</span></span><br><span class="line">domain_lookup_end - domainLookupStart <span class="keyword">as</span> dns,</span><br><span class="line"><span class="comment">// SSL</span></span><br><span class="line">connectEnd - secureConnectionStart <span class="keyword">as</span> ssl,</span><br><span class="line"><span class="comment">// TCP链接耗时</span></span><br><span class="line">connectEnd - connectStart <span class="keyword">as</span> tcp,</span><br><span class="line"><span class="comment">// ttfb 页面第一个字节的时间</span></span><br><span class="line">responseStart - responseStart <span class="keyword">as</span> ttfb,</span><br><span class="line"><span class="comment">// request耗时</span></span><br><span class="line">responseEnd - responseStart <span class="keyword">as</span> htmlRequest,</span><br><span class="line"><span class="comment">// domLoading - fetchStart as fp,</span></span><br><span class="line"><span class="comment">// dom树解析完成 / 白屏时间  </span></span><br><span class="line">domInteractive - fetchStart <span class="keyword">as</span> domIteractive,</span><br><span class="line"><span class="comment">// domReady / TTI 可交互时间</span></span><br><span class="line">domContentLoadEventEnd - fetchStart <span class="keyword">as</span> domReady,</span><br><span class="line"><span class="comment">// dom解析耗时</span></span><br><span class="line">domComplete -  domLoading <span class="keyword">as</span> domProcess,</span><br><span class="line"><span class="comment">// 资源加载耗时</span></span><br><span class="line">domComplete - domContentLoadEventStart  <span class="keyword">as</span> resourceLoad,</span><br><span class="line"><span class="comment">// load事件耗时</span></span><br><span class="line">loadEventEnd - loadEventStart <span class="keyword">as</span> loadEvent,</span><br><span class="line"><span class="comment">// 页面完全加载耗时</span></span><br><span class="line">loadEventEnd - fetchStart <span class="keyword">as</span> pageComplete</span><br></pre></td></tr></table></figure>
+
+<h2 id="首屏时间"><a href="#首屏时间" class="headerlink" title="首屏时间"></a>首屏时间</h2><p>首屏时间是指页面第一屏所有资源完整展示的时间。这是一个对用户来说非常直接的体验指标，但是对于前端却是一个非常难以统计衡量的指标。</p>
+<p>目前统计首屏时间有如下几种方式：</p>
+<ol>
+<li>用户自定义打点（最准确方式，只有用户自己最清楚什么时候算是首屏加载完成）;</li>
+<li>lighthouse 中使用的是 chrome 渲染过程中记录的 trace event;</li>
+<li>aegis 的方法：利用 MutationObserver 接口，监听 document 对象的节点变化。</li>
+</ol>
+<p>检查这些变化的节点是否在首屏中，若这些节点在首屏中，那当前的时间点就是首屏渲染时间。如果首屏有图片，则通过遍历 performance.getEntries拿到的所有在首屏的图片实体对象，统计最慢的图片加载时间来更新首屏渲染时间；</p>
+<ol start="4">
+<li>利用 MutationObserver；</li>
+</ol>
+<p>在首屏内容模块插入一个 div，利用 Mutation Observer API 监听该 div 的 dom 事件，判断该 div 的高度是否大于 0 或者大于指定值，如果大于了，就表示主要内容已经渲染出来，可计算首屏时间。</p>
+<h2 id="数据上报方式"><a href="#数据上报方式" class="headerlink" title="数据上报方式"></a>数据上报方式</h2><p>测量好数据之后，需要将数据发给服务端。考虑到页面性能统计对数据的丢失率要求不高，且数据上报应该尽量不影响主流程的逻辑和页面的性能情况下进行。</p>
+<h3 id="img标签上报"><a href="#img标签上报" class="headerlink" title="img标签上报"></a>img标签上报</h3><p>标签上报是最通用，最常用的上报方式，其中具备两个主要特点：</p>
+<ol>
+<li>没有任何兼容性；</li>
+<li>不存在跨域问题；</li>
+</ol>
+<h3 id="navigator-sendBeacon"><a href="#navigator-sendBeacon" class="headerlink" title="navigator.sendBeacon"></a>navigator.sendBeacon</h3><p>大部分现代浏览器都支持 navigator.sendBeacon方法。这个方法可以用来发送一些统计和诊断的小量数据，特别适合上报统计的场景。</p>
+<ol>
+<li>数据可靠，浏览器关闭也能发送；</li>
+<li>异步执行，不会影响下一页面加载即；</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;unload&#x27;</span>, logData, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logData</span>(<span class="params"></span>) &#123;</span><br><span class="line">    navigator.<span class="title function_">sendBeacon</span>(<span class="string">&quot;/log&quot;</span>, analyticsData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://www.alloyteam.com/2020/01/14184/#prettyPhoto">如何进行web性能监控</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/06/15/%E6%80%A7%E8%83%BD%E4%B8%8A%E6%8A%A5/" data-id="clu6rtt9f003oa8xa3gga45d8" data-title="性能上报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2020/07/31/windows%E4%B8%8B%E5%AE%89%E8%A3%85node-gyp%E5%A4%B1%E8%B4%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          windows下安装node-gyp失败
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2020/06/12/%E5%8A%A8%E6%80%81%E6%8D%A2%E8%82%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">动态换肤</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

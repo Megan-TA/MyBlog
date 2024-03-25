@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Next.js接入sentry | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="问题Next 接入 sentry 收集不到完整的错误 原因Next 分为客户端和服务端，需要对双端都做上报 Next 获取逻辑和渲染是两个维度错误逻辑处理 如何发现参考 Next 官网 sentry 接入示例 如何修复按照示例接入 其中 sentry 需要在客户端和服务端复用，建议是抽离放在一个文件去维护 综上需要更改有五处地方  config&#x2F;sentry.js _app.js _er">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Next.js接入sentry">
+<meta property="og:url" content="https://megan-ta.github.io/2020/03/12/Next-js%E6%8E%A5%E5%85%A5sentry/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="问题Next 接入 sentry 收集不到完整的错误 原因Next 分为客户端和服务端，需要对双端都做上报 Next 获取逻辑和渲染是两个维度错误逻辑处理 如何发现参考 Next 官网 sentry 接入示例 如何修复按照示例接入 其中 sentry 需要在客户端和服务端复用，建议是抽离放在一个文件去维护 综上需要更改有五处地方  config&#x2F;sentry.js _app.js _er">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/13/8mXosf.png">
+<meta property="article:published_time" content="2020-03-12T14:48:37.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.633Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/13/8mXosf.png">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Next-js接入sentry" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/12/Next-js%E6%8E%A5%E5%85%A5sentry/" class="article-date">
+  <time class="dt-published" datetime="2020-03-12T14:48:37.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Next.js接入sentry
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Next 接入 sentry 收集不到完整的错误</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>Next 分为客户端和服务端，需要对双端都做上报</p>
+<p>Next 获取逻辑和渲染是两个维度错误逻辑处理</p>
+<h2 id="如何发现"><a href="#如何发现" class="headerlink" title="如何发现"></a>如何发现</h2><p><a target="_blank" rel="noopener" href="https://github.com/zeit/next.js/blob/canary/examples/with-sentry/pages/_app.js">参考 Next 官网 sentry 接入示例</a></p>
+<h2 id="如何修复"><a href="#如何修复" class="headerlink" title="如何修复"></a>如何修复</h2><p>按照示例接入</p>
+<p>其中 sentry 需要在客户端和服务端复用，建议是抽离放在一个文件去维护</p>
+<p>综上需要更改有五处地方</p>
+<ul>
+<li>config&#x2F;sentry.js</li>
+<li>_app.js</li>
+<li>_error.js</li>
+<li>server&#x2F;app.js</li>
+<li>next.config.js</li>
+</ul>
+<p>流程图如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/13/8mXosf.png" alt="Next渲染流程"></p>
+<p>其中_app.js 接入 sentry 初始化逻辑，并且在 getInitProps 方法内，使用 try&#x2F;catch 执行对应 page 组件的 getInitProps</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _app.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">getInitialProps</span>(<span class="params">appContext: AppContext</span>) &#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; <span class="title class_">Component</span>, ctx &#125; = appContext</span><br><span class="line">  <span class="keyword">let</span> pageProps = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Component</span>.<span class="property">getInitialProps</span>) &#123;</span><br><span class="line">   pageProps = <span class="keyword">await</span> <span class="title class_">Component</span>.<span class="title function_">getInitialProps</span>(ctx)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   pageProps,</span><br><span class="line">  &#125;</span><br><span class="line"> &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app组件捕获到错误：&#x27;</span>, error)</span><br><span class="line">  <span class="keyword">const</span> &#123; ctx &#125; = appContext</span><br><span class="line">  <span class="keyword">const</span> errorEventId = <span class="title function_">captureException</span>(error, ctx)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   errorEventId,</span><br><span class="line">   <span class="attr">hasError</span>: <span class="literal">true</span>,</span><br><span class="line">   <span class="attr">pageProps</span>: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>render 错误需要在_error.js 捕获处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _error.ts</span></span><br><span class="line"><span class="keyword">static</span> <span class="title function_">getInitialProps</span>(<span class="params">ctx: NextPageContext</span>) &#123;</span><br><span class="line"> <span class="keyword">const</span> &#123; res, err &#125; = ctx</span><br><span class="line"> <span class="keyword">if</span> (err) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Error组件捕获到错误&#x27;</span>, err)</span><br><span class="line">  <span class="title function_">captureException</span>(err, ctx)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">const</span> statusCode = res ? res.<span class="property">statusCode</span> : err ? err.<span class="property">statusCode</span> : <span class="literal">null</span></span><br><span class="line"> <span class="keyword">return</span> &#123; statusCode &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务端配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处加在了全局错误中间件处理 如果不使用全局错误中间件需要监听koa等实例全局error事件处理</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">errHandler</span> = <span class="keyword">async</span> (<span class="params">ctx, next</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">next</span>();</span><br><span class="line">    ctx.<span class="property">status</span> = <span class="number">200</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;服务端捕获到错误：&quot;</span>, err);</span><br><span class="line">    <span class="comment">// sentry上报错误</span></span><br><span class="line">    <span class="title function_">captureException</span>(err, ctx);</span><br><span class="line"></span><br><span class="line">    ctx.<span class="property">status</span> = err.<span class="property">code</span> ? <span class="number">200</span> : <span class="number">500</span>;</span><br><span class="line">    ctx.<span class="property">body</span> = &#123;</span><br><span class="line">      <span class="attr">message</span>: err.<span class="property">message</span>,</span><br><span class="line">      ...err</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">prepare</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> server = <span class="keyword">new</span> <span class="title class_">Koa</span>();</span><br><span class="line"></span><br><span class="line">  server.<span class="title function_">use</span>(errHandler);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>sentry 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="title class_">Sentry</span> <span class="keyword">from</span> <span class="string">&#x27;@sentry/node&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">NextPageContext</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;next&#x27;</span></span><br><span class="line"></span><br><span class="line">interface <span class="title class_">SentryExport</span> &#123;</span><br><span class="line"> <span class="title class_">Sentry</span>: <span class="keyword">typeof</span> <span class="title class_">Sentry</span></span><br><span class="line"> <span class="attr">captureException</span>: <span class="function">(<span class="params">err: any, ctx: NextPageContext</span>) =&gt;</span> string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (release = process.<span class="property">env</span>.<span class="property">SENTRY_RELEASE</span>): <span class="function"><span class="params">SentryExport</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;SENTRY_RELEASE:&#x27;</span>, process.<span class="property">env</span>.<span class="property">SENTRY_RELEASE</span>)</span><br><span class="line"> <span class="keyword">const</span> <span class="attr">sentryOptions</span>: <span class="title class_">Sentry</span>.<span class="property">NodeOptions</span> = &#123;</span><br><span class="line">  <span class="attr">dsn</span>: <span class="string">&#x27;***********&#x27;</span>,</span><br><span class="line">  <span class="attr">release</span>: release || <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">environment</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span>,</span><br><span class="line">  <span class="attr">maxBreadcrumbs</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">attachStacktrace</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 只有生产环境发送到sentry</span></span><br><span class="line">  <span class="attr">enabled</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span>,</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="title class_">Sentry</span>.<span class="title function_">init</span>(sentryOptions)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> &#123;</span><br><span class="line">  <span class="title class_">Sentry</span>,</span><br><span class="line">  <span class="attr">captureException</span>: <span class="function">(<span class="params">err, ctx</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="title class_">Sentry</span>.<span class="title function_">configureScope</span>(<span class="function">(<span class="params">scope</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err.<span class="property">message</span>) &#123;</span><br><span class="line">     <span class="comment">// De-duplication currently doesn&#x27;t work correctly for SSR / browser errors</span></span><br><span class="line">     <span class="comment">// so we force deduplication by error message if it is present</span></span><br><span class="line">     scope.<span class="title function_">setFingerprint</span>([err.<span class="property">message</span>])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (err.<span class="property">statusCode</span>) &#123;</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;statusCode&#x27;</span>, err.<span class="property">statusCode</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ctx) &#123;</span><br><span class="line">     <span class="keyword">const</span> &#123; req, res, query &#125; = ctx</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (res &amp;&amp; res.<span class="property">statusCode</span>) &#123;</span><br><span class="line">      scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;statusCode&#x27;</span>, res.<span class="property">statusCode</span>)</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     scope.<span class="title function_">setTag</span>(<span class="string">&#x27;ssr&#x27;</span>, <span class="string">&#x27;true&#x27;</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;url&#x27;</span>, req.<span class="property">url</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;method&#x27;</span>, req.<span class="property">method</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;headers&#x27;</span>, req.<span class="property">headers</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;query&#x27;</span>, query)</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="title class_">Sentry</span>.<span class="title function_">captureException</span>(err)</span><br><span class="line">  &#125;,</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>next 对应配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">webpack</span>: <span class="function">(<span class="params">config, &#123; isServer, buildId &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isServer) &#123;</span><br><span class="line">    config.<span class="property">resolve</span>.<span class="property">alias</span>[<span class="string">&quot;@sentry/node&quot;</span>] = <span class="string">&quot;@sentry/browser&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  config.<span class="property">plugins</span>.<span class="title function_">push</span>(</span><br><span class="line">    <span class="keyword">new</span> webpack.<span class="title class_">DefinePlugin</span>(&#123;</span><br><span class="line">      <span class="string">&quot;process.env.SENTRY_RELEASE&quot;</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(buildId)</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Next 接入 sentry 需要考虑到方方面面，渲染逻辑和数据获取逻辑是两个维度，客户端和服务端又是一个维度。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/zeit/next.js/blob/canary/examples/with-sentry/server.js">sentry 官网 demo 接入 next</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/12/Next-js%E6%8E%A5%E5%85%A5sentry/" data-id="clu6rtt8e000ia8xafbt68iwu" data-title="Next.js接入sentry" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2020/03/13/%E6%B5%85%E6%9E%90node%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          浅析node进程与线程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2020/03/09/node-gyp-rebuild-Error-EACCES-permission-denied/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">node-gyp rebuild Error: EACCES: permission denied</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>前端知识点总结 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="js 知识点总结1. 解码和编码 原因：因为链接里面会有中文或者特殊字符号无法跳转需要进行相关编码解码  编码   &#39;encodeURI&#39;: 只对查询的参数做编码  &#39;encodeURIComponent&#39;: 对整个url做编码，包括? &amp; &#x2F; #  123a &#x3D; &#x27;www.baidu.com&#x2F;test?name&#x3D;&quot;zhangsan&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端知识点总结">
+<meta property="og:url" content="https://megan-ta.github.io/2018/07/21/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="js 知识点总结1. 解码和编码 原因：因为链接里面会有中文或者特殊字符号无法跳转需要进行相关编码解码  编码   &#39;encodeURI&#39;: 只对查询的参数做编码  &#39;encodeURIComponent&#39;: 对整个url做编码，包括? &amp; &#x2F; #  123a &#x3D; &#x27;www.baidu.com&#x2F;test?name&#x3D;&quot;zhangsan&amp;qu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox669ialYSHxewnD1B4L5UibVqhMnFEfibLhA8vUQu2s9rltB2HZ6UTQ19iag/0?wx_fmt=png">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6Kv2iaHanjIzQHDNeia2FsoHSz8AJPkxh0IqickdbPg0CPeFPhoQMpuv5w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/006ANKB8gy1fqhqrhftfmj30yu0objvr.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw690/006ANKB8gy1fqhqri8fjlj30zk0h4tbk.jpg">
+<meta property="article:published_time" content="2018-07-21T02:24:38.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.686Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox669ialYSHxewnD1B4L5UibVqhMnFEfibLhA8vUQu2s9rltB2HZ6UTQ19iag/0?wx_fmt=png">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-前端知识点总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2018/07/21/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-07-21T02:24:38.000Z" itemprop="datePublished">2018-07-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      前端知识点总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="js-知识点总结"><a href="#js-知识点总结" class="headerlink" title="js 知识点总结"></a>js 知识点总结</h1><h2 id="1-解码和编码"><a href="#1-解码和编码" class="headerlink" title="1. 解码和编码"></a>1. 解码和编码</h2><blockquote>
+<p>原因：因为链接里面会有中文或者特殊字符号无法跳转需要进行相关编码解码</p>
+</blockquote>
+<p><strong>编码</strong></p>
+<blockquote>
+</blockquote>
+<pre><code>&#39;encodeURI&#39;: 只对查询的参数做编码
+
+&#39;encodeURIComponent&#39;: 对整个url做编码，包括? &amp; / #
+</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;www.baidu.com/test?name=&quot;zhangsan&quot;&#x27;</span></span><br><span class="line"><span class="built_in">encodeURI</span>(a) =&gt; <span class="string">&#x27;www.baidu.com/test?name=%22zhangsan%22&#x27;</span></span><br><span class="line"><span class="built_in">encodeURIComponent</span>(a) =&gt; <span class="string">&#x27;www.baidu.com%2Ftest%3Fname%3D%22zhangsan%22&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解码</strong></p>
+<blockquote>
+</blockquote>
+<pre><code>&#39;decodeURI&#39;: 只对查询参数做解码
+&#39;decodeURIComponent&#39;: 对整个URL做解码
+</code></pre>
+<hr>
+<h2 id="2-序列化和反序列化"><a href="#2-序列化和反序列化" class="headerlink" title="2. 序列化和反序列化"></a>2. 序列化和反序列化</h2><blockquote>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify()        // 序列化</span><br><span class="line">JSON.parse()            // 反序列化</span><br></pre></td></tr></table></figure>
+
+<p>使用 ajax 需要设置请求头部信息</p>
+<p>header: {‘Content-Type’: ‘application&#x2F;json; charset&#x3D;utf-8;’}</p>
+<blockquote>
+<p>JSON.stringify() 可以简单的用来迅速判断两个对象是否相等，但不严谨（比如：序列化失败）</p>
+</blockquote>
+<hr>
+<h2 id="3-日期"><a href="#3-日期" class="headerlink" title="3. 日期"></a>3. 日期</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new Date().getTime()   // 单位  秒</span><br><span class="line">// 获取当前时间   （存在兼容性）</span><br><span class="line">new Date().toLocaleDateString() // 2017/7/24</span><br><span class="line">new Date().toLocaleTimeString() // 下午5:07:33</span><br><span class="line">new Date().toLocaleString()     // 2017/7/24 下午5:07:33</span><br><span class="line">// 若要显示24进制 需要option选项</span><br><span class="line">new Date().toLocaleTimeString(&quot;UTC&quot;,&#123; hour12: false &#125;)  // 17:20:16</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-重排-重绘"><a href="#4-重排-重绘" class="headerlink" title="4. 重排&#x2F;重绘"></a>4. 重排&#x2F;重绘</h2><ol>
+<li><p>重排（回流）：几何属性发生变化 比如：内容、结构、位置或尺寸发生变化，需要重新计算样式和渲染树；</p>
+</li>
+<li><p>重绘：元素发生的改变只影响了节点的一些样式（背景色、边框色、文字颜色等）</p>
+</li>
+</ol>
+<p>回流必定会发生重绘，重绘不一定会引发回流。</p>
+<blockquote>
+<p>重排比重绘要消耗更多的资源</p>
+</blockquote>
+<hr>
+<h2 id="5-锚点定位-scrollIntoView-（无兼容问题）"><a href="#5-锚点定位-scrollIntoView-（无兼容问题）" class="headerlink" title="5. 锚点定位 scrollIntoView （无兼容问题）"></a>5. 锚点定位 scrollIntoView （无兼容问题）</h2><p>可以用来做一些 tab 定位</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#x27;xx&#x27;).scrollIntoView()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-typeof-和-instanceof"><a href="#6-typeof-和-instanceof" class="headerlink" title="6. typeof 和 instanceof"></a>6. typeof 和 instanceof</h2><blockquote>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3></blockquote>
+<p>会返回一个变量的基本类型，只有以下几种：number,boolean,string,object,function；</p>
+<p>缺点：</p>
+<ul>
+<li>不适用于来判断数组，因为不管是数组还是对象，都会返回 object。</li>
+<li>判断不了 null null 也是对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof [1]      // Object</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3></blockquote>
+<p>运算符用来测试一个对象在其原型链中是否存在一个构造</p>
+<p>返回的是一个布尔值 只能用来判断对象和函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;&#125;;</span><br><span class="line">alert(  a instanceof Object )     // true</span><br><span class="line">var a  = [];</span><br><span class="line">alert(  a instanceof Array )    // true</span><br></pre></td></tr></table></figure>
+
+<p>最靠谱也是最方便的办法使用<code>Object.prototype.toString.call()</code>来判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">types</span>(<span class="params">target</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-requestAnimationFrame-（RAF）-动画-api-兼容-Ie-8-9"><a href="#7-requestAnimationFrame-（RAF）-动画-api-兼容-Ie-8-9" class="headerlink" title="7. requestAnimationFrame （RAF） 动画 api 兼容 Ie 8&#x2F;9"></a>7. requestAnimationFrame （RAF） 动画 api 兼容 Ie 8&#x2F;9</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var i = 0</span><br><span class="line"></span><br><span class="line">window.requestAnimFrame = (function()&#123;</span><br><span class="line">  return  window.requestAnimationFrame       ||</span><br><span class="line">          window.webkitRequestAnimationFrame ||</span><br><span class="line">          window.mozRequestAnimationFrame    ||</span><br><span class="line">          function( callback )&#123;</span><br><span class="line">            window.setTimeout(callback, 1000 / 60);</span><br><span class="line">          &#125;;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">requestAnimFrame(animloop)</span><br><span class="line"></span><br><span class="line">function animloop () &#123;</span><br><span class="line">    document.getElementById(&#x27;test&#x27;).style.top = i ++</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><pre><code>1. 解决毫秒的不精确性；
+2. 避免过渡渲染；
+3. 浏览器可以优化并行的动画动作，将合并的动作放入一个渲染周期；
+4. 过程可控；
+</code></pre>
+<blockquote>
+<p>动画效率之争</p>
+</blockquote>
+<pre><code>css3动画高效的原因有以下三点：
+
+    1. 强制使用硬件加速（GPU）；
+    2. 使用与RAF类似的机制；
+    3. 优化DOM操作 避免内存消耗来减少卡顿；
+
+同时因为采用GPU， 导致浏览器一直出于高负荷运转，移动端电量损耗和一定卡顿，
+而且css不能完全被js控制
+pc上兼容性
+</code></pre>
+<p>js 动画库 （比如 Velocity.js 和 GSAP）</p>
+<hr>
+<h2 id="8-跨域"><a href="#8-跨域" class="headerlink" title="8. 跨域"></a>8. 跨域</h2><p>仅客户端上 域名、端口、协议 三者有一个不一样就会跨域。</p>
+<p>跨域的办法</p>
+<ol>
+<li><h3 id="服务端配置CORS"><a href="#服务端配置CORS" class="headerlink" title="服务端配置CORS"></a>服务端配置CORS</h3><ol>
+<li>access-control-allow-method</li>
+<li>access-control-allow-origin</li>
+</ol>
+</li>
+<li><h3 id="nginx代理转发"><a href="#nginx代理转发" class="headerlink" title="nginx代理转发"></a>nginx代理转发</h3><ol>
+<li>location &#x2F; {  proxy_pass xxxxxxx;   }</li>
+</ol>
+</li>
+<li><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>通过 js 标签引入一个 js 文件 这个 js 文件载入成功之后会执行我们在 url 参数中指定的函数 并且会将后端传入给我们的 json 数据作为参数传入</p>
+<p>例如：url?item&#x3D;1&amp;callback&#x3D;filter</p>
+<p>原生 js 实现 jsonp 的话 定义好 callback 的函数名称,动态创建 js 标签 url 加上查询的参数写好 callback 的回调函数名称即可</p>
+</li>
+<li><h3 id="利用-iframe-并修改-document-domain-来跨子域"><a href="#利用-iframe-并修改-document-domain-来跨子域" class="headerlink" title="利用 iframe 并修改 document.domain 来跨子域"></a>利用 iframe 并修改 document.domain 来跨子域</h3><p>两个不同域的页面引入 iframe 标签 同时将两个页面的主域设置成相同的域名</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox669ialYSHxewnD1B4L5UibVqhMnFEfibLhA8vUQu2s9rltB2HZ6UTQ19iag/0?wx_fmt=png" alt="页面1"><br><img src="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6Kv2iaHanjIzQHDNeia2FsoHSz8AJPkxh0IqickdbPg0CPeFPhoQMpuv5w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="页面2"></p>
+</li>
+<li><h3 id="window-name-（可以配合-iframe）"><a href="#window-name-（可以配合-iframe）" class="headerlink" title="window.name （可以配合 iframe）"></a>window.name （可以配合 iframe）</h3><p>同源窗口下 window.name 对所有页面都是共享的</p>
+<p>每个页面对 window.name 都有读写权限</p>
+<p>window.name 的值并不会因为新页面而重置</p>
+</li>
+<li><p>widnow.postMessage （存在兼容性 IE7&#x2F;8 不支持）</p>
+<p>！<a target="_blank" rel="noopener" href="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6z8ibxywKPEusvEA2xS8ialrQ1Oxd0jw0V8C6f7Gicy6Obsyt5bicibxdx5Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">页面 1</a></p>
+<p>！<a target="_blank" rel="noopener" href="http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6B9Fpsa9KmNAMibvfSqE8Qv2icpLzzFE6NfvEp8YxWW6JOMTacIzaQzxw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">页面 2</a></p>
+</li>
+<li><p>Nginx 反向代理</p>
+</li>
+</ol>
+<h2 id="9-selection"><a href="#9-selection" class="headerlink" title="9. selection"></a>9. selection</h2><blockquote>
+<p>获取鼠标划过文本的对象<br><code>window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();</code></p>
+</blockquote>
+<hr>
+<h2 id="10-正则表达式"><a href="#10-正则表达式" class="headerlink" title="10. 正则表达式"></a>10. 正则表达式</h2><blockquote>
+<p>常用规则</p>
+</blockquote>
+<ul>
+<li>\n 回车</li>
+<li>\t 制表符</li>
+<li>\r 换行符</li>
+<li>\s 空格</li>
+<li>\u4e00-\u9fa5 中文</li>
+<li>\w 大小写字母_数字</li>
+<li>\b : 独立的部分 （ 起始，结束，空格 ）</li>
+<li>{n, m} 至少出现 n 次 最多 m 次</li>
+<li>{n,} 至少 n 次</li>
+<li>* 任意次</li>
+<li>+ 至少一次</li>
+<li>{n} 至少 n 次</li>
+<li>() 分组符号</li>
+<li>[\s\S] 任意字符</li>
+<li>^ 放在正则的最开始位置，就代表起始的意思，注意 &#x2F;[^a] &#x2F; 和 &#x2F;^[a]&#x2F;是不一样的，前者是排除的意思，后者是代表首位。</li>
+<li>$正则的最后位置 , 就代表结束的意思</li>
+<li>?&lt;&#x3D; 向前匹配 ?&#x3D; 向后匹配</li>
+</ul>
+<p>匹配中文: [\u4e00-\u9fa5]</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var str = &#x27;2013-6-7&#x27;;</span><br><span class="line">var re1 = /\d-+/g;        // 全局匹配数字，横杠，横杠数量至少为1，匹配结果为：  3- 6-</span><br><span class="line">var re1 = /(\d-）+/g;     // 全局匹配数字，横杠，数字和横杠整体数量至少为1   3-6-</span><br><span class="line">var re2  = /(\d+)(-)/g;   // 全局匹配至少一个数字，匹配一个横杠 匹配结果：2013- 6-</span><br><span class="line"></span><br><span class="line">--------------------------</span><br><span class="line">var str = &#x27;2013-6-7&#x27;;</span><br><span class="line">var re = /(\d+)(-)/g;</span><br><span class="line"></span><br><span class="line">str = str.replace(re,function($0,$1,$2)&#123;</span><br><span class="line"></span><br><span class="line">    //replace()中如果有子项，</span><br><span class="line">    //第一个参数：$0（匹配成功后的整体结果  2013-  6-）,</span><br><span class="line">    // 第二个参数 : $1(匹配成功的第一个分组，这里指的是\d   2013, 6)</span><br><span class="line">    //第三个参数 : $1(匹配成功的第二个分组，这里指的是-    - - )</span><br><span class="line">    return $1 + &#x27;.&#x27;;  //分别返回2013.   6.</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>[] 表示某个集合中的任意一个</li>
+<li>[^a] 排除 a</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// var re = /\bclassname\b/;</span><br><span class="line"></span><br><span class="line">// 不能这样写，当正则需要用到参数时候，一定要用全称的写法，简写方式会</span><br><span class="line">// 把classname当做一个字符串去匹配。</span><br><span class="line"></span><br><span class="line">var re = new RegExp(&#x27;\\b&#x27;+classname+&#x27;\\b&#x27;);</span><br><span class="line"></span><br><span class="line">// 匹配的时候，classname前面必须是起始或者空格，后面也是。</span><br><span class="line"></span><br><span class="line">默认匹配成功就停止，所以就算有重复的也不会再匹配进去了。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="11-Object"><a href="#11-Object" class="headerlink" title="11. Object"></a>11. Object</h2><pre><code>1. constructor
+
+    实例的constructor 永远指向 构造函数 的 prototype.constructor
+
+    理解成 实例是基于构造函数原型链生成的对象
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function A(x)&#123;</span><br><span class="line">    this.x = x;</span><br><span class="line">&#125;</span><br><span class="line">var newA = new A(name);</span><br><span class="line"></span><br><span class="line">此时：</span><br><span class="line">newA.constructor == A.prototype.constructor;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>2. hasOwnProperty
+
+    判断对象上某个属性是否属于自身 属于自身为true, 原型链上为false
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function a () &#123;</span><br><span class="line">    this.show = &#x27;x&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">a.prototype.hide = function () &#123;</span><br><span class="line">    console.log(111111);</span><br><span class="line">&#125;</span><br><span class="line">var z = new a();</span><br><span class="line">z.hasOwnProperty(&#x27;show&#x27;);          // true</span><br><span class="line">z.hasOwnProperty(&#x27;hide&#x27;);          // false</span><br></pre></td></tr></table></figure>
+
+<pre><code>3. isPrototypeOf
+
+    判断一个对象是否是另一个对象的原型
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var monkey = &#123;</span><br><span class="line">    hair : true,</span><br><span class="line">    breathes : function()&#123;</span><br><span class="line">        alert(&#x27;1&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Human(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">// Human的原型链绑定monkey对象</span><br><span class="line">Human.prototype = monkey;</span><br><span class="line"></span><br><span class="line">var man = new Human(&#x27;张三&#x27;);</span><br><span class="line">monkey.isPrototypeOf(man);      // true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>4. prototype和__proto__
+
+    prototype是一个函数的内置属性（每个函数都有一个prototype属性）
+
+    __proto__ 是一个实例对象的内置属性 实例化的对象在内部通过此属性寻找原型链
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var Person = function () &#123;&#125;</span><br><span class="line">var zhangsan = new Person ()</span><br><span class="line"></span><br><span class="line">zhansan.__prop__ = Person.prototype</span><br><span class="line"></span><br><span class="line">new 的过程拆分成以下四步</span><br><span class="line"></span><br><span class="line">1. var p = &#123;&#125;</span><br><span class="line">2. p.__proto__ = Person.prototype</span><br><span class="line">3. ret = Person.call(p, arguments)</span><br><span class="line">4. 返回值ret若是对象则直接返回ret，不是则返回新的对象p</span><br></pre></td></tr></table></figure>
+
+<pre><code>5. Object.getPrototypeOf
+
+    获取 实例化对象 原型链 的相关属性
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Test () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test.prototype.showName = function () &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let obj = new Test ()</span><br><span class="line">Object.getPrototypeOf(obj) == obj.__proto__</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>6. Object.keys
+
+    可以用来枚举可遍历的属性 返回一个数组
+
+7. Object.create
+
+    在原型链上创建对象属性
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 属性创建在原型链上 --&gt;</span><br><span class="line">Object.create(&#123;</span><br><span class="line">    name: &#x27;张三&#x27;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;!-- 字面量方式创建的对象属性挂在自身 --&gt;</span><br><span class="line">let test = &#123;</span><br><span class="line">    name: &#x27;张三&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>8. Object.isExtensible
+
+    判断对象是否可以新增属性
+
+9. Object.preventExtension
+
+    锁住对象 使其不能新增属性 但是原来的属性可以修改删除
+
+10. Object.seal
+
+    密封对象 不能增加新属性 也不能删除旧属性  但是能修改原来的属性
+
+11. Object.isSealed
+
+    判断对象是否密封
+
+12. Object.freeze
+
+    冻结对象 不能新增 不能修改 不能删除
+
+13. Object.isFrozen
+
+    判断对象是否完全被冻结
+
+14. Object.getOwnPropertyNames
+
+    获取自身属性名字 返回一个数组
+
+15. Object.getOwnPropertyDescriptor
+
+    判断某个对象上某个属性的状态描述
+
+16. Object.defineProperty
+
+
+
+
+-----------
+</code></pre>
+<h2 id="12-继承"><a href="#12-继承" class="headerlink" title="12. 继承"></a>12. 继承</h2><blockquote>
+<p><strong>调用另一个对象的方法，以另一个对象替换当前对象的上下文</strong></p>
+<blockquote>
+<p>缺点</p>
+<blockquote>
+<p>只能继承父级本身属性，原型链的属性无法继承</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li><strong>call</strong><blockquote>
+<p>第二个参数可以省略</p>
+</blockquote>
+</li>
+<li><strong>apply</strong><blockquote>
+<p>第二个参数必须是数组或者用 arguments 代替</p>
+</blockquote>
+</li>
+<li><strong>bind</strong><blockquote>
+<p>bind 与 call 和 apply 的区别在于 bind 是一个函数 不会立即执行 必须在后面再加上一对括号去立即执行</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">例子1：</span><br><span class="line"></span><br><span class="line">function Add(a,b)</span><br><span class="line">&#123;</span><br><span class="line">    this.add = function(a,b)&#123;</span><br><span class="line">        alert(a+b)</span><br><span class="line">    &#125;;</span><br><span class="line">    this.xx = 333;</span><br><span class="line">&#125;</span><br><span class="line">function Sub()</span><br><span class="line">&#123;</span><br><span class="line">    this.sub = &#x27;张三&#x27;;</span><br><span class="line"></span><br><span class="line">    // call方法</span><br><span class="line">    Add.call(this); // call继承Add所有方法(不包含原型链上的方法)</span><br><span class="line"></span><br><span class="line">    // apply方法  参数不能指定的时候用[]或者arguments代替</span><br><span class="line">    Add.apply(this, [])</span><br><span class="line">    // 又可以写成</span><br><span class="line">    Add.apply(this, arguments)</span><br><span class="line"></span><br><span class="line">    // bind方法</span><br><span class="line">    Add.bind(this)();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x = new Sub();</span><br><span class="line">x.add(5,7)                  // 11</span><br><span class="line"></span><br><span class="line">=====================================</span><br><span class="line"></span><br><span class="line">例子2：</span><br><span class="line"></span><br><span class="line">若只想继承父级构造函数某一个具体方法</span><br><span class="line">需要先将父子对象都实例化后 调用父级的具体方法call</span><br><span class="line"></span><br><span class="line">function Add(a,b)</span><br><span class="line">&#123;</span><br><span class="line">    this.add = function(a,b)&#123;</span><br><span class="line">        alert(a+b)</span><br><span class="line">    &#125;;</span><br><span class="line">    this.xx = 333;</span><br><span class="line">&#125;</span><br><span class="line">function Sub()</span><br><span class="line">&#123;</span><br><span class="line">    this.sub = &#x27;张三&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newAdd = new Add(7,8);</span><br><span class="line">newSub = new Sub();</span><br><span class="line"></span><br><span class="line">// Sub只继承了Add的add方法并执行相关方法</span><br><span class="line"></span><br><span class="line">call方法：</span><br><span class="line">newAdd.add.call(newSub, 10, 4);      // 14</span><br><span class="line"></span><br><span class="line">apply方法：</span><br><span class="line">newAdd.add.apply(newSub, [10, 4]);   // 14</span><br><span class="line"></span><br><span class="line">bind方法：</span><br><span class="line">newAdd.add.bind(newSub, 10, 4)();   // 14</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>若想要全部继承父级所有相关属性 得采用&#x3D;&#x3D;原型链继承&#x3D;&#x3D;的方式</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function person()&#123;</span><br><span class="line">    this.hair = &#x27;black&#x27;;</span><br><span class="line">    this.eye = &#x27;black&#x27;;</span><br><span class="line">    this.skin = &#x27;yellow&#x27;;</span><br><span class="line">    this.view = function()&#123;</span><br><span class="line">        return this.hair + &#x27;,&#x27; + this.eye + &#x27;,&#x27; + this.skin;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function man()&#123;</span><br><span class="line">    this.feature = [&#x27;beard&#x27;,&#x27;strong&#x27;];</span><br><span class="line">&#125;</span><br><span class="line">man.prototype = new person();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="13-cookie-sessionStorage-localStorage"><a href="#13-cookie-sessionStorage-localStorage" class="headerlink" title="13. cookie sessionStorage localStorage"></a>13. cookie sessionStorage localStorage</h2><pre><code>1. cookie
+    * 4k的限制；
+    * 服务端和客户端传递时都会带上cookie；
+    * 本质上是对字符串的读取 存储内容过多消耗内存空间 导致页面变卡顿；
+    * 不能被爬虫读取；
+    * 设置时间之前一直有效，到时间就清除；
+2. sessionStorage
+    * 临时存储：引入“浏览器窗口”的概念，同源同窗口数据不会销毁，不同标签页中数据不能共享，关闭浏览器时候销毁；
+    * 减少网络流量，即减少数据在服务端和客户端之间的传递；
+    * 性能更好，即本地读取数据比服务器获取快多了；
+    * 不能跨tab标签页传值；
+3. localStorage
+    * 减少网络流量，即减少数据在服务端和客户端之间的传递；
+    * 体积更大 5M；
+    * 持久存储在本地，直到手动清除；
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(&#x27;sss&#x27;,1111);</span><br><span class="line">localStorage.getItem(&#x27;sss&#x27;);</span><br><span class="line">localStorage.removeItem(&#x27;sss&#x27;);</span><br><span class="line">localStorage.clear();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="14-闭包"><a href="#14-闭包" class="headerlink" title="14. 闭包"></a>14. 闭包</h2><pre><code>简单回答闭包就是 一个函数返回自身内部函数的调用
+
+为什么使用？
+
+因为js是链式的 一层一层向上级查找 所以外部函数无法访问内部函数;
+</code></pre>
+<blockquote>
+<blockquote>
+<p>优点<br>缺点</p>
+</blockquote>
+<ul>
+<li>不会被内存回收 容易出现性能问题</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var a = 2;</span><br><span class="line"></span><br><span class="line">    function bar()&#123;</span><br><span class="line">        console.log(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return bar;</span><br><span class="line">&#125;</span><br><span class="line">var newFoo = foo();</span><br><span class="line">newFoo();               // a</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="15-深拷贝和浅拷贝"><a href="#15-深拷贝和浅拷贝" class="headerlink" title="15. 深拷贝和浅拷贝"></a>15. 深拷贝和浅拷贝</h2><ul>
+<li><strong>浅拷贝</strong><blockquote>
+<p><strong>复制对象的副本 指向同一内存区域 对副本的操作会影响父级对象</strong></p>
+</blockquote>
+</li>
+</ul>
+<p>浅拷贝方式：</p>
+<ol>
+<li>直接赋值；</li>
+<li>Object.assign();</li>
+<li>JSON 序列化；</li>
+</ol>
+<ul>
+<li><strong>深拷贝</strong><blockquote>
+<p><strong>复制对象的副本 指向不同的内存区域 与父级对象独立</strong></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// 浅拷贝</span><br><span class="line">var a = &#123;</span><br><span class="line">    name : &#x27;zhangsan&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a;</span><br><span class="line">b.name = &#x27;lisi&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(a.name);    // &quot;lisi&quot;</span><br><span class="line">console.log(b.name);    // &quot;lisi&quot;</span><br><span class="line"></span><br><span class="line">// 深拷贝  (更完整的深拷贝还需要再详细优化)</span><br><span class="line">function deepCopy(p, c)&#123;</span><br><span class="line">    var c = c || &#123;&#125;;</span><br><span class="line">    for(var i in p )&#123;</span><br><span class="line">        // 数组和对象的时候再处理</span><br><span class="line">        if(typeof p[i] === &#x27;object&#x27;)&#123;</span><br><span class="line">            c[i] = (p[i].constructor === Array) ? [] : &#123;&#125;;</span><br><span class="line">            deepCopy(p[i], c[i]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            // 基本类型直接赋值</span><br><span class="line">            c[i] = p[i]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = &#123;</span><br><span class="line">    number: [1, 2, 3],</span><br><span class="line">    obj: &#123;</span><br><span class="line">        prop: 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var copyParent = deepCopy(parent);</span><br><span class="line">copyParent.number.push(4)</span><br><span class="line">copyParent.number                   // 1,2,3,4</span><br><span class="line">parent.number                       // 1,2,3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="16-传值类型和引用类型"><a href="#16-传值类型和引用类型" class="headerlink" title="16. 传值类型和引用类型"></a>16. 传值类型和引用类型</h2><ul>
+<li><strong>传值类型（基本类型）</strong><blockquote>
+<p>值为基本类型时候为深拷贝</p>
+<blockquote>
+<p>基本类型就是 null，undefined，Boolean，string，number</p>
+<blockquote>
+<p>&#x3D;&#x3D;独立不干扰&#x3D;&#x3D;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li><strong>引用类型</strong><blockquote>
+<p>值为对象类型时候为浅拷贝</p>
+<blockquote>
+<p>值都是对对象的引用，即一个指向对象的指针</p>
+<blockquote>
+<p>&#x3D;&#x3D;对副本的操作会影响父级对象&#x3D;&#x3D;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// 传值类型</span><br><span class="line">var  a = 1;</span><br><span class="line">function voo(data)</span><br><span class="line">&#123;</span><br><span class="line">    data = 2;</span><br><span class="line">    console.log(data);   // 2</span><br><span class="line">&#125;</span><br><span class="line">voo(a);</span><br><span class="line">console.log(a);    // 1</span><br><span class="line"></span><br><span class="line">// 引用类型</span><br><span class="line">var  a = &#123;</span><br><span class="line">    name : &quot;张三&quot;</span><br><span class="line">&#125;;</span><br><span class="line">function voo(data)</span><br><span class="line">&#123;</span><br><span class="line">    data.name = &quot;李四&quot;;</span><br><span class="line">    console.log(data);   //  Object &#123;name: &quot;李四&quot;&#125;</span><br><span class="line">&#125;</span><br><span class="line">voo(a);</span><br><span class="line">console.log(a);         //  Object &#123;name: &quot;李四&quot;&#125;</span><br><span class="line"></span><br><span class="line">// 引用类型不会被基本类型覆盖</span><br><span class="line">var  a = &#123;</span><br><span class="line">    name : &quot;张三&quot;</span><br><span class="line">&#125;;</span><br><span class="line">function voo(data)</span><br><span class="line">&#123;</span><br><span class="line">    data = 3；</span><br><span class="line">    console.log(data);   // 3</span><br><span class="line">&#125;</span><br><span class="line">voo(a);</span><br><span class="line">console.log(a);         //  Object &#123;name: &quot;张三&quot;&#125;</span><br><span class="line"></span><br><span class="line">// 为了解决引用类型的问题  引入深拷贝的概念  参考上面一个概念</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="17-函数作用域提升与预编译"><a href="#17-函数作用域提升与预编译" class="headerlink" title="17. 函数作用域提升与预编译"></a>17. 函数作用域提升与预编译</h2><blockquote>
+<p>由于 js 没有其他强类型语言{}这类的块级作用域 只有函数作用域 函数的声明很随意导致各种问题出现</p>
+<blockquote>
+<p>变量预编译 &gt; 函数预编译</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">// 第一条</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line">var a = c = function() &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;;</span><br><span class="line">a();</span><br><span class="line"></span><br><span class="line">function a() &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">&#125;;</span><br><span class="line">a();</span><br><span class="line">(function(b) &#123;</span><br><span class="line">    b(), c()</span><br><span class="line">    var b = c = function a() &#123;</span><br><span class="line">        console.log(3)</span><br><span class="line">    &#125;</span><br><span class="line">    b();</span><br><span class="line">&#125;)(a);</span><br><span class="line">c();</span><br><span class="line"></span><br><span class="line">// 等价于：</span><br><span class="line">var a;                      // 变量声明提升</span><br><span class="line">function a() &#123;              // 函数声明提升</span><br><span class="line">    console.log(1)</span><br><span class="line">&#125;;</span><br><span class="line">a();                        // 1</span><br><span class="line">a = c = function() &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">a();                        // 2</span><br><span class="line"></span><br><span class="line">(function(b) &#123;</span><br><span class="line">    var b</span><br><span class="line">    b()                     // 2</span><br><span class="line">    c()                     // 本来以error</span><br><span class="line">    // 后来有人指正 原因就在于var b=c=xxx。</span><br><span class="line">    // c相当于没有加var 不会预编译，这里c直接查找到外部作用域的c</span><br><span class="line">    b = c = function a() &#123;</span><br><span class="line">        console.log(3)</span><br><span class="line">    &#125;</span><br><span class="line">    b();                    // 3</span><br><span class="line">&#125;)(a);</span><br><span class="line"></span><br><span class="line">c();                        // 3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 第二条</span><br><span class="line">function fn()&#123;</span><br><span class="line">    function a()&#123;console.log(1)&#125;</span><br><span class="line">    return a;</span><br><span class="line">    function a()&#123;console.log(2)&#125;</span><br><span class="line">&#125;</span><br><span class="line">fn()();                     //2 由于预编译 后面的a覆盖了前面的a</span><br><span class="line"></span><br><span class="line">// 第三条</span><br><span class="line">var a=10;</span><br><span class="line">function fn()&#123;</span><br><span class="line">    // 预编译a 赋值undefined，内部作用域存在a这个变量，</span><br><span class="line">    // 所以这里 !a 就是  !undefined，就是true，进入函数a=20;</span><br><span class="line">    if (!a) &#123;</span><br><span class="line">        var a=20</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(a)          //  这里是20 ，</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line"></span><br><span class="line">// 第四条</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    console.log(typeof a)   //undefined</span><br><span class="line">    var a=&#x27;littlebear&#x27;;</span><br><span class="line">    console.log(a)          //littlebear</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    console.log(typeof a)   //string  第二个&lt;script&gt;标签里的a但会往上查找。</span><br><span class="line">    var a=1;</span><br><span class="line">    console.log(a)//1</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// 第五条</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    console.log(typeof a)   //undefined</span><br><span class="line">    console.log(a)</span><br><span class="line">    // 报错，遇到&lt;script&gt;标签对时，会先对这一块进行预解析，</span><br><span class="line">    // 下面没预解析，所以找不到声明过的a，于是报错了</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    console.log(typeof a)   //undefined</span><br><span class="line">    var a=1;</span><br><span class="line">    console.log(a)          //1</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// 第六条</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function fn(a,b)&#123;</span><br><span class="line">        console.log(a)      //容易上当 初始化a的时候已经赋值&#x27;容易上当&#x27;</span><br><span class="line">        var a=10;</span><br><span class="line">        console.log(a)      //10</span><br><span class="line">    &#125;</span><br><span class="line">    fn(&#x27;容易上当&#x27;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="18-AMD-和-CMD-区别"><a href="#18-AMD-和-CMD-区别" class="headerlink" title="18. AMD 和 CMD 区别"></a>18. AMD 和 CMD 区别</h2><ol>
+<li><p>AMD 推崇依赖前置。 （requireJS）</p>
+<p>CMD 推崇依赖就近， （seaJS）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// CMD</span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">    var a = require(&#x27;./a&#x27;)</span><br><span class="line">    a.doSomething()         // 此处略去 100 行</span><br><span class="line">    var b = require(&#x27;./b&#x27;)  // 依赖可以就近书写</span><br><span class="line">    b.doSomething()         // ...</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">// AMD 默认推荐</span><br><span class="line">define([&#x27;./a&#x27;, &#x27;./b&#x27;], function(a, b) &#123;</span><br><span class="line">    // 依赖必须一开始就写好</span><br><span class="line">    a.doSomething()    // 此处略去 100 行</span><br><span class="line">    b.doSomething()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>对于依赖的模块，</p>
+<p>AMD 是提前执行（预执行），</p>
+<p>CMD 是延迟执行（懒执行）。</p>
+</li>
+</ol>
+<blockquote>
+<p>不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.</p>
+</blockquote>
+<ol start="3">
+<li><p>AMD 的 API 默认是一个当多个用，</p>
+<p>CMD 的 API 严格区分，推崇职责单一</p>
+</li>
+</ol>
+<blockquote>
+<p>比如 AMD 里，require 分全局 require 和局部 require，都叫 require。CMD 里，没有全局 require，而是根据模块系统的完备性，提供 seajs.use 来实现模块系统的加载启动。CMD 里，每个 API 都简单纯粹。</p>
+</blockquote>
+<hr>
+<h2 id="19-常见服务器的状态码"><a href="#19-常见服务器的状态码" class="headerlink" title="19. 常见服务器的状态码"></a>19. 常见服务器的状态码</h2><ul>
+<li><p>301</p>
+<p>永久重定向</p>
+</li>
+<li><p>302</p>
+<p>临时重定向 会出现 URL 劫持 体现在搜索引擎收录策略上 会改变原有请求方法</p>
+</li>
+</ul>
+<ul>
+<li><p>304</p>
+<p>Not Modified</p>
+<p>客户端有缓冲的文档并发出了一个条件性的请求（一般是提供 If-Modified-Since 头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。</p>
+</li>
+</ul>
+<ul>
+<li><p>307</p>
+<p>临时重定向 与 302 区别 客户端应<code>保持请求方法</code>不变向新的地址发出请求</p>
+</li>
+</ul>
+<ul>
+<li><p>400</p>
+<p>Bad Request</p>
+<p>表示该请求报文中存在语法错误，导致服务器无法理解该请求。多用于接口参数校验。</p>
+</li>
+<li><p>403</p>
+<p>Forbidden</p>
+<p>该状态码表明对请求资源的访问被服务器拒绝了。多用于权限拦截。</p>
+</li>
+<li><p>407</p>
+<p>代理服务器未授权</p>
+</li>
+<li><p>413</p>
+<p>post body 请求体过大</p>
+</li>
+</ul>
+<ul>
+<li><p>500</p>
+<p>Internal Server Error</p>
+<p>该状态码表明服务器端在执行请求时发生了错误。</p>
+</li>
+<li><p>501</p>
+<p>服务器不具备完成请求的功能。比如服务正在重启时，暂时无法响应客户端请求。</p>
+</li>
+<li><p>502</p>
+<p>上游网关错误</p>
+</li>
+<li><p>503</p>
+<p>服务不可用</p>
+</li>
+</ul>
+<hr>
+<h2 id="20-事件冒泡和事件捕获"><a href="#20-事件冒泡和事件捕获" class="headerlink" title="20. 事件冒泡和事件捕获"></a>20. 事件冒泡和事件捕获</h2><pre><code>* 事件冒泡兼容写法
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (event.cancelBubble) &#123;</span><br><span class="line">    event.cancelBubble = true</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    event.stopPropagation()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+--------------------------
+</code></pre>
+<h2 id="21-数组"><a href="#21-数组" class="headerlink" title="21. 数组"></a>21. 数组</h2><pre><code>1. push
+
+    向数组末尾添加指定元素
+
+2. pop
+
+    移除数组末尾的一个元素 并返回移除的元素
+
+3. shift
+
+    移除数组第一项 并返回该元素
+
+4. unshift
+
+    给数组第一项加上一个元素 返回数组长度
+
+5. join
+
+    数组按照指定的字符换转成字符串
+
+6. sort
+
+    数组按照ASCII排序  所以要完全按照从小到大的顺序排序的话需要指定参数 1 -1 0
+
+7. splice
+
+    从0开始
+
+&gt; 删除 ---------------------（**起始位置，截取个数**）
+
+&gt; 插入 ---------------------（**起始位置，截取个数为0，要插入的项**）
+
+&gt; 替换----------------------（**起始位置，截取个数为1，要插入的项**）
+
+8. slice
+
+9. concat
+
+10. reverse
+
+11. 遍历数组的方法
+
+    &gt; forEach
+    &gt; for in
+
+    两者区别 在于 for in 会遍历数组原型链的属性值
+
+    为了避免这样的情况 使用 hasOwnProperty 解决
+</code></pre>
+<hr>
+<h2 id="22-正则"><a href="#22-正则" class="headerlink" title="22.正则"></a>22.正则</h2><ul>
+<li>()：小括号，叫做分组符。</li>
+<li>\s : 空格</li>
+<li>\S : 非空格</li>
+<li>\d : 数字</li>
+<li>\D : 非数字</li>
+<li>\w : 字符 ( 字母 ，数字，下划线_ )</li>
+<li>\W : 非字符</li>
+<li>.（点）——任意字符</li>
+<li>. : 真正的点</li>
+<li>\b : 独立的部分 （ 起始，结束，空格 ）</li>
+<li>\B : 非独立的部分</li>
+<li>{n,m}：至少出现 n 次，最多 m 次</li>
+<li>{n,} :至少 n 次<ul>
+<li><ul>
+<li>:任意次 相当于{0,}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>？ ：零次或一次 相当于{0,1}<ul>
+<li><ul>
+<li>：一次或任意次相当于 {1,}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>{n}： 正好 n 次</li>
+<li>[] ： 表示某个集合中的任意一个 不能为空</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="字符串相关的正则方法"><a href="#字符串相关的正则方法" class="headerlink" title="字符串相关的正则方法"></a>字符串相关的正则方法</h3></blockquote>
+<ul>
+<li><h3 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h3></li>
+</ul>
+<blockquote>
+<p>返回一个包含匹配内容的数组</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &#x27;abcdef&#x27;;</span><br><span class="line"></span><br><span class="line">var re = /B/i;</span><br><span class="line"></span><br><span class="line">str.match(re) // [b]</span><br></pre></td></tr></table></figure>
+
+<p>例子 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url = https://dimg.fws.qa.nt.ctripcorp.com/images/2d090m000000062hy59E5.jpg&quot;</span><br><span class="line">url.match(/[^\/]*$/) // 2d090m000000062hy59E5.jpg</span><br><span class="line">url.match(/^[^\/]*/) // https</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="search"><a href="#search" class="headerlink" title="search()"></a>search()</h3></li>
+</ul>
+<blockquote>
+<p>返回匹配到的第一个内容所在的位置</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var str = &#x27;abcdef&#x27;;</span><br><span class="line"></span><br><span class="line">var re = /B/i;</span><br><span class="line"></span><br><span class="line">str.search(re) // 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h3></li>
+</ul>
+<blockquote>
+<p>查找符合正则的字符串并替换成&#x3D;&#x3D;一个&#x3D;&#x3D;对应的字符串。返回替换后的内容。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;我爱北京天安门，天安门上太阳升。&quot;;</span><br><span class="line">var re = /北京|天安门/g;  //  找到北京 或者天安门 全局匹配</span><br><span class="line">var str2 = str.replace(re,&#x27;*&#x27;); // 我爱**，*上太阳升。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>并不能解决一个文字*的对应</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;我爱北京天安门，天安门上太阳升。&quot;;</span><br><span class="line">var re = /北京|天安门/g;  //  找到北京 或者天安门 全局匹配</span><br><span class="line">var str2 = str.replace(re,function(str)&#123;</span><br><span class="line">            alert(str);</span><br><span class="line">            //用来测试：参数代表每次搜索到的符合正则的字符，</span><br><span class="line">            //所以第一次str指的是北京 第二次str是天安门 第三次str是天安门</span><br><span class="line">            var result = &#x27;&#x27;;</span><br><span class="line">            for(var i=0;i&lt;str.length;i++)&#123;</span><br><span class="line">                result += &#x27;*&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">            return result; //所以搜索到了几个字就返回几个*</span><br><span class="line">        &#125;);</span><br><span class="line">alert(str2)</span><br></pre></td></tr></table></figure>
+
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var str = &#x27;2013-6-7&#x27;;</span><br><span class="line">var re = /(\d+)(-)/g;</span><br><span class="line"></span><br><span class="line">str = str.replace(re,function($0,$1,$2)&#123;</span><br><span class="line">        // replace()中如果有子项，</span><br><span class="line">        // 第一个参数 ：$0（匹配成功后的整体结果  2013-  6-）,</span><br><span class="line">        // 第二个参数 : $1(匹配成功的第一个分组，这里指的是\d   2013, 6)</span><br><span class="line">        // 第三个参数 : $2(匹配成功的第二个分组，这里指的是-    - - )</span><br><span class="line">    return $1 + &#x27;.&#x27;;  //分别返回2013.   6.</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert( str );   //2013.6.7</span><br><span class="line">//整个过程就是利用子项把2013- 6- 分别替换成了2013. 6.  最终弹出2013.6.7</span><br></pre></td></tr></table></figure>
+</code></pre>
+<hr>
+<h3 id="正则两个方法"><a href="#正则两个方法" class="headerlink" title="正则两个方法"></a>正则两个方法</h3><ul>
+<li><h3 id="test"><a href="#test" class="headerlink" title="test()"></a>test()</h3></li>
+</ul>
+<blockquote>
+<p>匹配到指定内容返回 true</p>
+</blockquote>
+<ul>
+<li><h3 id="exec"><a href="#exec" class="headerlink" title="&#x3D;&#x3D;exec()&#x3D;&#x3D;"></a>&#x3D;&#x3D;exec()&#x3D;&#x3D;</h3></li>
+</ul>
+<blockquote>
+<p>返回第一匹配项信息的数组 若没有返回 null<br>有两个属性 index input</p>
+</blockquote>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var text = &#x27;mom and dad and baby&#x27;</span><br><span class="line">var pattern = /mom( and dad( and baby)?)?/gi</span><br><span class="line">var matches = pattern.exec(text)</span><br><span class="line">mathes.index // 0</span><br><span class="line">mathes.input // mom and dad and baby</span><br><span class="line">mathes[0] // mom and dad and baby</span><br><span class="line">mathes[1] //  and dad and baby</span><br><span class="line">mathes[2] // and baby</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h2 id="23-后退监听"><a href="#23-后退监听" class="headerlink" title="23. 后退监听"></a>23. 后退监听</h2><blockquote>
+<p>history.back() history.forward() history.replace()触发 onpopstate 事件</p>
+</blockquote>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.onpopstate = function () &#123;</span><br><span class="line">    alert(&#x27;2222&#x27;)</span><br><span class="line">    history.pushState(null, null, document.URL)</span><br><span class="line">    return false</span><br><span class="line">&#125;</span><br><span class="line">history.pushState(null, null, document.URL)</span><br></pre></td></tr></table></figure>
+
+onbeforeunload事件有坑 chrome51版本及以后不能自定义文字 并且 页面载入之后一定要有浏览器行为才能触发
+</code></pre>
+<h2 id="27-进制转换"><a href="#27-进制转换" class="headerlink" title="27. 进制转换"></a>27. 进制转换</h2><blockquote>
+<p>十进制转十六进制</p>
+</blockquote>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = 255</span><br><span class="line">s.toString(16) // ff</span><br></pre></td></tr></table></figure>
+</code></pre>
+<blockquote>
+<p>十六进制转十进制</p>
+</blockquote>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parseInt(&#x27;0xFF&#x27;)   // 255</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h2 id="28-label-绑定事件一定要让事件委托到触发里面的-input"><a href="#28-label-绑定事件一定要让事件委托到触发里面的-input" class="headerlink" title="28. label 绑定事件一定要让事件委托到触发里面的 input"></a>28. label 绑定事件一定要让事件委托到触发里面的 input</h2><pre><code>所以事件委托的时候直接监听input
+</code></pre>
+<h2 id="29-浏览器中的简单请求和复杂请求"><a href="#29-浏览器中的简单请求和复杂请求" class="headerlink" title="29. 浏览器中的简单请求和复杂请求"></a>29. 浏览器中的简单请求和复杂请求</h2><pre><code>简单请求
+    - 请求类型 get/post/head
+    - 除了常见的请求头外，无额外自定义请求头
+      - Content-Type （且值是application/x-www-form-urlencoded，multipart/form-data，text/plain 之一）
+      - Content-Language
+      - Accept
+      - Accept-Language
+      - Save-Data
+
+复杂请求
+    会发送options预检请求
+</code></pre>
+<h2 id="30-Math"><a href="#30-Math" class="headerlink" title="30. Math"></a>30. Math</h2><pre><code>1. Math.floor 向下舍入；
+2. Math.ceil  向上舍入;
+3. Math.cos   余弦;
+4. Math.round 四舍五入;
+5. Math.sin   正弦；
+6. Math.tan   正切；
+</code></pre>
+<h2 id="31-isNaN"><a href="#31-isNaN" class="headerlink" title="31. isNaN"></a>31. isNaN</h2><pre><code>首先需要知道 &#39;&#39; == 0   &#39;abc&#39; != 0   [] == 0  [1] != 0   null == 0  &#123;&#125; != 0  undefined != 0
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">isNaN(&#x27;&#x27;)   // false</span><br><span class="line">isNaN(&#x27; &#x27;)  // false</span><br><span class="line">isNaN(&#x27;abc&#x27;) // true</span><br><span class="line">isNaN(undefined) // true</span><br><span class="line">isNaN([])   // false</span><br><span class="line">isNaN(&#123;&#125;)   // true</span><br><span class="line">isNaN(null) // false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h2 id="32-Boolen"><a href="#32-Boolen" class="headerlink" title="32. Boolen"></a>32. Boolen</h2><pre><code>首先需要知道  0 == false    1 == true  &#39;&#39; == false   undefined != false != true    null != false != true
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Boolean(&#x27;&#x27;) // false</span><br><span class="line">Boolean(&#x27;ssss&#x27;) // true</span><br><span class="line">Boolean([])  // true</span><br><span class="line">Boolean([1,2])  // true</span><br><span class="line">Boolen(&#123;&#125;)      // true</span><br><span class="line">Boolen(null)    // false</span><br><span class="line">Boolen(undefined)   // false</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h2 id="33-解决回调地狱-（多级回调）"><a href="#33-解决回调地狱-（多级回调）" class="headerlink" title="33. 解决回调地狱 （多级回调）"></a>33. 解决回调地狱 （多级回调）</h2><pre><code>1. Promise
+
+2. aSync/await
+
+3. generator
+</code></pre>
+<h2 id="34-字符串"><a href="#34-字符串" class="headerlink" title="34. 字符串"></a>34. 字符串</h2><pre><code>1. slice
+
+    在 不修改目标数组 的情况下返回截取的指定元素（ **起始位置，截止位置**）
+
+    从0开始 ==不包含最后一个数值==
+
+    负数情况下 将负数加上自身长度得到的数值作为参数
+
+2. substr
+
+    subdtr接收的是 起始位置 和 所要返回的字符串长度
+
+    在负数情况下  将第一个参数与字符串长度相加后的数值作为第一个参数
+
+3. substring
+
+    默认会将较小的参数作为第一个参数
+
+    在 不修改目标数组 的情况下返回截取的指定元素 （ **起始位置，截止位置**）
+
+    负数当做0处理
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let test = &#x27;abcdef&#x27;</span><br><span class="line">test.slice(0, -1)   // abcde</span><br><span class="line">test.slice(2, -3)   =&gt; test.slice(2,3)  // c</span><br><span class="line"></span><br><span class="line">test.substring(1, -2) =&gt; a</span><br><span class="line">test.substring(2, -3) =&gt; ab</span><br></pre></td></tr></table></figure>
+
+<pre><code>4. split
+
+    字符串按照指定规则转换成数组
+</code></pre>
+<h2 id="35-let-与-var-区别"><a href="#35-let-与-var-区别" class="headerlink" title="35. let 与 var 区别"></a>35. let 与 var 区别</h2><pre><code>1. var存在变量提升， let不存在；
+2. let不允许重复声明；
+3. var挂载在window下，let挂载在块作用域下；
+</code></pre>
+<h2 id="36-为什么-var-可以重复声明"><a href="#36-为什么-var-可以重复声明" class="headerlink" title="36. 为什么 var 可以重复声明"></a>36. 为什么 var 可以重复声明</h2><pre><code>因为js运行过程中，
+
+引擎 负责整个代码编译和运行
+
+编译器 负责词法分析、语法分析、代码生成等工作
+
+编译器从左至右编译var a，如果a不存在则在作用域声明一个新的变量a，若存在a则忽略继续向下编译；
+
+引擎遇到a = 2，按照作用域链向上查找 若存在变量a直接赋值，不存在则在作用域重新声明新的变量并赋值2
+</code></pre>
+<h2 id="37-CommonJS-中的-require-exports-和-ES6-的-import-export-有什么区别"><a href="#37-CommonJS-中的-require-exports-和-ES6-的-import-export-有什么区别" class="headerlink" title="37. CommonJS 中的 require&#x2F;exports 和 ES6 的 import&#x2F;export 有什么区别"></a>37. CommonJS 中的 require&#x2F;exports 和 ES6 的 import&#x2F;export 有什么区别</h2><ol>
+<li></li>
+</ol>
+<blockquote>
+<p>CommomJS 模块 require 代码时候会立刻执行；<br>ES6 模块是动态引用，不会立刻执行，仅仅作为一个加载模块的对象引用；</p>
+</blockquote>
+<ol start="2">
+<li></li>
+</ol>
+<blockquote>
+<p>CommonJs 模块输出的是一个值的拷贝， 输出后的对象会被缓存（即 如果发现一个模块被多次引用，会直接返回已经执行的部分）；</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// lib.js</span><br><span class="line">var counter = 3;</span><br><span class="line">function incCounter() &#123;</span><br><span class="line">  counter++;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  counter: counter,</span><br><span class="line">  incCounter: incCounter,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">var mod = require(&#x27;./lib&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(mod.counter);  // 3</span><br><span class="line">mod.incCounter();</span><br><span class="line">console.log(mod.counter); // 3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ES6 模块输出的是值的只读引用；</p>
+</blockquote>
+<ul>
+<li>接口输出的变量是只读的，重新赋值会报错；</li>
+<li>export 通过接口输出的是同一个值，得到的都是同样的实例；</li>
+<li>如果需要 import 支持动态加载 提案建议引入 import() 返回一个 promise 对象；</li>
+</ul>
+<p>参考资料：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://es6.ruanyifeng.com/#docs/module-loader">ES6 模块与 CommonJS 模块的差异</a></li>
+</ol>
+<h2 id="38-浏览器缓存"><a href="#38-浏览器缓存" class="headerlink" title="38. 浏览器缓存"></a>38. 浏览器缓存</h2><pre><code>浏览器缓存分为 强缓存 和 协商缓存
+
+1. 客户端先根据资源的http header判断是否命中强缓存，如果命中直接从缓存中读取；
+
+2. 强缓存未命中，客户端发出请求，服务端根据请求的request header验证资源是否命中协商缓存，这个过程成为http再验证。如果命中，服务器将请求返回，状态码304，但不返回资源，而是告诉客服端可以从缓存读取；
+
+3. 当协商缓存也没有命中，直接服务端返回资源给客户端；
+
+
+强缓存
+
+1. Expires 代表缓存过期时间；
+
+2. Cache-Control： max-age  代表缓存最大生命周期；
+
+协商缓存
+
+1. Last-Modified 代表资源最后更新时间；
+
+2. If-Modified-Since 代表 判断两次请求之间是否有过修改 没有直接返回协商缓存；
+</code></pre>
+<h2 id="39-处理-js-双精度问题"><a href="#39-处理-js-双精度问题" class="headerlink" title="39. 处理 js 双精度问题"></a>39. 处理 js 双精度问题</h2><pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> = <span class="number">0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>由于计算机是做二进制运算</p>
+<p>0.1 &#x3D;&gt; 0.0001 1001 1001 1001…（无限循环）</p>
+<p>0.2 &#x3D;&gt; 0.0011 0011 0011 0011…（无限循环）</p>
+<p>双精度浮点数的小数部分最多支持 52 位</p>
+<p>处理方法：</p>
+<pre><code>1. 优先考虑服务端计算；
+2. 利用精度溢出结尾要么99999要么1111，可以利用Math.round()四舍五入；
+</code></pre>
+<h2 id="40-postMessage"><a href="#40-postMessage" class="headerlink" title="40. postMessage"></a>40. postMessage</h2><ol>
+<li>window.postMessage() 可以安全进行跨域、跨页面通信；</li>
+<li>页面加载完成后才能进行跨域通信；</li>
+</ol>
+<p>发起端可以是 open 一个新窗口 或者 创建一个 iframe 往新窗口里发送数据</p>
+<p>案例:</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- 客户端两种方式 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 当前页面地址 <span class="attr">http</span>:<span class="comment">//www.webhek.com --&gt;</span></span><br><span class="line">&lt;!-- open方式 --&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//弹出一个新窗口</span></span><br><span class="line"><span class="keyword">var</span> domain = <span class="string">&#x27;http://fanyi.youdao.com&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> myPopup = <span class="variable language_">window</span>.<span class="title function_">open</span>(domain, <span class="string">&#x27;myWindow&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//周期性的发送消息</span></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">var</span> message = <span class="string">&#x27;Hello! The time is: &#x27;</span> + (<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;blog.local: sending message: &#x27;</span> + message);</span><br><span class="line"><span class="comment">//send the message and target URI</span></span><br><span class="line">myPopup.<span class="title function_">postMessage</span>(message,domain);</span><br><span class="line">&#125;,<span class="number">6000</span>);</span><br><span class="line"></span><br><span class="line">&lt;!-- iframe方式 --&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//捕获 iframe</span></span><br><span class="line"><span class="keyword">var</span> domain = <span class="string">&quot;http://fanyi.youdao.com&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myIFrame&#x27;</span>).<span class="property">contentWindow</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//发送消息</span></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">var</span> message = <span class="string">&#x27;Hello! The time is: &#x27;</span> + (<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;blog.local: sending message: &#x27;</span> + message);</span><br><span class="line"><span class="comment">//send the message and target URI</span></span><br><span class="line">iframe.<span class="title function_">postMessage</span>(message,domain);</span><br><span class="line">&#125;,<span class="number">6000</span>);</span><br><span class="line"></span><br><span class="line">&lt;!-- 接收端 --&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听消息反馈</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>,<span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line"><span class="keyword">if</span>(event.<span class="property">origin</span> !== <span class="string">&#x27;http://www.webhek.com&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;received response: &#x27;</span>,event.<span class="property">data</span>);</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+<blockquote>
+<p>截图如下：</p>
+</blockquote>
+<p><img src="https://wx4.sinaimg.cn/mw690/006ANKB8gy1fqhqrhftfmj30yu0objvr.jpg" alt="web骇客网站  接收端截图"><br><img src="https://wx2.sinaimg.cn/mw690/006ANKB8gy1fqhqri8fjlj30zk0h4tbk.jpg" alt="有道翻译网站 接收端截图"></p>
+<blockquote>
+<p>参考资料</p>
+</blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://www.webhek.com/post/window-postmessage-api.html">用 HTML5 里的 window.postMessage 在两个网页间传递数据</a></li>
+</ol>
+<h2 id="41-Service-Worker"><a href="#41-Service-Worker" class="headerlink" title="41. Service Worker"></a>41. Service Worker</h2><blockquote>
+<p>背景</p>
+</blockquote>
+<p>为了解决 web 业务不断增加带来更多消耗资源、耗时等复杂运算带来性能问题，w3c 初期提出 Web Worker 的 API，目的为了解放主线程。原理是 将复杂 耗时的操作独立出来交给 Web Worker，完成后通过 postMessage 方法告诉主线程。</p>
+<p>缺点：临时存在，不能永久；为此提出 Service Worker，在 Web Worker 基础上增加持久缓存能力。</p>
+<p>在 Service Worker 之前有 APPCache 这个持久缓存的 API，不过存在更新机主不完善，二次更新，大小限制，回滚等问题，具体参考下方链接 1。</p>
+<p>Service Worker 的特性如下：</p>
+<ul>
+<li><p>一个独立的 worker 线程，独立于当前网页进程，有自己独立的 worker context。</p>
+</li>
+<li><p>一旦被 install，就永远存在，除非被 uninstall</p>
+</li>
+<li><p>需要的时候可以直接唤醒，不需要的时候自动睡眠（有效利用资源，此处有坑）</p>
+</li>
+<li><p>可编程拦截代理请求和返回，缓存文件，缓存的文件可以被网页进程取到（包括网络离线状态）</p>
+</li>
+<li><p>离线内容开发者可控</p>
+</li>
+<li><p>能向客户端推送消息</p>
+</li>
+<li><p>不能直接操作 DOM</p>
+</li>
+<li><p>出于安全的考虑，必须在 HTTPS 环境下才能工作</p>
+</li>
+<li><p>异步实现，内部大都是通过 Promise 实现</p>
+</li>
+<li><p>只能运行在 HTTPS 协议下</p>
+</li>
+</ul>
+<blockquote>
+<p>参考资料</p>
+</blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/29876535">为什么 app cache 没有得到大规模应用？它有哪些硬伤吗？</a></li>
+<li><a target="_blank" rel="noopener" href="https://lavas.baidu.com/doc/offline-and-cache-loading/service-worker/service-worker-introduction">Service Worker 简介</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28161855">如何优雅的为 PWA 注册 Service Worker</a></li>
+</ol>
+<h2 id="42-加载更多-下拉刷新"><a href="#42-加载更多-下拉刷新" class="headerlink" title="42 加载更多&#x2F;下拉刷新"></a>42 加载更多&#x2F;下拉刷新</h2><p>原理：</p>
+<p>scrollTop（滚动条滚动距离） + clientHeight（可见区域高度） &#x3D;&#x3D; scrollHeight（元素实际高度）</p>
+<p>备注：</p>
+<p>offsetHeighgt &#x3D; height + padding + border</p>
+<p>clientHeight &#x3D; height + padding</p>
+<h2 id="43-js-标签中async和defer的作用与区别"><a href="#43-js-标签中async和defer的作用与区别" class="headerlink" title="43. js 标签中async和defer的作用与区别"></a>43. js 标签中<code>async</code>和<code>defer</code>的作用与区别</h2><p>没有 defer 或 async，浏览器会立即加载并执行指定的脚本，也就是说不等待后续载入的文档元素，读到就加载并执行。<br>并行加载，</p>
+<ul>
+<li>async</li>
+</ul>
+<p>无顺序的加载，可能在<code>DOMContentLoaded</code>触发之前或之后执行。</p>
+<ul>
+<li>defer</li>
+</ul>
+<p>会等待 document 解析完成，按照 defer 顺序执行对应脚本，全部执行完毕后会触发<code>DOMContentLoaded</code>事件</p>
+<h2 id="JsBridge"><a href="#JsBridge" class="headerlink" title="JsBridge"></a>JsBridge</h2><h3 id="实现js调用Native的方式，有三个方法："><a href="#实现js调用Native的方式，有三个方法：" class="headerlink" title="实现js调用Native的方式，有三个方法："></a>实现js调用Native的方式，有三个方法：</h3><ul>
+<li>注入api</li>
+<li>劫持URL Scheme</li>
+<li>弹窗拦截</li>
+</ul>
+<p>【注入api】 通过webview提供的接口，向js的上下文（window）注入对象或方法，js直接调用相关方法<br>【劫持URL Scheme】通常是web端唤醒App（或跳到App某一个页面）。Native劫持Web的请求自定义处理。<br>【弹窗拦截】类似劫持URL Scheme原理，劫持弹窗、二次确认等方法。</p>
+<h3 id="Native调用js的方法"><a href="#Native调用js的方法" class="headerlink" title="Native调用js的方法"></a>Native调用js的方法</h3><p>Native调用js的方式本质就是 执行拼接的js字符串</p>
+<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><h2 id="BFC是什么？BFC能用来干什么？怎么才能触发BFC？"><a href="#BFC是什么？BFC能用来干什么？怎么才能触发BFC？" class="headerlink" title="BFC是什么？BFC能用来干什么？怎么才能触发BFC？"></a>BFC是什么？BFC能用来干什么？怎么才能触发BFC？</h2><p>BFC（块格式化上下文）</p>
+<p>触发BFC几种方式：</p>
+<ul>
+<li>浮动 （float不为none即可）</li>
+<li>绝对定位（position: absoulte 或 fixed）</li>
+<li>display: inline-block | table-cell | flex | inline-flex</li>
+<li>overflow （除了visible之外的值）</li>
+</ul>
+<p>BFC特点</p>
+<ul>
+<li>如果两个块级元素属于同一个BFC，上下margin会重叠，以较大的为准；</li>
+<li>BFC区域不会与浮动元素的区域重叠；</li>
+<li>页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。</li>
+</ul>
+<p>BFC作用</p>
+<ul>
+<li>清除元素浮动；</li>
+<li>margin重叠；</li>
+<li>两栏布局；</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2018/07/21/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" data-id="clu6rtt96002ra8xa6u3vek86" data-title="前端知识点总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2019/03/25/linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          linux常用指令记录
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

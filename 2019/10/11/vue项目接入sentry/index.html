@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>vue项目接入sentry | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="首先需要下载官方提供的 sdk，在项目入口处加入进去。 12yarn add @sentry&#x2F;browseryarn add @sentry&#x2F;integrations  在应用的入口文件，比如 app.js，加入如下配置： 12345678import Vue from &#x27;vue&#x27;import * as Sentry from &#x27;@sentry&#x2F;browser&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue项目接入sentry">
+<meta property="og:url" content="https://megan-ta.github.io/2019/10/11/vue%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5sentry/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="首先需要下载官方提供的 sdk，在项目入口处加入进去。 12yarn add @sentry&#x2F;browseryarn add @sentry&#x2F;integrations  在应用的入口文件，比如 app.js，加入如下配置： 12345678import Vue from &#x27;vue&#x27;import * as Sentry from &#x27;@sentry&#x2F;browser&amp;#x2">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-11T07:51:00.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.675Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="sentry">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-vue项目接入sentry" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/10/11/vue%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5sentry/" class="article-date">
+  <time class="dt-published" datetime="2019-10-11T07:51:00.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      vue项目接入sentry
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>首先需要下载官方提供的 sdk，在项目入口处加入进去。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @sentry/browser</span><br><span class="line">yarn add @sentry/integrations</span><br></pre></td></tr></table></figure>
+
+<p>在应用的入口文件，比如 app.js，加入如下配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="title class_">Sentry</span> <span class="keyword">from</span> <span class="string">&#x27;@sentry/browser&#x27;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="title class_">Integrations</span> <span class="keyword">from</span> <span class="string">&#x27;@sentry/integrations&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Sentry</span>.<span class="title function_">init</span>(&#123;</span><br><span class="line"> <span class="attr">dsn</span>: <span class="string">&#x27;https://xxxx@sentry.io/1772852&#x27;</span>,</span><br><span class="line"> <span class="attr">integrations</span>: [<span class="keyword">new</span> <span class="title class_">Integrations</span>.<span class="title class_">Vue</span>(&#123; <span class="title class_">Vue</span>, <span class="attr">attachProps</span>: <span class="literal">true</span> &#125;)]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>其中 dsn 是在 sentry 创建的项目的设置中，找到 dsn 的选项 tab，找到项目的默认 dsn</p>
+<p>当然如果 application 打包的时候，觉得入口文件体积很大，或者是出于打包速度优化的考虑，可以将 sentry 相关插件通过 cdn 方式引用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;script src=&quot;https://browser.sentry-cdn.com/5.7.1/bundle.es6.min.js&quot; integrity=&quot;sha384-h+FyW7fMq0eyUQeRnmnwiWXMxycy0z8n5sOtIH3NJx5GfqxdletL62letiWALtKy&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag"> <span class="attr">src</span>=<span class="string">&quot;https://browser.sentry-cdn.com/5.7.1/bundle.min.js&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">integrity</span>=<span class="string">&quot;sha384-KMv6bBTABABhv0NI+rVWly6PIRvdippFEgjpKyxUcpEmDWZTkDOiueL5xW+cztZZ&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- If you include the integration it will be available under Sentry.Integrations.Vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag"> <span class="attr">src</span>=<span class="string">&quot;https://browser.sentry-cdn.com/5.7.1/vue.min.js&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>做完第一步骤之后，此时项目已经具备有异常错误向 sentry 上报日志的功能，如果我们有更精确知道某些异常错误是哪个发布版本带上的，导致相关异常的开发者是谁，还有想要统计某个版本相对于之前的发布版本，错误情况如何等需求，此时需要使用 sentry 提供的 release 功能。</p>
+<p>默认接入 release 官方有几种方式，由于我们发布版本并没有走 gitlab、github 等的 ci 流程，我们采用<code>sentry-cli</code>提供的全局命令编写脚本去集成到项目发布流程中。</p>
+<p>简单的 release 脚本如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line">export SENTRY_AUTH_TOKEN=9b4f6bf1c75e478cab30bb714e0f8e83d712c02a920640e7b7fbf4dc307c1b33</span><br><span class="line">export SENTRY_ORG=poizon</span><br><span class="line"></span><br><span class="line">PROJECT=&quot;ticket-platform&quot;</span><br><span class="line"></span><br><span class="line">VERSION=`sentry-cli releases propose-version`</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Create a release</span></span><br><span class="line">sentry-cli releases -p PROJECT new $VERSION</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">upload sourcemap</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">upload-sourcemaps 指定打包后的js文件在项目的路径</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--url-prefix 外部通过url访问到js静态资源的路径</span></span><br><span class="line">sentry-cli releases -p $PROJECT files $VERSION upload-sourcemaps ./dist/js/ --url-prefix ~/js/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>同时需要在初始化 sentry 的入口出加上版本号（commitid），和后台看到的版本名称要一致，比如当前 git 的 commitid 前 6 为是 123456，需要改成如下设置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Sentry</span>.<span class="title function_">init</span>(&#123;</span><br><span class="line"> <span class="attr">release</span>: <span class="string">&#x27;123456&#x27;</span>,</span><br><span class="line"> <span class="attr">dsn</span>: <span class="string">&#x27;https://xxxx@sentry.io/1772852&#x27;</span>,</span><br><span class="line"> <span class="attr">integrations</span>: [<span class="keyword">new</span> <span class="title class_">Integrations</span>.<span class="title class_">Vue</span>(&#123; <span class="title class_">Vue</span>, <span class="attr">attachProps</span>: <span class="literal">true</span> &#125;)]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这时候我们在 sentry 后台系统下查看当前项目的的 release 的 tab 下，能看到已经将 sourcemap 文件都上传到 sentry 服务器。默认<code>sentry-cli</code>提供的 release 版本号是根据最后一次 git 提交的 commitid，这样会导致我们在查看版本的时候，面对一连串的 commitid，并不能很简单明了的看到当前版本号，所以需要我们手动指定版本号。</p>
+<ol>
+<li>通过手动指定版本号</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line">export SENTRY_AUTH_TOKEN=9b4f6bf1c75e478cab30bb714e0f8e83d712c02a920640e7b7fbf4dc307c1b33</span><br><span class="line">export SENTRY_ORG=poizon</span><br><span class="line"></span><br><span class="line">TAG=&quot;ticket-platform@2.10.1&quot;</span><br><span class="line"></span><br><span class="line">PROJECT=&quot;ticket-platform&quot;</span><br><span class="line"></span><br><span class="line">sentry-cli releases -p $PROJECT new $TAG</span><br><span class="line"></span><br><span class="line">sentry-cli releases -p $PROJECT files $TAG upload-sourcemaps ./dist/js/ --url-prefix ~/js/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>初始化的入口处传入的 release 也设置为<code>ticket-platform@2.10.1</code>，可以看到这样的方式很繁琐。</p>
+<ol start="2">
+<li>通过官方提供的 webpack 插件<code>@sentry/webpack-plugin</code></li>
+</ol>
+<p>前提：项目下新建一个<code>.sentryclirc</code>文件，写好 sentry 配置项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[defaults]</span><br><span class="line">url=https://xxx.xxxx.com</span><br><span class="line">org=xxx</span><br><span class="line">project=ticket-platform</span><br><span class="line"></span><br><span class="line">[auth]</span><br><span class="line">token=9b4f6bf1c75e478cab30bb714e0f8e83d712c02a920640e7b7fbf4dc307c1b33</span><br></pre></td></tr></table></figure>
+
+<p>修改项目本身的 webpack 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">SentryCliPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;@sentry/webpack-plugin&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">SentryCliPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">include</span>: <span class="string">&#x27;./dist/js&#x27;</span>,</span><br><span class="line">      <span class="attr">ignore</span>: [<span class="string">&#x27;node_modules&#x27;</span>]</span><br><span class="line">      <span class="attr">urlPrefix</span>: <span class="string">&#x27;~/js/&#x27;</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到默认提供的插件也是按照 commitid，在我们项目中在构建的过程时流程大概如下：</p>
+<ul>
+<li>标准的 git coommit（commitizen&#x2F;cz-cli）</li>
+<li>发版前 standard-version 生成本次的版本号</li>
+<li>打包时 获取<code>package.json</code>的 version 传入<code>SentryCliPlugin</code>的配置项<code>release</code></li>
+</ul>
+<p>至此 vue 项目完美接入 sentry</p>
+<p>参考资料：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/javascript/vue/">sentry 文档接入 vue</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@sentry/webpack-plugin">@sentry&#x2F;webpack-plugin</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014683598#articleHeader5">Sentry 前端部署拓展篇（sourcemap 关联、issue 关联、release 控制）</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5bfe0d5be51d4562587b40b9">前端日志监控平台 sentry 使用 @sentry&#x2F;browser @sentry&#x2F;webpack-plugin</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/10/11/vue%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%85%A5sentry/" data-id="clu6rtt900027a8xad6k2a6ih" data-title="vue项目接入sentry" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2019/11/05/%E5%9F%BA%E4%BA%8Esentry%E7%9A%84%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7%E5%B9%B3%E5%8F%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于sentry的异常捕获平台
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2019/09/24/js%E7%BB%A7%E6%89%BF%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js继承问题总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

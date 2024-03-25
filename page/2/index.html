@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="huangchen的个人博客">
+<meta property="og:url" content="https://megan-ta.github.io/page/2/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="huangchen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-常见css布局问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/19/%E5%B8%B8%E8%A7%81css%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2020-03-19T14:30:45.000Z" itemprop="datePublished">2020-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/19/%E5%B8%B8%E8%A7%81css%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/">常见css布局问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="左右两边盒子宽度固定，中间盒子宽度自适应"><a href="#左右两边盒子宽度固定，中间盒子宽度自适应" class="headerlink" title="左右两边盒子宽度固定，中间盒子宽度自适应"></a>左右两边盒子宽度固定，中间盒子宽度自适应</h2><ul>
+<li>利用相对定位</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid blue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8yjodJ"><img src="https://s1.ax1x.com/2020/03/19/8yjodJ.md.png" alt="8yjodJ.md.png"></a></p>
+<ul>
+<li>flex 布局</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: blue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8yv3lV"><img src="https://s1.ax1x.com/2020/03/19/8yv3lV.md.png" alt="8yv3lV.md.png"></a></p>
+<hr>
+<h2 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h2><p>步骤：</p>
+<ol>
+<li>父盒子清除浮动，子盒子全部左浮动；</li>
+<li>left2 和 right2 各设置固定宽度，中间 main2 盒子 width：100%，此时会把 left2 和 right2 挤到第二行来；</li>
+<li>left2 盒子利用 margin-left: -100%，位置会到第一行最左侧，同时会挡住 main2；</li>
+<li>主盒子 box2 利用 padding-left 和 padding-right 给左右盒子留出位置；</li>
+<li>利用相对定位设置 left：-left2 宽度进行占位；</li>
+<li>同理，right2 盒子 margin-left：-right2 盒子宽度到第一行最右侧；</li>
+<li>设置 right：-right2 盒子宽度，去占右边空白位；</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-left</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-right</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main2</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left2</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">206</span>, <span class="number">201</span>, <span class="number">201</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: -<span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">95</span>, <span class="number">179</span>, <span class="number">235</span>, <span class="number">0.972</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">right</span>: -<span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">231</span>, <span class="number">105</span>, <span class="number">2</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8yxkN9"><img src="https://s1.ax1x.com/2020/03/19/8yxkN9.md.png" alt="8yxkN9.md.png"></a></p>
+<hr>
+<h2 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h2><p>和圣杯布局一致，不过多了一个元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main3_box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main3_box</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left3</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main3_box</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">231</span>, <span class="number">105</span>, <span class="number">2</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">150px</span> <span class="number">0</span> <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">206</span>, <span class="number">201</span>, <span class="number">201</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">95</span>, <span class="number">179</span>, <span class="number">235</span>, <span class="number">0.972</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/86CoXq"><img src="https://s1.ax1x.com/2020/03/19/86CoXq.md.png" alt="86CoXq.md.png"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/19/%E5%B8%B8%E8%A7%81css%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/" data-id="clu6rtt9e003ha8xabqc78en2" data-title="常见css布局问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-遇到过的面试题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/17/%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2020-03-17T07:19:07.000Z" itemprop="datePublished">2020-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/17/%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/">遇到过的面试题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="头条面试题"><a href="#头条面试题" class="headerlink" title="头条面试题"></a>头条面试题</h2><h3 id="什么是闭包？应用？优缺点？如何释放"><a href="#什么是闭包？应用？优缺点？如何释放" class="headerlink" title="什么是闭包？应用？优缺点？如何释放"></a>什么是闭包？应用？优缺点？如何释放</h3><h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><h3 id="Promise-介绍？api？缺点"><a href="#Promise-介绍？api？缺点" class="headerlink" title="Promise 介绍？api？缺点"></a>Promise 介绍？api？缺点</h3><h3 id="let-const-var"><a href="#let-const-var" class="headerlink" title="let const var"></a>let const var</h3><h3 id="如何实现-let"><a href="#如何实现-let" class="headerlink" title="如何实现 let"></a>如何实现 let</h3><h3 id="vue-的-v-model-实现"><a href="#vue-的-v-model-实现" class="headerlink" title="vue 的 v-model 实现"></a>vue 的 v-model 实现</h3><h3 id="虚拟-DOM-实现？优点"><a href="#虚拟-DOM-实现？优点" class="headerlink" title="虚拟 DOM 实现？优点"></a>虚拟 DOM 实现？优点</h3><h3 id="同源策略？跨域"><a href="#同源策略？跨域" class="headerlink" title="同源策略？跨域"></a>同源策略？跨域</h3><h3 id="koa-中间件实现原理"><a href="#koa-中间件实现原理" class="headerlink" title="koa 中间件实现原理"></a>koa 中间件实现原理</h3><h3 id="webpack-大概流程"><a href="#webpack-大概流程" class="headerlink" title="webpack 大概流程"></a>webpack 大概流程</h3><h3 id="webpack-plugin-loader-区别"><a href="#webpack-plugin-loader-区别" class="headerlink" title="webpack plugin loader 区别"></a>webpack plugin loader 区别</h3><h3 id="mock-模拟真实增删改查"><a href="#mock-模拟真实增删改查" class="headerlink" title="mock 模拟真实增删改查"></a>mock 模拟真实增删改查</h3><h3 id="typescript-的-pick-emit"><a href="#typescript-的-pick-emit" class="headerlink" title="typescript 的 pick emit"></a>typescript 的 pick emit</h3><h3 id="链表和数组区别"><a href="#链表和数组区别" class="headerlink" title="链表和数组区别"></a>链表和数组区别</h3><p>链表是动态分配内存，数组是静态分配内存</p>
+<p>链表是内存中不连续的组合，数组在内存中连续</p>
+<p>链表查找复杂度 O(n)，增删改 O(1) 数组查找复杂度 O(1)，增删改 O（n）</p>
+<p>示例：</p>
+<p>React 的 fiber 架构就是利用链表，先执行一段逻辑之后处理其他逻辑，再去处理后续逻辑</p>
+<h3 id="不固定高度的弹窗垂直居中"><a href="#不固定高度的弹窗垂直居中" class="headerlink" title="不固定高度的弹窗垂直居中"></a>不固定高度的弹窗垂直居中</h3><h3 id="flex-1-是有哪些组成"><a href="#flex-1-是有哪些组成" class="headerlink" title="flex 1 是有哪些组成"></a>flex 1 是有哪些组成</h3><p>flex 属性是 flex-grow, flex-shrink 和 flex-basis 的简写，默认值为 0 1 auto。后两个属性可选。</p>
+<p>flex-grow：项目的放大比例，默认为 0，即如果存在剩余空间，也不放大。</p>
+<p>flex-shrink：项目的缩小比例，默认为 1，即如果空间不足，该项目将缩小。</p>
+<h3 id="如何解决盒子高度塌陷问题"><a href="#如何解决盒子高度塌陷问题" class="headerlink" title="如何解决盒子高度塌陷问题"></a>如何解决盒子高度塌陷问题</h3><p>BFC</p>
+<h3 id="发布订阅实现"><a href="#发布订阅实现" class="headerlink" title="发布订阅实现"></a>发布订阅实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Emitter</span> &#123;</span><br><span class="line">  <span class="title function_">constuctor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">queue</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">on</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">queue</span>.<span class="title function_">push</span>(obj);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">notify</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">queue</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">obj</span> =&gt;</span> obj.<span class="title function_">fn</span>());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">off</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="variable language_">this</span>.<span class="property">queue</span>.<span class="title function_">indexOf</span>(<span class="function"><span class="params">obj</span> =&gt;</span> obj.<span class="property">name</span> === name);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">queue</span>.<span class="title function_">splice</span>(index, <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> emitter = <span class="keyword">new</span> <span class="title class_">Emitter</span>();</span><br><span class="line">emitter.<span class="title function_">on</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;test1&quot;</span>,</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">emitter.<span class="title function_">on</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;test2&quot;</span>,</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">emitter.<span class="title function_">notify</span>();</span><br><span class="line">emitter.<span class="title function_">off</span>(<span class="string">&quot;test2&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码题"><a href="#代码题" class="headerlink" title="代码题"></a>代码题</h2><p>连续多次触发只会执行一次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">singlePipe</span>(<span class="params">promiseFunc</span>) &#123;</span><br><span class="line">  <span class="comment">// TODO实现   start</span></span><br><span class="line">  <span class="keyword">let</span> status = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (status === <span class="number">1</span>) <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">data</span> =&gt;</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      status = <span class="number">1</span>;</span><br><span class="line">      <span class="title function_">resolve</span>(<span class="title function_">promiseFunc</span>(data));</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> (status = <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// TODO实现   end</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> promiseFunc = <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(data), <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> request = <span class="title function_">singlePipe</span>(promiseFunc);</span><br><span class="line"><span class="title function_">request</span>(<span class="number">1</span>).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data)); <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">request</span>(<span class="number">2</span>).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data)); <span class="comment">// 无反应</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">request</span>(<span class="number">3</span>).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data)); <span class="comment">// 3</span></span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><h3 id="中台项目遇到的难点"><a href="#中台项目遇到的难点" class="headerlink" title="中台项目遇到的难点"></a>中台项目遇到的难点</h3><h3 id="介绍一个比较复杂的项目"><a href="#介绍一个比较复杂的项目" class="headerlink" title="介绍一个比较复杂的项目"></a>介绍一个比较复杂的项目</h3><h3 id="左右两个盒子宽度固定，中间盒子宽度自适应"><a href="#左右两个盒子宽度固定，中间盒子宽度自适应" class="headerlink" title="左右两个盒子宽度固定，中间盒子宽度自适应"></a>左右两个盒子宽度固定，中间盒子宽度自适应</h3><h3 id="算法题-1"><a href="#算法题-1" class="headerlink" title="算法题 1"></a>算法题 1</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一本书的目录会有很多章节，每个章节下又会有一些子章节，由此可以形成一个章节树，实现一个序列化函数serialize，输出包含所有章节名称的一维数组，同时根据每个章节所在的层级，在章节名称前面加上该章节所在的层级结构</span></span><br><span class="line"><span class="keyword">var</span> chapterTree = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;总章节&quot;</span>,</span><br><span class="line">  <span class="attr">children</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;章节一&quot;</span>,</span><br><span class="line">      <span class="attr">children</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">name</span>: <span class="string">&quot;第一节&quot;</span>,</span><br><span class="line">          <span class="attr">children</span>: [&#123; <span class="attr">name</span>: <span class="string">&quot;第一小节&quot;</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">&quot;第二小节&quot;</span> &#125;]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;第二节&quot;</span> &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;章节二&quot;</span>,</span><br><span class="line">      <span class="attr">children</span>: [&#123; <span class="attr">name</span>: <span class="string">&quot;第三节&quot;</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">&quot;第四节&quot;</span> &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">serialize</span>(<span class="params">tree</span>) &#123;</span><br><span class="line">  <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">serialize</span>(chapterTree);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">// [&quot;总章节&quot;, &quot;(1)章节一&quot;, &quot;(1.1)第一节&quot;, &quot;(1.1.1)第一小节&quot;, &quot;(1.1.2)第二小节&quot;, &quot;(1.2)第二节&quot;, &quot;(2)章节二&quot;, &quot;(2.1)第三节&quot;, &quot;(2.2)第四节&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="算法题-2"><a href="#算法题-2" class="headerlink" title="算法题 2"></a>算法题 2</h3><p>多维数组平铺为一维数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalArr = [];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flattenArr</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="comment">// 代码实现</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = arr[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (item <span class="keyword">instanceof</span> <span class="title class_">Array</span>) &#123;</span><br><span class="line">      <span class="title function_">flattenArr</span>(item);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      finalArr.<span class="title function_">push</span>(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]], [<span class="number">5</span>, <span class="number">6</span>], <span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> newArr = <span class="title function_">flattenArr</span>(arr);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="三面"><a href="#三面" class="headerlink" title="三面"></a>三面</h2><h3 id="url-输入经历过什么过程"><a href="#url-输入经历过什么过程" class="headerlink" title="url 输入经历过什么过程"></a>url 输入经历过什么过程</h3><h3 id="前端优化"><a href="#前端优化" class="headerlink" title="前端优化"></a>前端优化</h3><h3 id="图片有哪些格式，各个格式有什么特点"><a href="#图片有哪些格式，各个格式有什么特点" class="headerlink" title="图片有哪些格式，各个格式有什么特点"></a>图片有哪些格式，各个格式有什么特点</h3><h3 id="算法题"><a href="#算法题" class="headerlink" title="算法题"></a>算法题</h3><ul>
+<li><p>对一个单向链表反转</p>
+</li>
+<li><p>一个无序数组，要求一次遍历得到第二大元素</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">find</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> maxItem = arr[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> seconditem = arr[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (maxItem &lt; seconditem) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = seconditem;</span><br><span class="line">    seconditem = maxItem;</span><br><span class="line">    maxItem = temp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; arr.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = arr[i];</span><br><span class="line">    <span class="keyword">if</span> (item &gt; maxItem) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = maxItem;</span><br><span class="line">      maxItem = item;</span><br><span class="line">      seconditem = maxItem;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (item &gt; seconditem) &#123;</span><br><span class="line">      seconditem = item;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> seconditem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="teambition-面试题"><a href="#teambition-面试题" class="headerlink" title="teambition 面试题"></a>teambition 面试题</h2><h3 id="完整的-CI-CD-流程设计"><a href="#完整的-CI-CD-流程设计" class="headerlink" title="完整的 CI&#x2F;CD 流程设计"></a>完整的 CI&#x2F;CD 流程设计</h3><h3 id="Git-commit-规范"><a href="#Git-commit-规范" class="headerlink" title="Git commit 规范"></a>Git commit 规范</h3><h3 id="如何理解中台对前台的价值"><a href="#如何理解中台对前台的价值" class="headerlink" title="如何理解中台对前台的价值"></a>如何理解中台对前台的价值</h3><h3 id="写过的-webpack-babel-等插件"><a href="#写过的-webpack-babel-等插件" class="headerlink" title="写过的 webpack|babel 等插件"></a>写过的 webpack|babel 等插件</h3><h3 id="webpack-loader-和-plugin-区别"><a href="#webpack-loader-和-plugin-区别" class="headerlink" title="webpack loader 和 plugin 区别"></a>webpack loader 和 plugin 区别</h3><h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><h3 id="typescript-泛型？泛型约束"><a href="#typescript-泛型？泛型约束" class="headerlink" title="typescript 泛型？泛型约束"></a>typescript 泛型？泛型约束</h3><h3 id="typescript-联合类型还有啥类型"><a href="#typescript-联合类型还有啥类型" class="headerlink" title="typescript 联合类型还有啥类型"></a>typescript 联合类型还有啥类型</h3><h3 id="aop-和-ait"><a href="#aop-和-ait" class="headerlink" title="aop 和 ait"></a>aop 和 ait</h3><h3 id="组件单测流程？如何判断-state-表现？如何判断回调是否触发"><a href="#组件单测流程？如何判断-state-表现？如何判断回调是否触发" class="headerlink" title="组件单测流程？如何判断 state 表现？如何判断回调是否触发"></a>组件单测流程？如何判断 state 表现？如何判断回调是否触发</h3><h3 id="vdom-介绍？优点"><a href="#vdom-介绍？优点" class="headerlink" title="vdom 介绍？优点"></a>vdom 介绍？优点</h3><h3 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h3><hr>
+<h2 id="Bilibili"><a href="#Bilibili" class="headerlink" title="Bilibili"></a>Bilibili</h2><h3 id="new-过程"><a href="#new-过程" class="headerlink" title="new 过程"></a>new 过程</h3><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/17/%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="clu6rtt9j0049a8xa3s8f42gl" data-title="遇到过的面试题" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-前端http与https问题整理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/17/%E5%89%8D%E7%AB%AFhttp%E4%B8%8Ehttps%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2020-03-17T02:37:17.000Z" itemprop="datePublished">2020-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/17/%E5%89%8D%E7%AB%AFhttp%E4%B8%8Ehttps%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/">前端http与https问题整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP-特性"><a href="#TCP-特性" class="headerlink" title="TCP 特性"></a>TCP 特性</h2><ul>
+<li>单工通信</li>
+<li>并非 100%可靠协议，仅保证尽可能会把数据传送给接收方</li>
+<li>使用校验和，确认和重传机制来保证可靠传输</li>
+<li>通过滑动窗口来实现流量控制，通过动态改变窗口大小进行阻塞控制。</li>
+</ul>
+<h2 id="TCP滑动窗口协议的意义"><a href="#TCP滑动窗口协议的意义" class="headerlink" title="TCP滑动窗口协议的意义"></a>TCP滑动窗口协议的意义</h2><ol>
+<li>可靠性，滑动窗口只有在队列前部被确认之后才会往后移动，保证数据包被接收方确认并接收；</li>
+<li>传输效率，假如没有窗口，服务端是杂乱无章的进行发包，因为TCP的队首效应，如果有前面的包没有发送成功，就会不停重试，反而造成更差的传输效率；</li>
+<li>稳定性，TCP滑动窗口大小，是整个复杂网络商榷的结果，会进行动态调整，可以尽量的避免网络拥塞，更加稳定。</li>
+</ol>
+<h2 id="TCP-三次握手和四次挥手的理解"><a href="#TCP-三次握手和四次挥手的理解" class="headerlink" title="TCP 三次握手和四次挥手的理解"></a>TCP 三次握手和四次挥手的理解</h2><p><img src="https://user-images.githubusercontent.com/34148615/53062591-3d846300-34fc-11e9-8d0f-4063d9ff3398.png" alt="示意图"></p>
+<p>TCP 三次握手：</p>
+<p>三次握手的目的是连接服务器指定端口，建立 TCP 连接，并同步连接双方的序列号和确认号，交换 TCP 窗口大小信息。</p>
+<p>其中，为了保证后续的握手是为了应答上一个握手，每次握手都会带一个标识 seq，后续的 ACK 都会对这个 seq 进行加一来进行确认</p>
+<p>三次握手之所以是三次是保证 client 和 server 均让对方知道自己的接收和发送能力没问题而保证的最小次数，三次是最少的安全次数，两次不安全，四次浪费资源。</p>
+<p>完整流程如下：</p>
+<ul>
+<li>第一次握手(SYN&#x3D;1, seq&#x3D;x):</li>
+</ul>
+<p>客户端发送一个 TCP 的 SYN 标志位置 1 的包，指明客户端打算连接的服务器的端口，以及初始序号 X,保存在包头的序列号(Sequence Number)字段里。</p>
+<p>发送完毕后，客户端进入 SYN_SEND 状态。</p>
+<ul>
+<li>第二次握手(SYN&#x3D;1, ACK&#x3D;1, seq&#x3D;y, ACKnum&#x3D;x+1):</li>
+</ul>
+<p>服务器发回确认包(ACK)应答。即 SYN 标志位和 ACK 标志位均为 1。服务器端选择自己 ISN 序列号，放到 Seq 域里，同时将确认序号(Acknowledgement Number)设置为客户的 ISN 加 1，即 X+1。 发送完毕后，服务器端进入 SYN_RCVD 状态。</p>
+<ul>
+<li>第三次握手(ACK&#x3D;1，ACKnum&#x3D;y+1)</li>
+</ul>
+<p>客户端再次发送确认包(ACK)，SYN 标志位为 0，ACK 标志位为 1，并且把服务器发来 ACK 的序号字段+1，放在确定字段中发送给对方，并且在数据段放写 ISN 的+1</p>
+<p>发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手结束</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8NAjB9"><img src="https://s1.ax1x.com/2020/03/17/8NAjB9.md.jpg" alt="8NAjB9.md.jpg"></a></p>
+<p>四次挥手：</p>
+<p>两个通道可以同时工作：客户端向服务端发送信号的同时服务端也可以向客户端发送信号。所以关闭双通道的时候就是这样：</p>
+<p>客户端：我要关闭输入通道了。 服务端：好的，但还没有准备好关闭连接。</p>
+<p>服务端：已准备关闭输入通道了。 客户端：好的你关闭吧，我也把这个通道关闭，等待两个最大段生命周期（2MSL）完全关闭。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8NAXnJ"><img src="https://s1.ax1x.com/2020/03/17/8NAXnJ.md.jpg" alt="8NAXnJ.md.jpg"></a></p>
+<h2 id="为什么需要等待-2MSL-关闭就是安全的"><a href="#为什么需要等待-2MSL-关闭就是安全的" class="headerlink" title="为什么需要等待 2MSL 关闭就是安全的"></a>为什么需要等待 2MSL 关闭就是安全的</h2><p>因为在 client 发送出 ACK 之后，会遇到如下情况</p>
+<ul>
+<li>Clinet 到 Server 一次过程最多 1MSL</li>
+<li>Server 未收到 ACK，超过时间 Server 会自动重发 FIN；</li>
+</ul>
+<p>两种情况加在一起最大时长为 2MSL</p>
+<h2 id="rpc-协议和-tcp-协议的区别"><a href="#rpc-协议和-tcp-协议的区别" class="headerlink" title="rpc 协议和 tcp 协议的区别"></a>rpc 协议和 tcp 协议的区别</h2><table>
+<thead>
+<tr>
+<th>协议</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tcp</td>
+<td align="center">需要 DNS 寻址</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">单工通信</td>
+</tr>
+<tr>
+<td>rpc</td>
+<td align="center">二进制数据传输，更小的体积，更快编解码速率</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">不一定是 DNS 寻址，可能是内部服务寻址</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">单工&#x2F;半双工&#x2F;双工通信方式支持</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td align="center">不可靠</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">支持广播和多播</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">无连接的，不需要握手会和挥手</td>
+</tr>
+</tbody></table>
+<h2 id="http-1-0-1-1-2-0-协议特性与区别"><a href="#http-1-0-1-1-2-0-协议特性与区别" class="headerlink" title="http 1.0 1.1 2.0 协议特性与区别"></a>http 1.0 1.1 2.0 协议特性与区别</h2><p>http 1.0</p>
+<ol>
+<li>无状态<br>需要 cookie&#x2F;session 做身份认证和登录</li>
+<li>无连接</li>
+</ol>
+<p>a. 每次连接结束都会关闭连接，再重新创建连接 tcp 三次连接与四次挥手，效率很低；</p>
+<p>b. 在上一个请求到达结束之前无法发送下一个请求；</p>
+<p>http 1.1</p>
+<ol>
+<li>长连接 keep-alive</li>
+<li>管道机制 不必等待上一个请求返回就能发送下一个请求，返回的结果还是按照顺序，但是为了保持响应顺序，还是存在队头阻塞问题；</li>
+<li>缓存 cache-control；</li>
+<li>断点传输</li>
+</ol>
+<p>http 2.0</p>
+<ol>
+<li>二进制分帧；</li>
+<li>多路复用 在共享 TCP 链接的基础上同时发送请求和响应；</li>
+<li>头部压缩；</li>
+<li>服务器推送；</li>
+</ol>
+<h2 id="简单讲解一下-http2-的多路复用"><a href="#简单讲解一下-http2-的多路复用" class="headerlink" title="简单讲解一下 http2 的多路复用"></a>简单讲解一下 http2 的多路复用</h2><p>http1.0 一个请求建立一个链接，请求结束就关闭，依次往复，可开启’keep-alive’，让链接不关闭复用</p>
+<p>http1.1 默认允许一个连接发送多个请求，浏览器为了控制资源一般控制在 6 个左右，虽然建立多个连接，但需要等待前一个请求结束，服务器才会响应后面的请求；</p>
+<p>http2 采用二进制传输数据，更高效，有两个非常重要的概念，帧和流，帧是最小数据单位，帧会标识属于哪个流，可以在一个连接中发送并行发送多个请求，避免了 1.1 中队头阻塞的问题，极大提高性能。</p>
+<h2 id="https"><a href="#https" class="headerlink" title="https"></a>https</h2><p>特点</p>
+<ul>
+<li>http + ssl&#x2F;tls</li>
+<li>对称加密传输数据，非对称加密进行身份验证</li>
+<li>443</li>
+<li>需要ca证书</li>
+<li>RSA加密方式</li>
+</ul>
+<p>https TLS&#x2F;SSL握手过程</p>
+<ol>
+<li>ClientHello 客户端发送请求，给出协议版本、随机数A 和 客户端支持的加密算法；</li>
+<li>SeverHello 服务端返回数据证书（包括公钥、域名、证书），加密算法 和 随机数B；</li>
+<li>客户端校验证书，通过使用服务端证书中的公钥进行加密，生成随机数C 返回给服务端；</li>
+<li>服务端用私钥解密，得到随机数C，使用加密方法将三个随机数（A、B、C）生成的对称密钥来通讯；</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/17/%E5%89%8D%E7%AB%AFhttp%E4%B8%8Ehttps%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/" data-id="clu6rtt95002ka8xa6gt228zv" data-title="前端http与https问题整理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-二叉树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/15/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
+  <time class="dt-published" datetime="2020-03-15T14:22:18.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/15/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>二叉树遍历主要分为深度遍历和广度遍历，一共有6种遍历方式。</p>
+<p>其中深度遍历分为：</p>
+<ul>
+<li>前序遍历： 访问根–&gt;遍历左子树–&gt;遍历右子树;</li>
+<li>中序遍历： 遍历左子树–&gt;访问根–&gt;遍历右子树</li>
+<li>后序遍历： 遍历左子树–&gt;遍历右子树–&gt;访问根</li>
+</ul>
+<p>主要看中间的<code>根结点</code>位置在哪，就对应哪一种遍历</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8cvQSI"><img src="https://s1.ax1x.com/2020/03/20/8cvQSI.png" alt="8cvQSI.png"></a></p>
+<ul>
+<li>前序遍历： - + a * b c &#x2F; d e</li>
+<li>中序遍历： a + b * c - d &#x2F; e</li>
+<li>后续遍历： a b c * + d e &#x2F; -</li>
+<li>层次遍历： - + &#x2F; a * d e b c</li>
+</ul>
+<p>数据结构表示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> treeNode = &#123;</span><br><span class="line">  <span class="attr">value</span>: <span class="string">&quot;-&quot;</span>,</span><br><span class="line">  <span class="attr">left</span>: &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&quot;+&quot;</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;a&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">      <span class="attr">left</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="string">&quot;b&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">right</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>: &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;d&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;e&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><ul>
+<li>递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalTreeNodeArr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">popNode</span>(<span class="params">treeNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (treeNode) &#123;</span><br><span class="line">    finalTreeNodeArr.<span class="title function_">push</span>(treeNode.<span class="property">value</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">left</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">right</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非递归</li>
+</ul>
+<ol>
+<li>依次遍历数组，每次取数组最后一个值；</li>
+<li>一次遍历中，每次先判断是否有右节点，有的话插入到数组末尾，再判断左节点，有的话再插入到数组末尾；</li>
+<li>依次循环；</li>
+</ol>
+<p>整体流程如下：</p>
+<ol>
+<li>[{left, right }];</li>
+<li>[right, left]</li>
+<li>[right, right, left]</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">firstPop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    result.<span class="title function_">push</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意顺序 先要取右节点</span></span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">right</span>) stack.<span class="title function_">push</span>(root.<span class="property">right</span>);</span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">left</span>) stack.<span class="title function_">push</span>(root.<span class="property">left</span>);</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;先序遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><ul>
+<li>递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalTreeNodeArr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">popNode</span>(<span class="params">treeNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (treeNode) &#123;</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">left</span>);</span><br><span class="line">    finalTreeNodeArr.<span class="title function_">push</span>(treeNode.<span class="property">value</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">right</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">middlePop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="comment">// 一直遍历是否有左节点 入栈</span></span><br><span class="line">    <span class="keyword">while</span> (root) &#123;</span><br><span class="line">      stack.<span class="title function_">push</span>(root);</span><br><span class="line">      root = root.<span class="property">left</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">pop</span>();</span><br><span class="line"></span><br><span class="line">    result.<span class="title function_">push</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    root = root.<span class="property">right</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;中序遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><ul>
+<li>递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalTreeNodeArr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">popNode</span>(<span class="params">treeNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (treeNode) &#123;</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">left</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">right</span>);</span><br><span class="line">    finalTreeNodeArr.<span class="title function_">push</span>(treeNode.<span class="property">value</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">endPop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    result.<span class="title function_">unshift</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">left</span>) stack.<span class="title function_">push</span>(root.<span class="property">left</span>);</span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">right</span>) stack.<span class="title function_">push</span>(root.<span class="property">right</span>);</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;后序遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="广度遍历"><a href="#广度遍历" class="headerlink" title="广度遍历"></a>广度遍历</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepPop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    result.<span class="title function_">push</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">left</span>) stack.<span class="title function_">push</span>(root.<span class="property">left</span>);</span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">right</span>) stack.<span class="title function_">push</span>(root.<span class="property">right</span>);</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">shift</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;广度遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：</p>
+<ol>
+<li>先序非递归 要先存右节点 后存左节点；</li>
+<li>后序非递归 unshift 插值；</li>
+</ol>
+<hr>
+<h2 id="判断对称二叉树"><a href="#判断对称二叉树" class="headerlink" title="判断对称二叉树"></a>判断对称二叉树</h2><p>对称二叉树就是镜像二叉树</p>
+<p>比如：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190625104849486.png" alt="对称二叉树"></p>
+<p>代码模拟一个对称和非对称二叉树如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对称二叉树</span></span><br><span class="line"><span class="keyword">const</span> symmetricalTree = &#123;</span><br><span class="line">  <span class="attr">val</span>: <span class="number">8</span>,</span><br><span class="line">  <span class="attr">left</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">5</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">5</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> noSymmetricalTree = &#123;</span><br><span class="line">  <span class="attr">val</span>: <span class="number">8</span>,</span><br><span class="line">  <span class="attr">left</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">5</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">9</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>递归判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isMirrorTreeNodes</span>(<span class="params">treeNodes</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">isMirrorNode</span>(treeNodes.<span class="property">left</span>, treeNodes.<span class="property">right</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isMirrorNode</span>(<span class="params">leftNode, rightNode</span>) &#123;</span><br><span class="line">  <span class="comment">// 左右节点都不存在</span></span><br><span class="line">  <span class="keyword">if</span> (!leftNode &amp;&amp; !rightNode) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 左右节点只有一个存在</span></span><br><span class="line">  <span class="keyword">if</span> (!leftNode || !rightNode) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (leftNode.<span class="property">val</span> !== rightNode.<span class="property">val</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="title function_">isMirrorNode</span>(leftNode.<span class="property">left</span>, rightNode.<span class="property">right</span>) &amp;&amp;</span><br><span class="line">    <span class="title function_">isMirrorNode</span>(leftNode.<span class="property">right</span>, rightNode.<span class="property">left</span>)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/5847c17a128fe10058bcf2c5">二叉树与 JavaScript</a></p>
+<p>其他一些example</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二叉树遍历</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *      10 </span></span><br><span class="line"><span class="comment"> *    /    \</span></span><br><span class="line"><span class="comment"> *   9      17</span></span><br><span class="line"><span class="comment"> *  / \    /  \</span></span><br><span class="line"><span class="comment"> * 6  11  16  19</span></span><br><span class="line"><span class="comment"> *   /  \</span></span><br><span class="line"><span class="comment"> *  8   44 </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 主要看中间的根结点位置在哪 就对应哪一种遍历</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 先序  中左右   10、9、6、11、8、44、17、16、19</span></span><br><span class="line"><span class="comment"> * 中序  左中右   6、9、8、11、44、10、16、17、19</span></span><br><span class="line"><span class="comment"> * 后序  左右中   6、8、44、11、9、16、19、17、10</span></span><br><span class="line"><span class="comment"> *  </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nodes = &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="number">9</span>,</span><br><span class="line">        <span class="attr">left</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">6</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">right</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">11</span>,</span><br><span class="line">            <span class="attr">left</span>: &#123;</span><br><span class="line">                <span class="attr">value</span>: <span class="number">8</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">right</span>: &#123;</span><br><span class="line">                <span class="attr">value</span>: <span class="number">44</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="number">17</span>,</span><br><span class="line">        <span class="attr">left</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">16</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">right</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">19</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 递归实现深度遍历</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> <span class="variable">knight</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-12-21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; [nodes=&#123;&#125;]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">eachTrees</span>(<span class="params">nodes = &#123;&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> arr = []</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getTrees</span>(<span class="params">nodes</span>) &#123;</span><br><span class="line">        <span class="comment">// 先序</span></span><br><span class="line">        <span class="comment">// arr.push(nodes.value)</span></span><br><span class="line">        <span class="keyword">if</span> (nodes.<span class="property">left</span>) &#123; <span class="title function_">getTrees</span>(nodes.<span class="property">left</span>) &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 中序</span></span><br><span class="line">        <span class="comment">// arr.push(nodes.value)</span></span><br><span class="line">        <span class="keyword">if</span> (nodes.<span class="property">right</span>) &#123; <span class="title function_">getTrees</span>(nodes.<span class="property">right</span>) &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 后序</span></span><br><span class="line">        arr.<span class="title function_">push</span>(nodes.<span class="property">value</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> result = <span class="title function_">getTrees</span>(nodes)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="title function_">eachTrees</span>(nodes)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/15/%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="clu6rtt94002da8xa4z1g4sc1" data-title="二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-浅析node进程与线程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/13/%E6%B5%85%E6%9E%90node%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2020-03-13T10:37:20.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/13/%E6%B5%85%E6%9E%90node%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">浅析node进程与线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>进程：是一个具有一定独立功能的程序在一个数据集上的一次动态执行的过程，是操作系统进行资源分配和调度的一个独立单位，是应用程序运行的载体。</p>
+<p>线程：是程序执行中一个单一的顺序控制流，它存在于进程之中，是比进程更小的能独立运行的基本单位。</p>
+<p>个人不成熟的通俗理解为：</p>
+<p>进程好比一个货物工厂的传送带，每个传送带是相互独立，执行各自任务，其中线程就是传送带上的机械手臂，控制货物在传送带上的具体摆放。</p>
+<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>常说的 node 是单线程，往往说的只是 node 只有一个 js 执行主线程，实际 node 有其他多个线程组成；</p>
+<p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>)</span><br><span class="line">  .<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">listen</span>(<span class="number">8000</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;process id&quot;</span>, process.<span class="property">pid</span>);</span><br></pre></td></tr></table></figure>
+
+<p>此时 8000 端口的服务 pid 为 35919，在 linux 下通过<code>top -pid 35919</code>查看详细信息如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM    PURG CMPRS  PGRP  PPID  STATE    BOOSTS     %CPU_ME</span><br><span class="line">35919  node         0.0  00:00.09 7    0    35   8564K  0B   8548K  35919 35622 sleeping *0[1]      0.00000</span><br></pre></td></tr></table></figure>
+
+<p>其中 TH 是进程信息，表明当前进程有 7 个线程。</p>
+<p>事实上一个 Node 进程通常包含：</p>
+<ul>
+<li>1 个 Javascript 执行主线程；</li>
+<li>1 个 watchdog 监控线程用于处理调试信息；</li>
+<li>1 个 v8 task scheduler 线程用于调度任务优先级，加速延迟敏感任务执行；</li>
+<li>4 个 v8 线程，主要用来执行代码调优与 GC 等后台任务以及用于异步 I &#x2F; O 的 libuv 线程池。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v8 初始化线程</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> thread_pool_size = <span class="number">4</span>; <span class="comment">// 默认 4 个线程</span></span><br><span class="line">default_platform = v8::platform::<span class="built_in">CreateDefaultPlatform</span>(thread_pool_size);</span><br><span class="line">V8::<span class="built_in">InitializePlatform</span>(default_platform);</span><br><span class="line">V8::<span class="built_in">Initialize</span>();</span><br></pre></td></tr></table></figure>
+
+<p>其中异步 I&#x2F;O 线程池，如果执行程序中不包含 I&#x2F;O 操作如文件读写等，则默认线程池大小为 0，否则 Node 会初始化大小为 4 的异步 I&#x2F;O 线程池，当然我们也可以通过 process.env.UV_THREADPOOL_SIZE 自己设定线程池大小。需要注意的是在 Node 中网络 I&#x2F;O 并不占用线程池。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/12/28/16f4bf755017c54b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="Node进程结构图"></p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>Node 高并发是通过 libuv 实现的一个异步，非阻塞 I&#x2F;O 的事件循环机制，参考浏览器事件循环，可保证程序时时刻刻都能保证响应</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/12/28/16f4bf749b92cfe4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="Node事件环"></p>
+<h2 id="子进程"><a href="#子进程" class="headerlink" title="子进程"></a>子进程</h2><p>Node 在处理 I&#x2F;O 密集场景下的高并发，但在遇到 CPU 密集场景下，主线程被长时间阻塞导致无法处理额外请求。</p>
+<p>为了处理这样场景以及发挥多核 CPU 性能，官方提供了<code>child_process</code>模块。</p>
+<ul>
+<li>通信</li>
+</ul>
+<p>在 Linux 中，子进程之间可以通过管道、消息队列、信号量、共享内存、socket 等手段实现进程通信。</p>
+<p>Node 中使用 IPC 信道收发消息，IPC 由 libuv 通过 pipe 实现。</p>
+<p>父子进程通过<code>process.send</code>和<code>on(&#39;message&#39;)</code>这样发布订阅模式形式实现通信。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fork模式用来创建父子通信模式</span></span><br><span class="line"><span class="keyword">const</span> &#123; fork &#125; = <span class="built_in">require</span>(<span class="string">&quot;child_process&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> child = <span class="title function_">fork</span>(<span class="string">&quot;./a.js&quot;</span>);</span><br><span class="line">child.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br><span class="line"></span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h2><p>为了更好管理进程、负载均衡以及端口复用，官方引入了<code>cluster</code>模块，遵循主从节点模式。</p>
+<h2 id="工作线程"><a href="#工作线程" class="headerlink" title="工作线程"></a>工作线程</h2><p>Node10 以后，由于进程创建、销毁、切换时系统开销较大，为了减小 CPU 密集型任务计算的系统开销，官方提供了<code>worker_threads</code>模块。</p>
+<p>使用 parentPort （继承于 EventEmitter）进行父子线程通信</p>
+<p>参考资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5e0728ce518825122b0f99f2">政采云前端-浅析 Node 进程与线程</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/13/%E6%B5%85%E6%9E%90node%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" data-id="clu6rtt9h003va8xa0q8o3mhh" data-title="浅析node进程与线程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Next-js接入sentry" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/12/Next-js%E6%8E%A5%E5%85%A5sentry/" class="article-date">
+  <time class="dt-published" datetime="2020-03-12T14:48:37.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/12/Next-js%E6%8E%A5%E5%85%A5sentry/">Next.js接入sentry</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Next 接入 sentry 收集不到完整的错误</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>Next 分为客户端和服务端，需要对双端都做上报</p>
+<p>Next 获取逻辑和渲染是两个维度错误逻辑处理</p>
+<h2 id="如何发现"><a href="#如何发现" class="headerlink" title="如何发现"></a>如何发现</h2><p><a target="_blank" rel="noopener" href="https://github.com/zeit/next.js/blob/canary/examples/with-sentry/pages/_app.js">参考 Next 官网 sentry 接入示例</a></p>
+<h2 id="如何修复"><a href="#如何修复" class="headerlink" title="如何修复"></a>如何修复</h2><p>按照示例接入</p>
+<p>其中 sentry 需要在客户端和服务端复用，建议是抽离放在一个文件去维护</p>
+<p>综上需要更改有五处地方</p>
+<ul>
+<li>config&#x2F;sentry.js</li>
+<li>_app.js</li>
+<li>_error.js</li>
+<li>server&#x2F;app.js</li>
+<li>next.config.js</li>
+</ul>
+<p>流程图如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/13/8mXosf.png" alt="Next渲染流程"></p>
+<p>其中_app.js 接入 sentry 初始化逻辑，并且在 getInitProps 方法内，使用 try&#x2F;catch 执行对应 page 组件的 getInitProps</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _app.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">getInitialProps</span>(<span class="params">appContext: AppContext</span>) &#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; <span class="title class_">Component</span>, ctx &#125; = appContext</span><br><span class="line">  <span class="keyword">let</span> pageProps = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Component</span>.<span class="property">getInitialProps</span>) &#123;</span><br><span class="line">   pageProps = <span class="keyword">await</span> <span class="title class_">Component</span>.<span class="title function_">getInitialProps</span>(ctx)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   pageProps,</span><br><span class="line">  &#125;</span><br><span class="line"> &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app组件捕获到错误：&#x27;</span>, error)</span><br><span class="line">  <span class="keyword">const</span> &#123; ctx &#125; = appContext</span><br><span class="line">  <span class="keyword">const</span> errorEventId = <span class="title function_">captureException</span>(error, ctx)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   errorEventId,</span><br><span class="line">   <span class="attr">hasError</span>: <span class="literal">true</span>,</span><br><span class="line">   <span class="attr">pageProps</span>: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>render 错误需要在_error.js 捕获处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _error.ts</span></span><br><span class="line"><span class="keyword">static</span> <span class="title function_">getInitialProps</span>(<span class="params">ctx: NextPageContext</span>) &#123;</span><br><span class="line"> <span class="keyword">const</span> &#123; res, err &#125; = ctx</span><br><span class="line"> <span class="keyword">if</span> (err) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Error组件捕获到错误&#x27;</span>, err)</span><br><span class="line">  <span class="title function_">captureException</span>(err, ctx)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">const</span> statusCode = res ? res.<span class="property">statusCode</span> : err ? err.<span class="property">statusCode</span> : <span class="literal">null</span></span><br><span class="line"> <span class="keyword">return</span> &#123; statusCode &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务端配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处加在了全局错误中间件处理 如果不使用全局错误中间件需要监听koa等实例全局error事件处理</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">errHandler</span> = <span class="keyword">async</span> (<span class="params">ctx, next</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">next</span>();</span><br><span class="line">    ctx.<span class="property">status</span> = <span class="number">200</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;服务端捕获到错误：&quot;</span>, err);</span><br><span class="line">    <span class="comment">// sentry上报错误</span></span><br><span class="line">    <span class="title function_">captureException</span>(err, ctx);</span><br><span class="line"></span><br><span class="line">    ctx.<span class="property">status</span> = err.<span class="property">code</span> ? <span class="number">200</span> : <span class="number">500</span>;</span><br><span class="line">    ctx.<span class="property">body</span> = &#123;</span><br><span class="line">      <span class="attr">message</span>: err.<span class="property">message</span>,</span><br><span class="line">      ...err</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">prepare</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> server = <span class="keyword">new</span> <span class="title class_">Koa</span>();</span><br><span class="line"></span><br><span class="line">  server.<span class="title function_">use</span>(errHandler);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>sentry 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="title class_">Sentry</span> <span class="keyword">from</span> <span class="string">&#x27;@sentry/node&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">NextPageContext</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;next&#x27;</span></span><br><span class="line"></span><br><span class="line">interface <span class="title class_">SentryExport</span> &#123;</span><br><span class="line"> <span class="title class_">Sentry</span>: <span class="keyword">typeof</span> <span class="title class_">Sentry</span></span><br><span class="line"> <span class="attr">captureException</span>: <span class="function">(<span class="params">err: any, ctx: NextPageContext</span>) =&gt;</span> string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (release = process.<span class="property">env</span>.<span class="property">SENTRY_RELEASE</span>): <span class="function"><span class="params">SentryExport</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;SENTRY_RELEASE:&#x27;</span>, process.<span class="property">env</span>.<span class="property">SENTRY_RELEASE</span>)</span><br><span class="line"> <span class="keyword">const</span> <span class="attr">sentryOptions</span>: <span class="title class_">Sentry</span>.<span class="property">NodeOptions</span> = &#123;</span><br><span class="line">  <span class="attr">dsn</span>: <span class="string">&#x27;***********&#x27;</span>,</span><br><span class="line">  <span class="attr">release</span>: release || <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">environment</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span>,</span><br><span class="line">  <span class="attr">maxBreadcrumbs</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">attachStacktrace</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 只有生产环境发送到sentry</span></span><br><span class="line">  <span class="attr">enabled</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span>,</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="title class_">Sentry</span>.<span class="title function_">init</span>(sentryOptions)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> &#123;</span><br><span class="line">  <span class="title class_">Sentry</span>,</span><br><span class="line">  <span class="attr">captureException</span>: <span class="function">(<span class="params">err, ctx</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="title class_">Sentry</span>.<span class="title function_">configureScope</span>(<span class="function">(<span class="params">scope</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err.<span class="property">message</span>) &#123;</span><br><span class="line">     <span class="comment">// De-duplication currently doesn&#x27;t work correctly for SSR / browser errors</span></span><br><span class="line">     <span class="comment">// so we force deduplication by error message if it is present</span></span><br><span class="line">     scope.<span class="title function_">setFingerprint</span>([err.<span class="property">message</span>])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (err.<span class="property">statusCode</span>) &#123;</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;statusCode&#x27;</span>, err.<span class="property">statusCode</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ctx) &#123;</span><br><span class="line">     <span class="keyword">const</span> &#123; req, res, query &#125; = ctx</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (res &amp;&amp; res.<span class="property">statusCode</span>) &#123;</span><br><span class="line">      scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;statusCode&#x27;</span>, res.<span class="property">statusCode</span>)</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     scope.<span class="title function_">setTag</span>(<span class="string">&#x27;ssr&#x27;</span>, <span class="string">&#x27;true&#x27;</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;url&#x27;</span>, req.<span class="property">url</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;method&#x27;</span>, req.<span class="property">method</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;headers&#x27;</span>, req.<span class="property">headers</span>)</span><br><span class="line">     scope.<span class="title function_">setExtra</span>(<span class="string">&#x27;query&#x27;</span>, query)</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="title class_">Sentry</span>.<span class="title function_">captureException</span>(err)</span><br><span class="line">  &#125;,</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>next 对应配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">webpack</span>: <span class="function">(<span class="params">config, &#123; isServer, buildId &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isServer) &#123;</span><br><span class="line">    config.<span class="property">resolve</span>.<span class="property">alias</span>[<span class="string">&quot;@sentry/node&quot;</span>] = <span class="string">&quot;@sentry/browser&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  config.<span class="property">plugins</span>.<span class="title function_">push</span>(</span><br><span class="line">    <span class="keyword">new</span> webpack.<span class="title class_">DefinePlugin</span>(&#123;</span><br><span class="line">      <span class="string">&quot;process.env.SENTRY_RELEASE&quot;</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(buildId)</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Next 接入 sentry 需要考虑到方方面面，渲染逻辑和数据获取逻辑是两个维度，客户端和服务端又是一个维度。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/zeit/next.js/blob/canary/examples/with-sentry/server.js">sentry 官网 demo 接入 next</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/12/Next-js%E6%8E%A5%E5%85%A5sentry/" data-id="clu6rtt8e000ia8xafbt68iwu" data-title="Next.js接入sentry" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-node-gyp-rebuild-Error-EACCES-permission-denied" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/09/node-gyp-rebuild-Error-EACCES-permission-denied/" class="article-date">
+  <time class="dt-published" datetime="2020-03-09T02:48:45.000Z" itemprop="datePublished">2020-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/03/09/node-gyp-rebuild-Error-EACCES-permission-denied/">node-gyp rebuild Error: EACCES: permission denied</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>最近在安装 RN 项目时，执行<code>npm install</code>遇到如下报错</li>
+</ol>
+
+
+<p>很明显是 fsevents 模块使用<code>node-gyp rebuild</code>失败</p>
+<p>看提示信息提示权限相关问题，猜测可能是读写权限问题，</p>
+<p>查看了下权限</p>
+
+
+<p>加上<code>sudo</code>，开启<code>root</code>账户模式，但并未成功。</p>
+<p>经过查询相关资料发现，实际原因是由于用的是 root 账户权限执行 npm，而 npm 默认是不适用 root 权限创建内容，因此会出现权限问题而导致失败，加上参数<br><code>--unsafe-perm=true --allow-root</code>即可解决问题。</p>
+
+
+<ol start="2">
+<li><code>node-sass</code>安装提示<code>EACCES</code>错误 使用<code>--unsafe-perm</code>参数安装</li>
+</ol>
+<p>总结：安装npm包时遇到<code>EACCES</code>相关错误时，先尝试<code>sudo</code>安装，若再提示相关问题加上<code>--unsafe-perm</code>参数</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/09/node-gyp-rebuild-Error-EACCES-permission-denied/" data-id="clu6rtt8t001ea8xa5k217i86" data-title="node-gyp rebuild Error: EACCES: permission denied" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-react-hooks入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/01/08/react-hooks%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-01-08T08:50:48.000Z" itemprop="datePublished">2020-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2020/01/08/react-hooks%E5%85%A5%E9%97%A8/">react-hooks入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>react hooks 发布于 React16.8.0 版本，这样的一个新的特性的作用是什么呢？</p>
+<p>众所周知，react 默认使用组件类的语法，当我们在编写和维护这些组件类的时候，往往会遇到如下一些问题：</p>
+<ol>
+<li>组件之间复用状态逻辑比较困难</li>
+</ol>
+<p>React 本身没有提供将可复用性行为添加到组件的方式，当然针对这些问题有一些方案，比如 render props 和高阶组件；但是在使用这些方案时，往往会需要重新组织当前组件的结构，这会比较麻烦。另外由 providers、consumers、高阶组件组成的抽象组件会形成<code>嵌套地狱</code>。基于这样的问题需要 React 本身为共享状态逻辑提供更高的原生途径。</p>
+<p>hooks 可以在无需更改组件结构的情况下，提取状态逻辑，单独测试并复用。</p>
+<ol start="2">
+<li>复杂组件很难拆分、重构、测试</li>
+</ol>
+<p>我们经常维护一些组件，组件起初很简单，但是逐渐会被状态逻辑和副作用充斥。比如生命周期常常包含不相关逻辑，如果状态逻辑之间有关联更容易产生问题，多数情况下，因为状态逻辑无处不在，导致不能将组件拆分为更小粒度。</p>
+<p>hooks 可以将组件相关的部分拆分成更小的函数，而非强制按照生命周期划分。</p>
+<h2 id="Hook-含义"><a href="#Hook-含义" class="headerlink" title="Hook 含义"></a>Hook 含义</h2><p>Hook 就是加强版本的函数组件，如果需要外部功能（react 其他功能）和副作用，就用钩子把外部代码”钩”进来。</p>
+<p>参考文档：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/react-hooks.html">React Hooks 入门教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://react.docschina.org/docs/hooks-intro.html">React 官方文档 Hook 简介</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/01/08/react-hooks%E5%85%A5%E9%97%A8/" data-id="clu6rtt8w001ua8xach16fn7b" data-title="react-hooks入门" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-node性能优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/12/23/node%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2019-12-23T15:14:51.000Z" itemprop="datePublished">2019-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/12/23/node%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">node性能优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><h3 id="压力测试工具"><a href="#压力测试工具" class="headerlink" title="压力测试工具"></a>压力测试工具</h3><ol>
+<li>ab</li>
+<li>webBench</li>
+</ol>
+<p>ab是apache自带的压力测试工具。ab非常实用，它不仅可以对apache服务器进行网站访问压力测试，也可以对或其它web类型的服务器进行压力测试。比如nginx、tomcat、IIS等。</p>
+<p>简单介绍下 ab 测试工具使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  -c 客户端数</span></span><br><span class="line"><span class="comment"># -n 请求总数</span></span><br><span class="line"><span class="comment"># -t 测试时长s</span></span><br><span class="line">ab -c 200 -n 1600 http://127.0.0.1:3000/download/</span><br></pre></td></tr></table></figure>
+
+<p>测试完有个测试报告，主要关心几个数值：</p>
+<ol>
+<li>qps（request per second）: 并发数</li>
+<li>Transfer rate （吞吐量）</li>
+<li>Time per request（平均响应时间）</li>
+</ol>
+<h3 id="找到性能瓶颈所在地"><a href="#找到性能瓶颈所在地" class="headerlink" title="找到性能瓶颈所在地"></a>找到性能瓶颈所在地</h3><ol>
+<li>top （检查 cpu、内存使用情况）</li>
+<li>iostat （检查 io 设备情况）</li>
+<li>后端服务</li>
+</ol>
+<hr>
+<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><ol>
+<li>工具</li>
+</ol>
+<ul>
+<li>Node.js 自带 profile</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用profile模式，生成性能的log文件</span></span><br><span class="line">node --prof 入口文件</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开ab进行压测</span></span><br><span class="line">ab -c200 -t15 <span class="attr">http</span>:<span class="comment">//127.0.0.1:3000/download</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ab测试完之后 分析生成的profile</span></span><br><span class="line">node --prof-process 刚才生成的log文件</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>chrome devtool</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// inspect-brk 启动时暂停代码执行 debugger模式</span></span><br><span class="line">node --inspect-brk 入口文件</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进行压测</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在chrome devtool的profiler下查看cpu使用情况 地址：chrome://inspect</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Clinic.js</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/12/23/node%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="clu6rtt8v001pa8xahf8jeh2o" data-title="node性能优化" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-前端算法题整理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/12/16/%E5%89%8D%E7%AB%AF%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-12-16T10:52:54.000Z" itemprop="datePublished">2019-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/MyBlog/2019/12/16/%E5%89%8D%E7%AB%AF%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86/">前端算法题整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="两个有序数组合并成一个有序数组"><a href="#两个有序数组合并成一个有序数组" class="headerlink" title="两个有序数组合并成一个有序数组"></a>两个有序数组合并成一个有序数组</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">10</span>];</span><br><span class="line"><span class="keyword">var</span> b = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">12</span>, <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">merge</span>(<span class="params">arg1, arg2</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> m = arg1.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">var</span> n = arg2.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 原数组的数比插入的数组数大 则将最大的数往后移动到 n+m-1位置</span></span><br><span class="line">    <span class="comment">// 对应的数组索引减一，继续和两一个数组的值比较</span></span><br><span class="line">    <span class="comment">// 一定是要用插入的数组的值和待插入的值去做判断</span></span><br><span class="line">    <span class="keyword">if</span> (arg1[m - <span class="number">1</span>] &gt; arg2[n - <span class="number">1</span>]) &#123;</span><br><span class="line">      arg1[n + m - <span class="number">1</span>] = arg1[m - <span class="number">1</span>];</span><br><span class="line">      m--;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      arg1[n + m - <span class="number">1</span>] = arg2[n - <span class="number">1</span>];</span><br><span class="line">      n--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arg1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><p>斐波那契数列指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波那契数列以如下被以递推的方法定义：F(1)&#x3D;1，F(2)&#x3D;1, F(n)&#x3D;F(n-1)+F(n-2)（n&gt;&#x3D;3，n∈N*）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一版本 非递归 数值过大存在栈溢出问题 fib(30) =&gt; 0.36ms</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fib</span>(<span class="params">nMonth</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> nMonth &lt;= <span class="number">2</span></span><br><span class="line">    ? <span class="number">1</span></span><br><span class="line">    : <span class="variable language_">arguments</span>.<span class="title function_">callee</span>(nMonth - <span class="number">1</span>) + <span class="variable language_">arguments</span>.<span class="title function_">callee</span>(nMonth - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 严格模式下 利用尾递归优化 即只会有一个调用帧 永远不会存在栈溢出问题  // fib(30) =&gt; 0.02ms</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fib</span>(<span class="params">n, ac1 = <span class="number">0</span>, ac2 = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (nMonth &lt;= <span class="number">1</span>) <span class="keyword">return</span> ac2;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">fib</span>(n - <span class="number">1</span>, ac2, ac1 + ac2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正常模式 借助蹦床函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">trampoline</span>(<span class="params">f</span>) &#123;</span><br><span class="line">  <span class="keyword">while</span> (f &amp;&amp; f <span class="keyword">instanceof</span> <span class="title class_">Function</span>) &#123;</span><br><span class="line">    f = <span class="title function_">f</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fib</span>(<span class="params">n, ac1 = <span class="number">0</span>, ac2 = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> ac2;</span><br><span class="line">  <span class="comment">// bind 不让函数立刻执行</span></span><br><span class="line">  <span class="keyword">return</span> fib.<span class="title function_">bind</span>(<span class="literal">null</span>, n - <span class="number">1</span>, ac2, ac1 + ac2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">trampoline</span>(<span class="title function_">fib</span>(<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line">参考资料：</span><br><span class="line"></span><br><span class="line">[es6尾调用优化](<span class="attr">https</span>:<span class="comment">//es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>1、比较相邻的两个元素，如果前一个比后一个大，则交换位置。<br>2、比较完第一轮的时候，最后一个元素是最大的元素。<br>3、这时候最后一个元素是最大的，所以最后一个元素就不需要参与比较大小。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">pop</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= arr.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= arr.<span class="property">length</span> - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[j + <span class="number">1</span>];</span><br><span class="line">        arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归版本实现</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">quick</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.<span class="property">length</span> === <span class="number">0</span>) <span class="keyword">return</span> arr;</span><br><span class="line">  <span class="keyword">let</span> p = arr[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> leftArr = [];</span><br><span class="line">  <span class="keyword">let</span> rightArr = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= arr.<span class="property">length</span> - <span class="number">2</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] &gt; p) &#123;</span><br><span class="line">      rightArr.<span class="title function_">push</span>(arr[i]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      leftArr.<span class="title function_">push</span>(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">quick</span>(leftArr).<span class="title function_">concat</span>(p, <span class="title function_">quick</span>(rightArr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 非递归</span></span><br><span class="line"><span class="comment"> * 默认选取第一个为基数</span></span><br><span class="line"><span class="comment"> * 从起点往后寻找比基数大的，记录为下标 i；再从终点往前寻找比基数小的，记录为下标 j，当 i &lt;= j时，原地交换数值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">quickSort</span>(<span class="params">num</span>) &#123;</span><br><span class="line">  <span class="title function_">_quickSort</span>(num, <span class="number">0</span>, num.<span class="property">length</span> - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序(递归)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> num 待排序数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> left 左指针</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> right 右指针</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">_quickSort</span>(<span class="params">num, left, right</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span>; <span class="comment">// 若左右指针相遇，待排序数组长度小宇1，即递归的终点，return(注意不能写成left==right，这里left是有可能大于right的)。</span></span><br><span class="line">  <span class="keyword">var</span> i = left,</span><br><span class="line">    j = right,</span><br><span class="line">    flag = left;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">    <span class="comment">// 在i&lt;j时不断循环，i一旦与j碰头，则跳出循环。</span></span><br><span class="line">    <span class="keyword">while</span> (num[j] &gt;= num[flag] &amp;&amp; j &gt; flag) j--; <span class="comment">// j不断左移，找到在num[flag]右侧且比它大的数。</span></span><br><span class="line">    <span class="keyword">if</span> (i &gt;= j) &#123;</span><br><span class="line">      <span class="keyword">break</span>; <span class="comment">// 由于j可能已被改变，需再次判断i与j是否碰头。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (num[i] &lt;= num[flag] &amp;&amp; i &lt; j) i++; <span class="comment">// i不断右移，找到且比基数小的数，且i不能与j碰头。(由于两次交换已合并，此处不需要使得i在flag左侧)</span></span><br><span class="line">    <span class="comment">// num[flag] num[j] num[i]三者换位，可用ES6语法糖[num[flag],num[j],num[i]] = [num[j],num[i],num[flag]];</span></span><br><span class="line">    <span class="keyword">let</span> temp = num[flag];</span><br><span class="line">    num[flag] = num[j];</span><br><span class="line">    num[j] = num[i];</span><br><span class="line">    num[i] = temp;</span><br><span class="line">    flag = i; <span class="comment">// 基数已经在原num[i]的位置，flag同时也要赋值成i。</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">_quickSort</span>(num, left, flag - <span class="number">1</span>);</span><br><span class="line">  <span class="title function_">_quickSort</span>(num, flag + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 网上版本</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> quickSort_New = <span class="keyword">function</span>(<span class="params">ary, left, right</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> i = left;</span><br><span class="line">  <span class="keyword">let</span> j = right;</span><br><span class="line">  <span class="keyword">let</span> base = ary[left]; <span class="comment">// 基数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j &amp;&amp; ary[j] &gt;= base) &#123;</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j &amp;&amp; ary[i] &lt;= base) &#123;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">      <span class="keyword">var</span> temp = ary[i];</span><br><span class="line">      ary[i] = ary[j];</span><br><span class="line">      ary[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ary[left] = ary[i];</span><br><span class="line">  ary[i] = base;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">quickSort_New</span>(ary, left, i - <span class="number">1</span>);</span><br><span class="line">  <span class="title function_">quickSort_New</span>(ary, i + <span class="number">1</span>, right);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ary;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">10</span>];</span><br><span class="line"><span class="title function_">quickSort_New</span>(arr, <span class="number">0</span>, arr.<span class="property">length</span> - <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="二叉树查找"><a href="#二叉树查找" class="headerlink" title="二叉树查找"></a>二叉树查找</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二叉树数据源</span></span><br><span class="line"><span class="keyword">var</span> treeNodes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="number">11</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;11&quot;</span>,</span><br><span class="line">        <span class="attr">children</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">id</span>: <span class="number">111</span>,</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;111&quot;</span>,</span><br><span class="line">            <span class="attr">children</span>: []</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">id</span>: <span class="number">112</span>,</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;112&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="number">12</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;12&quot;</span>,</span><br><span class="line">        <span class="attr">children</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">users</span>: []</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="number">22</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;22&quot;</span>,</span><br><span class="line">        <span class="attr">children</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>要求：算出所有 id</p>
+<ul>
+<li>深度优先</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归 =&gt; 深度优先</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deepCalleen</span>(<span class="params">treeNodes</span>) &#123;</span><br><span class="line">  treeNodes.<span class="title function_">forEach</span>(<span class="function">(<span class="params">treeNode, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(treeNode.<span class="property">id</span>);</span><br><span class="line">    <span class="keyword">if</span> (treeNode.<span class="property">children</span> &amp;&amp; treeNode.<span class="property">children</span>.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="title function_">deepCalleen</span>(treeNode.<span class="property">children</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归 =&gt; 深度优先</span></span><br><span class="line"><span class="comment">// 数据结构拍平 遍历有children加到数组之前</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deep</span>(<span class="params">treeNodes</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> stack = treeNodes.<span class="title function_">map</span>(<span class="function"><span class="params">treeNode</span> =&gt;</span> treeNode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (stack.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> stackItem = stack.<span class="title function_">shift</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(stackItem.<span class="property">id</span>);</span><br><span class="line">    <span class="keyword">if</span> (stackItem.<span class="property">children</span> &amp;&amp; stackItem.<span class="property">children</span>.<span class="property">length</span>) &#123;</span><br><span class="line">      stack = stackItem.<span class="property">children</span>.<span class="title function_">concat</span>(stack);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>广度优先</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归 =&gt; 广度优先</span></span><br><span class="line"><span class="comment">// 数据结构拍平 遍历有children加到数组之前</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">spans</span>(<span class="params">treeNodes</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> stack = treeNodes.<span class="title function_">map</span>(<span class="function"><span class="params">treeNode</span> =&gt;</span> treeNode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (stack.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> stackItem = stack.<span class="title function_">shift</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(stackItem.<span class="property">id</span>);</span><br><span class="line">    <span class="keyword">if</span> (stackItem.<span class="property">children</span> &amp;&amp; stackItem.<span class="property">children</span>.<span class="property">length</span>) &#123;</span><br><span class="line">      stack = stack.<span class="title function_">concat</span>(stackItem.<span class="property">children</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">spans</span>(treeNodes);</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看无限大数组中第-k-个大的元素"><a href="#查看无限大数组中第-k-个大的元素" class="headerlink" title="查看无限大数组中第 k 个大的元素"></a>查看无限大数组中第 k 个大的元素</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无限大排除sort之后取倒数k个索引方法</span></span><br><span class="line"><span class="comment">// [1,5,4,7,2]</span></span><br><span class="line"><span class="comment">// k = 2</span></span><br><span class="line"><span class="comment">// 结果：5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 解法1 冒泡排序</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">searchK</span>(<span class="params">arr = [], k</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> temp;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.<span class="property">length</span> - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        temp = arr[j];</span><br><span class="line">        arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">        arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr[arr.<span class="property">length</span> - k];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解法2 堆排序</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="抽奖、发牌等随机随机数算法"><a href="#抽奖、发牌等随机随机数算法" class="headerlink" title="抽奖、发牌等随机随机数算法"></a>抽奖、发牌等随机随机数算法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> random = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * list.<span class="property">length</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(list[random])</span><br><span class="line"></span><br><span class="line">    <span class="comment">// list.splice(random, 1)  // 性能比较差 使用下面方式</span></span><br><span class="line"></span><br><span class="line">    list[random] = list[list.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">    list.<span class="property">length</span>--</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val, next) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = (val===undefined ? 0 : val)</span></span><br><span class="line"><span class="comment"> *     this.next = (next===undefined ? null : next)</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 双指针</span></span><br><span class="line"><span class="comment">  * 需要定义 prev 、 cur 等几个节点变量，默认cur就是当前链表，和next节点配合；</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">reverseList</span>(<span class="params">head</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">let</span> cur = head</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(cur) &#123;</span><br><span class="line">    <span class="keyword">const</span> next = cur.<span class="property">next</span></span><br><span class="line"></span><br><span class="line">    cur.<span class="property">next</span> = prev</span><br><span class="line">    prev = cur</span><br><span class="line"></span><br><span class="line">    cur = next</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> prev</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 递归</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> reverseList2 = <span class="keyword">function</span> (<span class="params">head</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">reverseListDeep</span>(<span class="literal">null</span>, head)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reverseListDeep = <span class="keyword">function</span> (<span class="params">prevNode, curNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!curNode) <span class="keyword">return</span> prevNode</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> nextNode = curNode.<span class="property">next</span></span><br><span class="line">  curNode.<span class="property">next</span> = prevNode</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">reverseListDeep</span>(curNode, nextNode)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="堆排序-（复杂度nlogn）"><a href="#堆排序-（复杂度nlogn）" class="headerlink" title="堆排序    （复杂度nlogn）"></a>堆排序    （复杂度nlogn）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 一般需要第K大的元素，不一定要全部排序好，只针对部分元素进行排序。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/57dcd394a22b9d00610c5ec8#heading-30">十大经典排序算法总结（JavaScript 描述）</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5d5b307b5188253da24d3cd1#heading-42">前端该如何准备数据结构和算法？</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/12/16/%E5%89%8D%E7%AB%AF%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86/" data-id="clu6rtt97002ua8xa7epycuar" data-title="前端算法题整理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/MyBlog/">&laquo; Prev</a><a class="page-number" href="/MyBlog/">1</a><span class="page-number current">2</span><a class="page-number" href="/MyBlog/page/3/">3</a><a class="page-number" href="/MyBlog/page/4/">4</a><a class="page-number" href="/MyBlog/page/5/">5</a><a class="extend next" rel="next" href="/MyBlog/page/3/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

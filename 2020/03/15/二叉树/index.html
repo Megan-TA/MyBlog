@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>二叉树 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="二叉树遍历主要分为深度遍历和广度遍历，一共有6种遍历方式。 其中深度遍历分为：  前序遍历： 访问根–&gt;遍历左子树–&gt;遍历右子树; 中序遍历： 遍历左子树–&gt;访问根–&gt;遍历右子树 后序遍历： 遍历左子树–&gt;遍历右子树–&gt;访问根  主要看中间的根结点位置在哪，就对应哪一种遍历   前序遍历： - + a * b c &#x2F; d e 中序遍历： a + b *">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树">
+<meta property="og:url" content="https://megan-ta.github.io/2020/03/15/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="二叉树遍历主要分为深度遍历和广度遍历，一共有6种遍历方式。 其中深度遍历分为：  前序遍历： 访问根–&gt;遍历左子树–&gt;遍历右子树; 中序遍历： 遍历左子树–&gt;访问根–&gt;遍历右子树 后序遍历： 遍历左子树–&gt;遍历右子树–&gt;访问根  主要看中间的根结点位置在哪，就对应哪一种遍历   前序遍历： - + a * b c &#x2F; d e 中序遍历： a + b *">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/8cvQSI.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625104849486.png">
+<meta property="article:published_time" content="2020-03-15T14:22:18.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.679Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/20/8cvQSI.png">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-二叉树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2020/03/15/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
+  <time class="dt-published" datetime="2020-03-15T14:22:18.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      二叉树
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>二叉树遍历主要分为深度遍历和广度遍历，一共有6种遍历方式。</p>
+<p>其中深度遍历分为：</p>
+<ul>
+<li>前序遍历： 访问根–&gt;遍历左子树–&gt;遍历右子树;</li>
+<li>中序遍历： 遍历左子树–&gt;访问根–&gt;遍历右子树</li>
+<li>后序遍历： 遍历左子树–&gt;遍历右子树–&gt;访问根</li>
+</ul>
+<p>主要看中间的<code>根结点</code>位置在哪，就对应哪一种遍历</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/8cvQSI"><img src="https://s1.ax1x.com/2020/03/20/8cvQSI.png" alt="8cvQSI.png"></a></p>
+<ul>
+<li>前序遍历： - + a * b c &#x2F; d e</li>
+<li>中序遍历： a + b * c - d &#x2F; e</li>
+<li>后续遍历： a b c * + d e &#x2F; -</li>
+<li>层次遍历： - + &#x2F; a * d e b c</li>
+</ul>
+<p>数据结构表示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> treeNode = &#123;</span><br><span class="line">  <span class="attr">value</span>: <span class="string">&quot;-&quot;</span>,</span><br><span class="line">  <span class="attr">left</span>: &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&quot;+&quot;</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;a&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">      <span class="attr">left</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="string">&quot;b&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">right</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>: &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;d&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">      <span class="attr">value</span>: <span class="string">&quot;e&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><ul>
+<li>递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalTreeNodeArr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">popNode</span>(<span class="params">treeNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (treeNode) &#123;</span><br><span class="line">    finalTreeNodeArr.<span class="title function_">push</span>(treeNode.<span class="property">value</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">left</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">right</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非递归</li>
+</ul>
+<ol>
+<li>依次遍历数组，每次取数组最后一个值；</li>
+<li>一次遍历中，每次先判断是否有右节点，有的话插入到数组末尾，再判断左节点，有的话再插入到数组末尾；</li>
+<li>依次循环；</li>
+</ol>
+<p>整体流程如下：</p>
+<ol>
+<li>[{left, right }];</li>
+<li>[right, left]</li>
+<li>[right, right, left]</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">firstPop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    result.<span class="title function_">push</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意顺序 先要取右节点</span></span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">right</span>) stack.<span class="title function_">push</span>(root.<span class="property">right</span>);</span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">left</span>) stack.<span class="title function_">push</span>(root.<span class="property">left</span>);</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;先序遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><ul>
+<li>递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalTreeNodeArr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">popNode</span>(<span class="params">treeNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (treeNode) &#123;</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">left</span>);</span><br><span class="line">    finalTreeNodeArr.<span class="title function_">push</span>(treeNode.<span class="property">value</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">right</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">middlePop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="comment">// 一直遍历是否有左节点 入栈</span></span><br><span class="line">    <span class="keyword">while</span> (root) &#123;</span><br><span class="line">      stack.<span class="title function_">push</span>(root);</span><br><span class="line">      root = root.<span class="property">left</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">pop</span>();</span><br><span class="line"></span><br><span class="line">    result.<span class="title function_">push</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    root = root.<span class="property">right</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;中序遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><ul>
+<li>递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> finalTreeNodeArr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">popNode</span>(<span class="params">treeNode</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (treeNode) &#123;</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">left</span>);</span><br><span class="line">    <span class="title function_">popNode</span>(treeNode.<span class="property">right</span>);</span><br><span class="line">    finalTreeNodeArr.<span class="title function_">push</span>(treeNode.<span class="property">value</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非递归</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">endPop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    result.<span class="title function_">unshift</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">left</span>) stack.<span class="title function_">push</span>(root.<span class="property">left</span>);</span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">right</span>) stack.<span class="title function_">push</span>(root.<span class="property">right</span>);</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;后序遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="广度遍历"><a href="#广度遍历" class="headerlink" title="广度遍历"></a>广度遍历</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepPop</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = [];</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (root || stack.<span class="property">length</span>) &#123;</span><br><span class="line">    result.<span class="title function_">push</span>(root.<span class="property">value</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">left</span>) stack.<span class="title function_">push</span>(root.<span class="property">left</span>);</span><br><span class="line">    <span class="keyword">if</span> (root.<span class="property">right</span>) stack.<span class="title function_">push</span>(root.<span class="property">right</span>);</span><br><span class="line"></span><br><span class="line">    root = stack.<span class="title function_">shift</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;广度遍历：&quot;</span>, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：</p>
+<ol>
+<li>先序非递归 要先存右节点 后存左节点；</li>
+<li>后序非递归 unshift 插值；</li>
+</ol>
+<hr>
+<h2 id="判断对称二叉树"><a href="#判断对称二叉树" class="headerlink" title="判断对称二叉树"></a>判断对称二叉树</h2><p>对称二叉树就是镜像二叉树</p>
+<p>比如：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190625104849486.png" alt="对称二叉树"></p>
+<p>代码模拟一个对称和非对称二叉树如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对称二叉树</span></span><br><span class="line"><span class="keyword">const</span> symmetricalTree = &#123;</span><br><span class="line">  <span class="attr">val</span>: <span class="number">8</span>,</span><br><span class="line">  <span class="attr">left</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">5</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">5</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> noSymmetricalTree = &#123;</span><br><span class="line">  <span class="attr">val</span>: <span class="number">8</span>,</span><br><span class="line">  <span class="attr">left</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">5</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>: &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123; <span class="attr">val</span>: <span class="number">7</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123; <span class="attr">val</span>: <span class="number">9</span>, <span class="attr">left</span>: <span class="literal">null</span>, <span class="attr">right</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>递归判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isMirrorTreeNodes</span>(<span class="params">treeNodes</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">isMirrorNode</span>(treeNodes.<span class="property">left</span>, treeNodes.<span class="property">right</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isMirrorNode</span>(<span class="params">leftNode, rightNode</span>) &#123;</span><br><span class="line">  <span class="comment">// 左右节点都不存在</span></span><br><span class="line">  <span class="keyword">if</span> (!leftNode &amp;&amp; !rightNode) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 左右节点只有一个存在</span></span><br><span class="line">  <span class="keyword">if</span> (!leftNode || !rightNode) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (leftNode.<span class="property">val</span> !== rightNode.<span class="property">val</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="title function_">isMirrorNode</span>(leftNode.<span class="property">left</span>, rightNode.<span class="property">right</span>) &amp;&amp;</span><br><span class="line">    <span class="title function_">isMirrorNode</span>(leftNode.<span class="property">right</span>, rightNode.<span class="property">left</span>)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/5847c17a128fe10058bcf2c5">二叉树与 JavaScript</a></p>
+<p>其他一些example</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二叉树遍历</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *      10 </span></span><br><span class="line"><span class="comment"> *    /    \</span></span><br><span class="line"><span class="comment"> *   9      17</span></span><br><span class="line"><span class="comment"> *  / \    /  \</span></span><br><span class="line"><span class="comment"> * 6  11  16  19</span></span><br><span class="line"><span class="comment"> *   /  \</span></span><br><span class="line"><span class="comment"> *  8   44 </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 主要看中间的根结点位置在哪 就对应哪一种遍历</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 先序  中左右   10、9、6、11、8、44、17、16、19</span></span><br><span class="line"><span class="comment"> * 中序  左中右   6、9、8、11、44、10、16、17、19</span></span><br><span class="line"><span class="comment"> * 后序  左右中   6、8、44、11、9、16、19、17、10</span></span><br><span class="line"><span class="comment"> *  </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nodes = &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="number">9</span>,</span><br><span class="line">        <span class="attr">left</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">6</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">right</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">11</span>,</span><br><span class="line">            <span class="attr">left</span>: &#123;</span><br><span class="line">                <span class="attr">value</span>: <span class="number">8</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">right</span>: &#123;</span><br><span class="line">                <span class="attr">value</span>: <span class="number">44</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="number">17</span>,</span><br><span class="line">        <span class="attr">left</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">16</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">right</span>: &#123;</span><br><span class="line">            <span class="attr">value</span>: <span class="number">19</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 递归实现深度遍历</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> <span class="variable">knight</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-12-21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; [nodes=&#123;&#125;]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">eachTrees</span>(<span class="params">nodes = &#123;&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> arr = []</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getTrees</span>(<span class="params">nodes</span>) &#123;</span><br><span class="line">        <span class="comment">// 先序</span></span><br><span class="line">        <span class="comment">// arr.push(nodes.value)</span></span><br><span class="line">        <span class="keyword">if</span> (nodes.<span class="property">left</span>) &#123; <span class="title function_">getTrees</span>(nodes.<span class="property">left</span>) &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 中序</span></span><br><span class="line">        <span class="comment">// arr.push(nodes.value)</span></span><br><span class="line">        <span class="keyword">if</span> (nodes.<span class="property">right</span>) &#123; <span class="title function_">getTrees</span>(nodes.<span class="property">right</span>) &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 后序</span></span><br><span class="line">        arr.<span class="title function_">push</span>(nodes.<span class="property">value</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> result = <span class="title function_">getTrees</span>(nodes)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="title function_">eachTrees</span>(nodes)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2020/03/15/%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="clu6rtt94002da8xa4z1g4sc1" data-title="二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2020/03/17/%E5%89%8D%E7%AB%AFhttp%E4%B8%8Ehttps%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前端http与https问题整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2020/03/13/%E6%B5%85%E6%9E%90node%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">浅析node进程与线程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>记录typescript使用的几个注意点 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="近期在做前端团队公共模块和方法的私有 npm 包的时候，采用typescript保证包的代码质量，在使用ts的过程遇到一些小问题，特此记录下遇到的一些小问题。  不想一个个导入类型文件，希望有全局引用类型文件  一开始在给每个文件定义类型的时候，都会将文件类型放在types文件夹下，通过es6模块暴露出来并在项目中引入对应的类型文件，开始引用方式如下： 123456&#x2F;&#x2F; types&#x2F;test.d.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录typescript使用的几个注意点">
+<meta property="og:url" content="https://megan-ta.github.io/2019/07/22/%E8%AE%B0%E5%BD%95typescript%E4%BD%BF%E7%94%A8%E7%9A%84%E5%87%A0%E4%B8%AA%E6%B3%A8%E6%84%8F%E7%82%B9/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="近期在做前端团队公共模块和方法的私有 npm 包的时候，采用typescript保证包的代码质量，在使用ts的过程遇到一些小问题，特此记录下遇到的一些小问题。  不想一个个导入类型文件，希望有全局引用类型文件  一开始在给每个文件定义类型的时候，都会将文件类型放在types文件夹下，通过es6模块暴露出来并在项目中引入对应的类型文件，开始引用方式如下： 123456&#x2F;&#x2F; types&#x2F;test.d.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-07-22T05:38:34.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.723Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="typescript">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-记录typescript使用的几个注意点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/07/22/%E8%AE%B0%E5%BD%95typescript%E4%BD%BF%E7%94%A8%E7%9A%84%E5%87%A0%E4%B8%AA%E6%B3%A8%E6%84%8F%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2019-07-22T05:38:34.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      记录typescript使用的几个注意点
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>近期在做前端团队公共模块和方法的私有 npm 包的时候，采用<code>typescript</code>保证包的代码质量，在使用<code>ts</code>的过程遇到一些小问题，特此记录下遇到的一些小问题。</p>
+<ol>
+<li>不想一个个导入类型文件，希望有全局引用类型文件</li>
+</ol>
+<p>一开始在给每个文件定义类型的时候，都会将文件类型放在<code>types</code>文件夹下，通过<code>es6</code>模块暴露出来并在项目中引入对应的类型文件，开始引用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/test.d.ts</span></span><br><span class="line"><span class="keyword">export</span> declare <span class="keyword">const</span> test = <span class="string">&#x27;123&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// src/test.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; test &#125; <span class="keyword">from</span> <span class="string">&#x27;../types/test&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样的话默认也是把<code>.d.ts</code>文件当做一个模块，但是每次都引入的时候会比较麻烦，有没有更简便的方法，不需要引入类型文件？</p>
+<p>答案是有的：利用全局的<code>namespace</code>和<code>tsconfig.json</code>配置</p>
+<p>以下是<code>tsconfig.json</code>一些配置项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;target&quot;</span>: <span class="string">&quot;es5&quot;</span>,</span><br><span class="line">      <span class="string">&quot;module&quot;</span>: <span class="string">&quot;commonjs&quot;</span>,</span><br><span class="line">      <span class="string">&quot;outDir&quot;</span>: <span class="string">&quot;./dist/lib&quot;</span>,</span><br><span class="line">      <span class="string">&quot;declaration&quot;</span>: <span class="literal">true</span>,  <span class="comment">// 开启打包之后会输出.d.ts文件</span></span><br><span class="line">      <span class="string">&quot;declarationDir&quot;</span>: <span class="string">&quot;./dist/types&quot;</span>,  <span class="comment">// 默认.d.ts会输出到文件所在目录下，也可以指定.d.ts存放路径</span></span><br><span class="line">      <span class="string">&quot;strict&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;jsx&quot;</span>: <span class="string">&quot;preserve&quot;</span>,</span><br><span class="line">      <span class="string">&quot;importHelpers&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;removeComments&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;moduleResolution&quot;</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">      <span class="string">&quot;experimentalDecorators&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;allowJs&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="string">&quot;esModuleInterop&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;allowSyntheticDefaultImports&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;sourceMap&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="string">&quot;baseUrl&quot;</span>: <span class="string">&quot;.&quot;</span>,</span><br><span class="line">      <span class="string">&quot;types&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;node&quot;</span>,</span><br><span class="line">        <span class="string">&quot;./types&quot;</span>  <span class="comment">// 本地types所在目录，必须在此引入</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">&quot;lib&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;esnext&quot;</span>,</span><br><span class="line">        <span class="string">&quot;dom&quot;</span>,</span><br><span class="line">        <span class="string">&quot;dom.iterable&quot;</span>,</span><br><span class="line">        <span class="string">&quot;scripthost&quot;</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;include&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;src/**/*.ts&quot;</span>,</span><br><span class="line">      <span class="string">&quot;src/**/**/*.ts&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;exclude&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;node_modules&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意上面的 types 配置需要将自己定义的<code>types</code>文件导入进来，这样一个未知类型会在这个指定范围去查找。</p>
+<p>项目代码使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//types/test.d.ts</span></span><br><span class="line">declare namespace <span class="title class_">Test</span> &#123;</span><br><span class="line">    interface <span class="title class_">Detail</span> &#123;</span><br><span class="line">        <span class="attr">name</span>: string</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// src/test.ts</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getTestDetail</span> (<span class="attr">detail</span>: <span class="title class_">Test</span>.<span class="property">Detail</span>)&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样就不需要项目代码去引用类型文件，缺点是暴露全局的<code>namespace</code>，需要自己根据情况作出取舍。</p>
+<ol start="2">
+<li>定义自定义对象的属性枚举值</li>
+</ol>
+<p>定义一个配置对象，除了<code>key</code>之外其他属性一样，利用枚举特性定义<code>key</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">declare enum <span class="variable constant_">ENV</span> &#123;</span><br><span class="line">  dev = <span class="string">&#x27;dev&#x27;</span>,</span><br><span class="line">  prod = <span class="string">&#x27;prod&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface <span class="title class_">ConfigResult</span> &#123;</span><br><span class="line">  <span class="attr">region</span>: string</span><br><span class="line">  <span class="attr">accessKeyId</span>: string</span><br><span class="line">  <span class="attr">accessKeySecret</span>: string</span><br><span class="line">  <span class="attr">expAfter</span>: number</span><br><span class="line">  <span class="attr">bucket</span>: string</span><br><span class="line">  <span class="attr">maxSize</span>: number</span><br><span class="line">  <span class="attr">startsWith</span>: string</span><br><span class="line">  <span class="attr">ossHost</span>: string</span><br><span class="line">  <span class="attr">host</span>: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface <span class="title class_">Config</span> &#123;</span><br><span class="line">  [<span class="attr">key</span>: string]: &#123;</span><br><span class="line">    [key <span class="keyword">in</span> <span class="variable constant_">ENV</span>]: <span class="title class_">ConfigResult</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>类型文件里面不能导出&#x2F;定义<code>枚举值</code>，枚举值需要单独定义在代码层面，不然会报</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Debug Failure. False expression: Output generation failed</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>开发第三方库的时候遇到，开发完之后库打包之后，在项目中导入相关方法并没有相关方法的提示，别人是怎么定义包内部方法的提示呢？在 github 上查阅了几个库，在<code>https://github.com/alibaba/pont</code>这个项目下发现别人<code>typing</code>指向的路径指向本身项目暴露出来的 ts 入口文件，这样就达到使用 ts 的时候有对应的方法提示。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lib/index.js&quot;</span><span class="punctuation">,</span>   <span class="comment">// 这个是编译后的库入口文件，一般是js</span></span><br><span class="line"><span class="attr">&quot;typings&quot;</span><span class="punctuation">:</span> <span class="string">&quot;src/index.ts&quot;</span><span class="punctuation">,</span> <span class="comment">// 这个是给ts用的本身项目开发的出口文件</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>使用<code>paths</code>做路径映射时候，一定要当前项目配置文件指定<code>baseUrl</code>为当前目录，遇到继承外部项目公共基础配置，公共基础配置设置<code>baseUrl</code>之后，<code>paths</code>路径映射是以外部项目为基准；</p>
+</li>
+<li><p><code>paths</code>做了映射之后，利用提供的<code>tsc</code>编译后的代码并没有做响应的路径转换，比如<code>$src/index.ts</code>，最后编译出来的代码依然是原样，后来是采用<code>rollup.js</code>做了打包处理这个问题。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/07/22/%E8%AE%B0%E5%BD%95typescript%E4%BD%BF%E7%94%A8%E7%9A%84%E5%87%A0%E4%B8%AA%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="clu6rtt9j0045a8xa13uf1lsd" data-title="记录typescript使用的几个注意点" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2019/07/22/%E4%B8%80%E4%BA%9B%E6%96%B0%E7%9A%84api/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一些新的api
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2019/07/14/js%E4%B8%AD%E5%87%A0%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js中几种设计模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

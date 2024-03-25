@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>react/vue中dom-diff简易版实现 | huangchen的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一、创建虚拟dom利用 create-react-app快速创建一个项目模板； 删掉src下的源文件，替换成 index.js 首先我们先要用一个对象定义一个虚拟DOM的数据结构： 123456789101112131415Element &#123;    type: &#x27;ul&#x27;,    props: &#123;        class: &#x27;list&#x27;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react&#x2F;vue中dom-diff简易版实现">
+<meta property="og:url" content="https://megan-ta.github.io/2019/06/20/react-vue%E4%B8%ADdom-diff%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="huangchen的个人博客">
+<meta property="og:description" content="一、创建虚拟dom利用 create-react-app快速创建一个项目模板； 删掉src下的源文件，替换成 index.js 首先我们先要用一个对象定义一个虚拟DOM的数据结构： 123456789101112131415Element &#123;    type: &#x27;ul&#x27;,    props: &#123;        class: &#x27;list&#x27;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7c8c5aa6083b?w=2956&h=992&f=png&s=271739">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7ca53ba8fef7?w=1210&h=410&f=png&s=97781">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7e8001b419a3?w=2568&h=1244&f=png&s=359336">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7e9fddde1a34?w=1078&h=128&f=png&s=25171">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0b58ed9735?w=1036&h=484&f=png&s=95541">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0d50748a42?w=676&h=198&f=png&s=31439">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d8078bce16225?w=2988&h=774&f=png&s=270016">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d805dec820f97?w=1120&h=862&f=png&s=112852">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166ddf9046719203?w=1272&h=896&f=png&s=189549">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166dca2da79ddd4a?w=1240&h=1688&f=png&s=288100">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166dca49d1e2ece5?w=1158&h=420&f=png&s=70893">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166dde85f556609a?w=1432&h=1092&f=png&s=211043">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166ddee92a1a76de?w=1098&h=426&f=png&s=61221">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166ddeed8a40ba8c?w=1096&h=1094&f=png&s=175704">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166ddf0cc87aaa5d?w=1248&h=1138&f=png&s=192351">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/4/166ddf097e341aaf?w=1006&h=1032&f=png&s=120960">
+<meta property="article:published_time" content="2019-06-20T03:33:40.000Z">
+<meta property="article:modified_time" content="2024-03-25T09:53:58.672Z">
+<meta property="article:author" content="huangchen">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/11/3/166d7c8c5aa6083b?w=2956&h=992&f=png&s=271739">
+  
+    <link rel="alternate" href="/MyBlog/atom.xml" title="huangchen的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/MyBlog/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/MyBlog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/MyBlog/" id="logo">huangchen的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/MyBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/MyBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/MyBlog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://megan-ta.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-react-vue中dom-diff简易版实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/MyBlog/2019/06/20/react-vue%E4%B8%ADdom-diff%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-20T03:33:40.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      react/vue中dom-diff简易版实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、创建虚拟dom"><a href="#一、创建虚拟dom" class="headerlink" title="一、创建虚拟dom"></a>一、创建虚拟dom</h2><p>利用 <code>create-react-app</code>快速创建一个项目模板；</p>
+<p>删掉src下的源文件，替换成 index.js</p>
+<p>首先我们先要用一个对象定义一个虚拟DOM的数据结构：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Element &#123;</span><br><span class="line">    type: &#x27;ul&#x27;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        class: &#x27;list&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">        Element&#123;</span><br><span class="line">            type: &#x27;li&#x27;,</span><br><span class="line">            props: &#123;</span><br><span class="line">                class: &#x27;item&#x27;</span><br><span class="line">            &#125;,</span><br><span class="line">            children: [&#x27;a&#x27;]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开始码代码实现虚拟dom的方法实现。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7c8c5aa6083b?w=2956&h=992&f=png&s=271739" alt="&#39;虚拟DOM结构&#39;"><br>浏览器上查看打印的日志信息，如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7ca53ba8fef7?w=1210&h=410&f=png&s=97781" alt="控制台日志"></p>
+<p>既然虚拟DOM方法已经写好，下一步就要将这个虚拟dom插入到页面中，那我们可以专门写一个渲染真实节点的方法<code>render</code></p>
+<p>先遍历最外层<code>ul</code>的<code>type</code>和<code>props</code>两个属性</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7e8001b419a3?w=2568&h=1244&f=png&s=359336" alt="render"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7e9fddde1a34?w=1078&h=128&f=png&s=25171" alt="控制台日志"></p>
+<p>注意：<code>input</code>标签的<code>value</code>属性 还有所有标签的<code>style</code>属性</p>
+<p>好了，接下来就是继续遍历<code>children</code>属性，此时<code>children</code>会有两种情况</p>
+<ol>
+<li>如果是文本 直接插入；</li>
+<li>如果是子元素，递归遍历直到最终的结果是文本；</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0b58ed9735?w=1036&h=484&f=png&s=95541" alt="遍历虚拟don元素转换为真实dom结构"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0d50748a42?w=676&h=198&f=png&s=31439" alt="控制台日志"></p>
+<p>下一步我们将这个实际的DOM元素结构插入到页面中</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d8078bce16225?w=2988&h=774&f=png&s=270016" alt="append"><br><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d805dec820f97?w=1120&h=862&f=png&s=112852" alt="控制台日志"></p>
+<p>完成第一部分。</p>
+<hr>
+<h2 id="二、实现dom-diff算法"><a href="#二、实现dom-diff算法" class="headerlink" title="二、实现dom-diff算法"></a>二、实现dom-diff算法</h2><p><code>dom-diff</code>算法就是在两棵抽象语法树的同一位置采用先序的深度遍历算法做比较，同时用补丁的形式记录需要更新的节点位置。</p>
+<p>若<code>type</code>不一致直接替换当前节点以及当前节点下的子节点；<br>如果两个父节点一致，则从左往后遍历子节点，若子节点一致，遍历子节点下的子节点，依次递归。</p>
+<p>补丁包的定义规则如下：</p>
+<ol>
+<li>属性不同（type: ‘ATTRS’, attrs）</li>
+<li>新的节点被删除了 （type: ‘REMOVE’, index: xxxx）</li>
+<li>节点类型不同&#x2F;新增 （type: ‘REPLACE’, newNode）</li>
+<li>仅仅是文本变化（type: ‘TEXT’, text）</li>
+</ol>
+<p>新建一个<code>dom-diff.js</code>，专门处理<code>diff</code>算法</p>
+<p>手动调用<code>diff</code>方法（react中调用<code>diff</code>算法是在触发<code>setState</code>之后）</p>
+<p>两个虚拟dom结构如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf9046719203?w=1272&h=896&f=png&s=189549" alt="虚拟dom结构"></p>
+<p>先处理<code>type</code>相同，属性不同的情况。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dca2da79ddd4a?w=1240&h=1688&f=png&s=288100" alt="属性不同"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dca49d1e2ece5?w=1158&h=420&f=png&s=70893" alt="控制台日志"></p>
+<p>发现控制台已经打印到属性变化的补丁包，最后我们把属性的小补丁包存放到最外层的大补丁包中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 补丁包 存放两个虚拟dom的差异部分</span><br><span class="line">let patchs = &#123;&#125;</span><br><span class="line">// 放到最外层的大补丁包中</span><br><span class="line">if (currentPatchs.length &gt; 0) &#123;</span><br><span class="line">  patchs[index] = currentPatchs</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好了 相同类型的父节点一样，在属性比较完成之后，就需要比较<code>children</code>的属性是否有变化<br>比较<code>children</code>属性内部元素是否变化，利用递归去遍历</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let globalIndex = 0</span><br><span class="line"></span><br><span class="line">function diffChildren (oldChildrens, newChildrens) &#123;</span><br><span class="line">  oldChildrens.forEach((child, idx) =&gt; &#123;</span><br><span class="line">    walk(child, newChildrens[idx], ++globalIndex)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果一开始<code>type</code>类型不相同不需要再去比较，直接用新节点替换老节点即可；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// type不一致</span><br><span class="line">currentPatchs.push(&#123;</span><br><span class="line">  type: TYPES.REPLACE,</span><br><span class="line">  newNode: newTree</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>兼容并处理好各种情况，比如：新节点不存在的情况，新节点增加，新节点类型改变，新节点文本改变以及新节点的属性变化等情况；</p>
+<p>最终拿到所有与旧节点有差异的对象放入patchs这样的一个补丁对象中。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dde85f556609a?w=1432&h=1092&f=png&s=211043" alt="控制台日志"></p>
+<p>补丁包的<code>key</code>就是对应新节点有变化的数据位置。</p>
+<hr>
+<h2 id="三、-打补丁更新视图"><a href="#三、-打补丁更新视图" class="headerlink" title="三、 打补丁更新视图"></a>三、 打补丁更新视图</h2><p>最后一步将补丁的差异对象与现有虚拟DOM节点遍历进行一一比较与替换。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddee92a1a76de?w=1098&h=426&f=png&s=61221" alt="开始打补丁"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddeed8a40ba8c?w=1096&h=1094&f=png&s=175704" alt="补丁步骤"></p>
+<p>根据之前定义的不同补丁对象结构依次处理</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf0cc87aaa5d?w=1248&h=1138&f=png&s=192351" alt="补丁步骤"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf097e341aaf?w=1006&h=1032&f=png&s=120960" alt="控制台日志"></p>
+<p>大功告成！</p>
+<hr>
+<p>这只是diff算法的一个简易实现，还存在一些复杂情况处理的情况以及还有很多算法上面优化的方案，不过已经让我们大概了解了<code>diff</code>算法的原理。</p>
+<p>如有笔误或者其他实现不对的地方，还望大家指出，谢谢！</p>
+<p>具体代码可以参考github链接查看：<a target="_blank" rel="noopener" href="https://github.com/Megan-TA/dom-diff-demo">dom-diff-demo</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://megan-ta.github.io/2019/06/20/react-vue%E4%B8%ADdom-diff%E7%AE%80%E6%98%93%E7%89%88%E5%AE%9E%E7%8E%B0/" data-id="clu6rtt8x001za8xa7tig4ira" data-title="react/vue中dom-diff简易版实现" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/MyBlog/2019/07/03/%E5%B8%B8%E7%94%A8npm%E5%8C%85%E6%95%B4%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          常用npm包整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/MyBlog/2019/06/19/docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">docker基本使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/MyBlog/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/CI-CD/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/crawler/" rel="tag">crawler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/httpa/" rel="tag">httpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/sentry/" rel="tag">sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/MyBlog/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/MyBlog/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/MyBlog/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/MyBlog/tags/crawler/" style="font-size: 12.5px;">crawler</a> <a href="/MyBlog/tags/css/" style="font-size: 10px;">css</a> <a href="/MyBlog/tags/docker/" style="font-size: 10px;">docker</a> <a href="/MyBlog/tags/git/" style="font-size: 12.5px;">git</a> <a href="/MyBlog/tags/httpa/" style="font-size: 10px;">httpa</a> <a href="/MyBlog/tags/interview/" style="font-size: 12.5px;">interview</a> <a href="/MyBlog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/MyBlog/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/MyBlog/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/MyBlog/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/MyBlog/tags/node/" style="font-size: 17.5px;">node</a> <a href="/MyBlog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/MyBlog/tags/react/" style="font-size: 12.5px;">react</a> <a href="/MyBlog/tags/sentry/" style="font-size: 12.5px;">sentry</a> <a href="/MyBlog/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/MyBlog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/MyBlog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/MyBlog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/MyBlog/2024/03/25/centos%E4%B8%8B%E9%80%9A%E8%BF%87docker%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E5%85%B1%E4%BA%AB%E5%B9%B3%E5%8F%B0mm-wiki/">centos下通过docker安装文档共享平台mm-wiki</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2024/02/21/gitlab-runner%E6%90%AD%E5%BB%BACICD%E5%B9%B3%E5%8F%B0/">gitlab-runner搭建CI/CD平台</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2021/01/21/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B8%A6%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%88%86%E4%BA%AB%E5%9B%BE%E6%B3%A8%E6%84%8F%E7%82%B9/">小程序带二维码分享图注意点</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/12/02/%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序入门</a>
+          </li>
+        
+          <li>
+            <a href="/MyBlog/2020/11/12/node%E5%86%85%E5%AD%98%E7%9B%91%E6%8E%A7/">node内存监控</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 huangchen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/MyBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/MyBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/MyBlog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/MyBlog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/MyBlog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
