@@ -15,6 +15,26 @@ categories: 前端
 
 1. 安装docker
 
+[安装Docker](https://yeasy.gitbook.io/docker_practice/install/centos#shi-yong-jiao-ben-zi-dong-an-zhuang)
+
+安装步骤
+
+```shell
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+curl -fsSL get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh --mirror Aliyun
+
+sudo systemctl enable docker
+sudo systemctl start docker
+
+```
+
+[配置镜像加速](https://yeasy.gitbook.io/docker_practice/install/mirror)
+
+
+
 2. 拉取所需镜像
 
 ```shell
@@ -63,13 +83,13 @@ EOF
 2. 运行镜像生成容器的命令
 
 ```shell
-docker run -itd --name mysql -h mysql -p 33306:3306 -v  /home/mm-wiki/mysql/sql:/docker-entrypoint-initdb.d/ -v  /home/mm-wiki/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7 
+docker run -itd --name mysql -h mysql -p 3306:3306 -v  /home/mm-wiki/mysql/sql:/docker-entrypoint-initdb.d/ -v  /home/mm-wiki/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7 
 
 ```
 3. 命令行登陆测试
 
 ```shell
-mysql -ummwiki -p -h 10.230.77.18 -P 33306  #回车输入密码再次回车即可，密码是上面的mmwiki@123
+mysql -ummwiki -p -h 10.230.77.18 -P 3306  #回车输入密码再次回车即可，密码是上面的mmwiki@123
 ```
 说明
 "-ummwiki"是指定了MySQL用户名为"mmwiki"
@@ -128,7 +148,7 @@ else
   return 51
 fi
 
-if [ -f ./install.lock ]; then  #判断容器内./install.lock是否存在，不存在则是install，否则为正常启动状态       
+if [ -f ./conf/mm-wiki.conf ]; then  #判断容器内./conf/mm-wiki.conf是否存在，不存在则是install，否则为正常启动状态       
   ./mm-wiki --conf ./conf/mm-wiki.conf
 else
   cd install && ./install  #如果需要指定端口，后面加--port=8087即可
@@ -146,9 +166,10 @@ docker build -t mm-wiki:v0.2.1 .
 
 2. 运行mm-wiki镜像
 
+首次运行，生成
+
 ```shell
 docker run -itd --name mm-wiki -h wiki --link mysql:db -p 8090:8090 -p 8080:8080 -v /home/mm-wiki/mmwiki/data:/opt/mmwiki/data mm-wiki:v0.2.1
-
 ```
 
 ## 浏览器引导安装
@@ -175,3 +196,39 @@ docker logs -f mm-wiki
 > 界面登录访问
 
 http://10.230.77.18:8080/
+
+## 后续二开后更新部署
+
+1. 进入运行容器mm-wiki内，拷贝第一次通过安装向导配置后生成的conf文件 (*若已操作过或者配置项没有变化，直接跳到第4步骤执行)
+
+```shell
+docker exec -it mm-wiki bash
+```
+
+2. 复制conf整个目录到/home/mm-wiki/mmwiki/下
+
+```shell
+docker cp mm-wiki:/opt/mmwiki/mm-wiki/conf /home/mm-wiki/mmwiki
+```
+
+3. 停止并删除运行的mm-wiki容器
+
+```shell
+docker stop mm-wiki
+docker rm mm-wiki
+```
+
+4. 重新镜像打包
+
+```shell
+docker build -t mm-wiki:v0.2.1 .
+```
+
+5. 运行镜像
+
+```shell
+docker run -itd --name mm-wiki -h wiki --link mysql:db -p 8090:8090 -p 8080:8080 -v /home/mm-wiki/mmwiki/data:/opt/mmwiki/data -v /home/mm-wiki/mmwiki/conf:/opt/mmwiki/mm-wiki/conf mm-wiki:v0.2.1
+```
+
+
+

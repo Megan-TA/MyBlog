@@ -224,6 +224,43 @@ vscode 也能直接调试网页的 js 代码，安装 Debugger for Chrome 插件
 }
 ```
 
+若需要调试scripts的命令，可以使用runtimeExecutable和runtimeArgs如下配置
+```json
+ {
+    "type": "pwa-node",
+    "request": "launch",
+    "name": "Launch Program",
+    "skipFiles": [
+      "<node_internals>/**"
+    ],
+    "program": "${file}",
+    "outFiles": [
+      "${workspaceFolder}/**/*.js"
+    ],
+    "runtimeExecutable": "npm",
+    "runtimeArgs": [
+      "run-script",
+      "dev"
+    ]
+  }
+```
+
+若需要指定调试使用的node的版本，仅需配置runtimeVersion即可
+```json
+ {
+    "type": "node",
+    "request": "launch",
+    "name": "调试",
+    "cwd": "${workspaceFolder}/projects/app",
+    "runtimeExecutable": "npm",
+    "runtimeVersion": "18.0.0",
+    "runtimeArgs": [
+        "run-script",
+        "dev"
+    ],
+}
+```
+
 参考资料：
 
 1. [VSCode launch.json 配置详解](https://juejin.im/post/6844904198702645262)
