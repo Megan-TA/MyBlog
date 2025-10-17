@@ -8,19 +8,15 @@ tags: javascript
 categories: 前端
 ---
 
-# js 知识点总结
-
-## 1. 解码和编码
+# 解码和编码
 
 > 原因：因为链接里面会有中文或者特殊字符号无法跳转需要进行相关编码解码
 
-**编码**
+## 编码
 
->
+'encodeURI': 只对查询的参数做编码
 
-    'encodeURI': 只对查询的参数做编码
-
-    'encodeURIComponent': 对整个url做编码，包括? & / #
+'encodeURIComponent': 对整个url做编码，包括? & / #
 
 ```javascript
 a = 'www.baidu.com/test?name="zhangsan"'
@@ -28,16 +24,13 @@ encodeURI(a) => 'www.baidu.com/test?name=%22zhangsan%22'
 encodeURIComponent(a) => 'www.baidu.com%2Ftest%3Fname%3D%22zhangsan%22'
 ```
 
-**解码**
+## 解码
 
->
+'decodeURI': 只对查询参数做解码
+'decodeURIComponent': 对整个URL做解码
 
-    'decodeURI': 只对查询参数做解码
-    'decodeURIComponent': 对整个URL做解码
 
----
-
-## 2. 序列化和反序列化
+# 序列化和反序列化
 
 >
 
@@ -54,7 +47,7 @@ header: {'Content-Type': 'application/json; charset=utf-8;'}
 
 ---
 
-## 3. 日期
+# 日期
 
 ```
 new Date().getTime()   // 单位  秒
@@ -68,7 +61,7 @@ new Date().toLocaleTimeString("UTC",{ hour12: false })  // 17:20:16
 
 ---
 
-## 4. 重排/重绘
+# 重排/重绘
 
 1. 重排（回流）：几何属性发生变化 比如：内容、结构、位置或尺寸发生变化，需要重新计算样式和渲染树；
 
@@ -78,21 +71,10 @@ new Date().toLocaleTimeString("UTC",{ hour12: false })  // 17:20:16
 
 > 重排比重绘要消耗更多的资源
 
----
 
-## 5. 锚点定位 scrollIntoView （无兼容问题）
+# typeof 和 instanceof
 
-可以用来做一些 tab 定位
-
-```
-document.getElementById('xx').scrollIntoView()
-```
-
----
-
-## 6. typeof 和 instanceof
-
-> ### typeof
+> ## typeof
 
 会返回一个变量的基本类型，只有以下几种：number,boolean,string,object,function；
 
@@ -105,11 +87,9 @@ document.getElementById('xx').scrollIntoView()
 typeof [1]      // Object
 ```
 
-> ### instanceof
+> ## instanceof
 
-运算符用来测试一个对象在其原型链中是否存在一个构造
-
-返回的是一个布尔值 只能用来判断对象和函数
+通过原型链来判断，返回的是一个布尔值 "只能用来判断对象和函数"
 
 ```
 var a = {};
@@ -120,13 +100,9 @@ alert(  a instanceof Array )    // true
 
 最靠谱也是最方便的办法使用`Object.prototype.toString.call()`来判断
 
-```javascript
-function types(target) {}
-```
-
 ---
 
-## 7. requestAnimationFrame （RAF） 动画 api 兼容 Ie 8/9
+# requestAnimationFrame （RAF） 动画 api 兼容 Ie 8/9
 
 ```
 var i = 0
@@ -148,82 +124,36 @@ function animloop () {
 
 ```
 
-### 优点
+## 优点
+1. 解决毫秒的不精确性；
+2. 避免过渡渲染；
+3. 浏览器可以优化并行的动画动作，将合并的动作放入一个渲染周期；
+4. 过程可控；
 
-    1. 解决毫秒的不精确性；
-    2. 避免过渡渲染；
-    3. 浏览器可以优化并行的动画动作，将合并的动作放入一个渲染周期；
-    4. 过程可控；
+## css3动画高效的原因：
+优点：
+1. 强制使用硬件加速（GPU）；
+2. 使用与RAF类似的机制；
+3. 优化DOM操作 避免内存消耗来减少卡顿；
 
-> 动画效率之争
-
-    css3动画高效的原因有以下三点：
-
-        1. 强制使用硬件加速（GPU）；
-        2. 使用与RAF类似的机制；
-        3. 优化DOM操作 避免内存消耗来减少卡顿；
-
-    同时因为采用GPU， 导致浏览器一直出于高负荷运转，移动端电量损耗和一定卡顿，
-    而且css不能完全被js控制
-    pc上兼容性
+缺点：
+1. 同时因为采用GPU， 导致浏览器一直出于高负荷运转，移动端电量损耗和一定卡顿；
+2. 而且css不能完全被js控制
+3. pc上兼容性
 
 js 动画库 （比如 Velocity.js 和 GSAP）
 
 ---
 
-## 8. 跨域
 
-仅客户端上 域名、端口、协议 三者有一个不一样就会跨域。
-
-跨域的办法
-
-1. ### 服务端配置CORS
-   1. access-control-allow-method
-   2. access-control-allow-origin
-2. ### nginx代理转发
-   1. location / {  proxy_pass xxxxxxx;   }
-3. ### JSONP
-
-   通过 js 标签引入一个 js 文件 这个 js 文件载入成功之后会执行我们在 url 参数中指定的函数 并且会将后端传入给我们的 json 数据作为参数传入
-
-   例如：url?item=1&callback=filter
-
-   原生 js 实现 jsonp 的话 定义好 callback 的函数名称,动态创建 js 标签 url 加上查询的参数写好 callback 的回调函数名称即可
-
-4. ### 利用 iframe 并修改 document.domain 来跨子域
-
-   两个不同域的页面引入 iframe 标签 同时将两个页面的主域设置成相同的域名
-
-   ![页面1](http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox669ialYSHxewnD1B4L5UibVqhMnFEfibLhA8vUQu2s9rltB2HZ6UTQ19iag/0?wx_fmt=png)
-   ![页面2](http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6Kv2iaHanjIzQHDNeia2FsoHSz8AJPkxh0IqickdbPg0CPeFPhoQMpuv5w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
-
-5. ### window.name （可以配合 iframe）
-
-   同源窗口下 window.name 对所有页面都是共享的
-
-   每个页面对 window.name 都有读写权限
-
-   window.name 的值并不会因为新页面而重置
-
-6. widnow.postMessage （存在兼容性 IE7/8 不支持）
-
-   ！[页面 1](http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6z8ibxywKPEusvEA2xS8ialrQ1Oxd0jw0V8C6f7Gicy6Obsyt5bicibxdx5Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
-
-   ！[页面 2](http://mmbiz.qpic.cn/mmbiz_png/zPh0erYjkib3G96tn5N9s0grjcDZD0Ox6B9Fpsa9KmNAMibvfSqE8Qv2icpLzzFE6NfvEp8YxWW6JOMTacIzaQzxw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
-
-7. Nginx 反向代理
-
-
-
-
-## 9. selection
+# selection
 
 > 获取鼠标划过文本的对象
 > `window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();`
 
 ---
 
-## 10. 正则表达式
+# 正则表达式
 
 > 常用规则
 
@@ -289,7 +219,20 @@ var re = new RegExp('\\b'+classname+'\\b');
 
 ---
 
-## 11. Object
+# Object
+
+    [[Prototype]] 
+    .prototype: 只有函数才拥有的普通属性，用来给"将来被new 出来的实例"做原型
+
+    ```javascript
+    obj.__proto__ === Object.getPrototypeOf(obj) 
+
+    // 创建原型
+    Object.create()
+    ```
+
+
+
 
     1. constructor
 
@@ -445,7 +388,7 @@ Object.getPrototypeOf(obj) == obj.__proto__
 
     -----------
 
-## 12. 继承
+# 继承
 
 > **调用另一个对象的方法，以另一个对象替换当前对象的上下文**
 >
@@ -546,7 +489,7 @@ man.prototype = new person();
 
 ---
 
-## 13. cookie sessionStorage localStorage
+# cookie sessionStorage localStorage
 
     1. cookie
         * 4k的限制；
@@ -573,7 +516,7 @@ localStorage.clear();
 
 ---
 
-## 14. 闭包
+# 闭包
 
     简单回答闭包就是 一个函数返回自身内部函数的调用
 
@@ -603,7 +546,7 @@ newFoo();               // a
 
 ---
 
-## 15. 深拷贝和浅拷贝
+# 深拷贝和浅拷贝
 
 - **浅拷贝**
   > **复制对象的副本 指向同一内存区域 对副本的操作会影响父级对象**
@@ -660,7 +603,7 @@ parent.number                       // 1,2,3
 
 ---
 
-## 16. 传值类型和引用类型
+# 传值类型和引用类型
 
 - **传值类型（基本类型）**
   > 值为基本类型时候为深拷贝
@@ -716,121 +659,14 @@ console.log(a);         //  Object {name: "张三"}
 
 ---
 
-## 17. 函数作用域提升与预编译
+# 函数作用域提升与预编译
 
 > 由于 js 没有其他强类型语言{}这类的块级作用域 只有函数作用域 函数的声明很随意导致各种问题出现
->
-> > 变量预编译 > 函数预编译
 
-```
-// 第一条
-
-a();
-var a = c = function() {
-    console.log(2)
-};
-a();
-
-function a() {
-    console.log(1)
-};
-a();
-(function(b) {
-    b(), c()
-    var b = c = function a() {
-        console.log(3)
-    }
-    b();
-})(a);
-c();
-
-// 等价于：
-var a;                      // 变量声明提升
-function a() {              // 函数声明提升
-    console.log(1)
-};
-a();                        // 1
-a = c = function() {
-    console.log(2)
-};
-
-a();                        // 2
-
-(function(b) {
-    var b
-    b()                     // 2
-    c()                     // 本来以error
-    // 后来有人指正 原因就在于var b=c=xxx。
-    // c相当于没有加var 不会预编译，这里c直接查找到外部作用域的c
-    b = c = function a() {
-        console.log(3)
-    }
-    b();                    // 3
-})(a);
-
-c();                        // 3
-
-
-// 第二条
-function fn(){
-    function a(){console.log(1)}
-    return a;
-    function a(){console.log(2)}
-}
-fn()();                     //2 由于预编译 后面的a覆盖了前面的a
-
-// 第三条
-var a=10;
-function fn(){
-    // 预编译a 赋值undefined，内部作用域存在a这个变量，
-    // 所以这里 !a 就是  !undefined，就是true，进入函数a=20;
-    if (!a) {
-        var a=20
-    }
-    console.log(a)          //  这里是20 ，
-}
-fn()
-
-// 第四条
-<script>
-    console.log(typeof a)   //undefined
-    var a='littlebear';
-    console.log(a)          //littlebear
-</script>
-<script>
-    console.log(typeof a)   //string  第二个<script>标签里的a但会往上查找。
-    var a=1;
-    console.log(a)//1
-</script>
-
-// 第五条
-<script>
-    console.log(typeof a)   //undefined
-    console.log(a)
-    // 报错，遇到<script>标签对时，会先对这一块进行预解析，
-    // 下面没预解析，所以找不到声明过的a，于是报错了
-</script>
-<script>
-    console.log(typeof a)   //undefined
-    var a=1;
-    console.log(a)          //1
-</script>
-
-// 第六条
-<script>
-    function fn(a,b){
-        console.log(a)      //容易上当 初始化a的时候已经赋值'容易上当'
-        var a=10;
-        console.log(a)      //10
-    }
-    fn('容易上当');
-</script>
-
-```
 
 ---
 
-## 18. AMD 和 CMD 区别
+# AMD 和 CMD 区别
 
 1. AMD 推崇依赖前置。 （requireJS）
 
@@ -869,67 +705,7 @@ define(['./a', './b'], function(a, b) {
 
 ---
 
-## 19. 常见服务器的状态码
-
-- 301
-
-  永久重定向
-
-- 302
-
-  临时重定向 会出现 URL 劫持 体现在搜索引擎收录策略上 会改变原有请求方法
-
-* 304
-
-  Not Modified
-
-  客户端有缓冲的文档并发出了一个条件性的请求（一般是提供 If-Modified-Since 头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。
-
-- 307
-
-  临时重定向 与 302 区别 客户端应`保持请求方法`不变向新的地址发出请求
-
-* 400
-
-  Bad Request
-
-  表示该请求报文中存在语法错误，导致服务器无法理解该请求。多用于接口参数校验。
-
-* 403
-
-  Forbidden
-
-  该状态码表明对请求资源的访问被服务器拒绝了。多用于权限拦截。
-
-* 407
-
-  代理服务器未授权
-
-* 413
-
-  post body 请求体过大
-
-- 500
-
-  Internal Server Error
-
-  该状态码表明服务器端在执行请求时发生了错误。
-
-- 501
-
-  服务器不具备完成请求的功能。比如服务正在重启时，暂时无法响应客户端请求。
-
-- 502
-
-  上游网关错误
-
-- 503
-
-  服务不可用
-
----
-
-## 20. 事件冒泡和事件捕获
+# 事件冒泡和事件捕获
 
     * 事件冒泡兼容写法
 
@@ -942,7 +718,7 @@ define(['./a', './b'], function(a, b) {
     ```
     --------------------------
 
-## 21. 数组
+# 数组
 
     1. push
 
@@ -995,7 +771,7 @@ define(['./a', './b'], function(a, b) {
 
 ---
 
-## 22.正则
+# 22.正则
 
 - ()：小括号，叫做分组符。
 - \s : 空格
@@ -1018,9 +794,9 @@ define(['./a', './b'], function(a, b) {
 
 ---
 
-> ### 字符串相关的正则方法
+> ## 字符串相关的正则方法
 
-- ### match()
+- ## match()
 
 > 返回一个包含匹配内容的数组
 
@@ -1040,7 +816,7 @@ url.match(/[^\/]*$/) // 2d090m000000062hy59E5.jpg
 url.match(/^[^\/]*/) // https
 ```
 
-- ### search()
+- ## search()
 
 > 返回匹配到的第一个内容所在的位置
 
@@ -1053,7 +829,7 @@ str.search(re) // 1
 
 ```
 
-- ### replace()
+- ## replace()
 
 > 查找符合正则的字符串并替换成==一个==对应的字符串。返回替换后的内容。
 
@@ -1100,13 +876,13 @@ alert(str2)
 
 ---
 
-### 正则两个方法
+## 正则两个方法
 
-- ### test()
+- ## test()
 
 > 匹配到指定内容返回 true
 
-- ### ==exec()==
+- ## ==exec()==
 
 > 返回第一匹配项信息的数组 若没有返回 null
 > 有两个属性 index input
@@ -1122,7 +898,7 @@ alert(str2)
     mathes[2] // and baby
     ```
 
-## 23. 后退监听
+# 后退监听
 
 > history.back() history.forward() history.replace()触发 onpopstate 事件
 
@@ -1138,7 +914,7 @@ alert(str2)
     onbeforeunload事件有坑 chrome51版本及以后不能自定义文字 并且 页面载入之后一定要有浏览器行为才能触发
 
 
-## 27. 进制转换
+# 进制转换
 
 > 十进制转十六进制
 
@@ -1153,25 +929,12 @@ alert(str2)
     parseInt('0xFF')   // 255
     ```
 
-## 28. label 绑定事件一定要让事件委托到触发里面的 input
+# label 绑定事件一定要让事件委托到触发里面的 input
 
     所以事件委托的时候直接监听input
 
-## 29. 浏览器中的简单请求和复杂请求
 
-    简单请求
-        - 请求类型 get/post/head
-        - 除了常见的请求头外，无额外自定义请求头
-          - Content-Type （且值是application/x-www-form-urlencoded，multipart/form-data，text/plain 之一）
-          - Content-Language
-          - Accept
-          - Accept-Language
-          - Save-Data
-
-    复杂请求
-        会发送options预检请求
-
-## 30. Math
+# Math
 
     1. Math.floor 向下舍入；
     2. Math.ceil  向上舍入;
@@ -1180,7 +943,7 @@ alert(str2)
     5. Math.sin   正弦；
     6. Math.tan   正切；
 
-## 31. isNaN
+# isNaN
 
     首先需要知道 '' == 0   'abc' != 0   [] == 0  [1] != 0   null == 0  {} != 0  undefined != 0
 
@@ -1195,7 +958,7 @@ alert(str2)
 
     ```
 
-## 32. Boolen
+# Boolen
 
     首先需要知道  0 == false    1 == true  '' == false   undefined != false != true    null != false != true
 
@@ -1209,7 +972,7 @@ alert(str2)
     Boolen(undefined)   // false
     ```
 
-## 33. 解决回调地狱 （多级回调）
+# 解决回调地狱 （多级回调）
 
     1. Promise
 
@@ -1217,7 +980,7 @@ alert(str2)
 
     3. generator
 
-## 34. 字符串
+# 字符串
 
     1. slice
 
@@ -1254,25 +1017,23 @@ test.substring(2, -3) => ab
 
         字符串按照指定规则转换成数组
 
-## 35. let 与 var 区别
+# let 与 var 区别
 
-    1. var存在变量提升， let不存在；
-    2. let不允许重复声明；
-    3. var挂载在window下，let挂载在块作用域下；
+1. var存在变量提升， let不存在；
+2. let不允许重复声明；
+3. var挂载在window下，let挂载在块作用域下；
 
-## 36. 为什么 var 可以重复声明
+# 为什么 var 可以重复声明
 
-    因为js运行过程中，
+V8引擎 负责整个代码编译和运行
 
-    引擎 负责整个代码编译和运行
+编译器 负责词法分析、语法分析、代码生成等工作
 
-    编译器 负责词法分析、语法分析、代码生成等工作
+编译器从左至右编译var a，如果a不存在则在作用域声明一个新的变量a，若存在a则忽略继续向下编译；
 
-    编译器从左至右编译var a，如果a不存在则在作用域声明一个新的变量a，若存在a则忽略继续向下编译；
+引擎遇到a = 2，按照作用域链向上查找 若存在变量a直接赋值，不存在则在作用域重新声明新的变量并赋值2
 
-    引擎遇到a = 2，按照作用域链向上查找 若存在变量a直接赋值，不存在则在作用域重新声明新的变量并赋值2
-
-## 37. CommonJS 中的 require/exports 和 ES6 的 import/export 有什么区别
+# CommonJS 中的 require/exports 和 ES6 的 import/export 有什么区别
 
 1.
 
@@ -1309,36 +1070,14 @@ console.log(mod.counter); // 3
 
 - 接口输出的变量是只读的，重新赋值会报错；
 - export 通过接口输出的是同一个值，得到的都是同样的实例；
-- 如果需要 import 支持动态加载 提案建议引入 import() 返回一个 promise 对象；
+
 
 参考资料：
 
 1. [ES6 模块与 CommonJS 模块的差异](http://es6.ruanyifeng.com/#docs/module-loader)
 
-## 38. 浏览器缓存
 
-    浏览器缓存分为 强缓存 和 协商缓存
-
-    1. 客户端先根据资源的http header判断是否命中强缓存，如果命中直接从缓存中读取；
-
-    2. 强缓存未命中，客户端发出请求，服务端根据请求的request header验证资源是否命中协商缓存，这个过程成为http再验证。如果命中，服务器将请求返回，状态码304，但不返回资源，而是告诉客服端可以从缓存读取；
-
-    3. 当协商缓存也没有命中，直接服务端返回资源给客户端；
-
-
-    强缓存
-
-    1. Expires 代表缓存过期时间；
-
-    2. Cache-Control： max-age  代表缓存最大生命周期；
-
-    协商缓存
-
-    1. Last-Modified 代表资源最后更新时间；
-
-    2. If-Modified-Since 代表 判断两次请求之间是否有过修改 没有直接返回协商缓存；
-
-## 39. 处理 js 双精度问题
+# 处理 js 双精度问题
 
     ```javascript
         0.1 + 0.2 = 0.30000000000000004
@@ -1356,9 +1095,10 @@ console.log(mod.counter); // 3
 
     1. 优先考虑服务端计算；
     2. 利用精度溢出结尾要么99999要么1111，可以利用Math.round()四舍五入；
+    3. 外部第三方库处理
 
 
-## 40. postMessage
+# postMessage
 
 1. window.postMessage() 可以安全进行跨域、跨页面通信；
 1. 页面加载完成后才能进行跨域通信；
@@ -1419,7 +1159,7 @@ console.log('received response: ',event.data);
 
 1. [用 HTML5 里的 window.postMessage 在两个网页间传递数据](http://www.webhek.com/post/window-postmessage-api.html)
 
-## 41. Service Worker
+# Service Worker
 
 > 背景
 
@@ -1457,7 +1197,7 @@ Service Worker 的特性如下：
 2. [Service Worker 简介](https://lavas.baidu.com/doc/offline-and-cache-loading/service-worker/service-worker-introduction)
 3. [如何优雅的为 PWA 注册 Service Worker](https://zhuanlan.zhihu.com/p/28161855)
 
-## 42 加载更多/下拉刷新
+# 加载更多/下拉刷新
 
 原理：
 
@@ -1469,7 +1209,7 @@ offsetHeighgt = height + padding + border
 
 clientHeight = height + padding
 
-## 43. js 标签中`async`和`defer`的作用与区别
+# js 标签中`async`和`defer`的作用与区别
 
 没有 defer 或 async，浏览器会立即加载并执行指定的脚本，也就是说不等待后续载入的文档元素，读到就加载并执行。
 并行加载，
@@ -1483,9 +1223,9 @@ clientHeight = height + padding
 会等待 document 解析完成，按照 defer 顺序执行对应脚本，全部执行完毕后会触发`DOMContentLoaded`事件
 
 
-## JsBridge
+# JsBridge
 
-### 实现js调用Native的方式，有三个方法：
+## 实现js调用Native的方式，有三个方法：
 - 注入api
 - 劫持URL Scheme
 - 弹窗拦截
@@ -1495,29 +1235,13 @@ clientHeight = height + padding
 【劫持URL Scheme】通常是web端唤醒App（或跳到App某一个页面）。Native劫持Web的请求自定义处理。
 【弹窗拦截】类似劫持URL Scheme原理，劫持弹窗、二次确认等方法。
 
-### Native调用js的方法
+## Native调用js的方法
 
 Native调用js的方式本质就是 执行拼接的js字符串
 
-# css
 
-## BFC是什么？BFC能用来干什么？怎么才能触发BFC？
 
-BFC（块格式化上下文）
 
-触发BFC几种方式：
-- 浮动 （float不为none即可）
-- 绝对定位（position: absoulte 或 fixed）
-- display: inline-block | table-cell | flex | inline-flex
-- overflow （除了visible之外的值）
 
-BFC特点
-- 如果两个块级元素属于同一个BFC，上下margin会重叠，以较大的为准；
-- BFC区域不会与浮动元素的区域重叠；
-- 页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。
 
-BFC作用
-- 清除元素浮动；
-- margin重叠；
-- 两栏布局；
 
